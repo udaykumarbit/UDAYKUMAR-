@@ -76,8 +76,21 @@ body.loaded{opacity:1}
 /* Sections */
 section{padding:80px 0}
 .section-header{text-align:center;margin-bottom:2.5rem}
-.section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#fff;margin-bottom:.4rem}
-.section-subtitle{color:var(--muted);max-width:64ch;margin:0 auto}
+.section-title {
+  font-size:2rem;
+  font-weight:800;
+  color:var(--accent1);
+  text-align:center;
+  margin:0 auto 26px auto;
+  width:100%;
+}
+.section-sub {
+  font-size:1.1rem;
+  color:var(--muted);
+  text-align:center;
+  margin:0 auto 40px auto;
+  max-width:650px;
+}
 
 /* Cards */
 .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;border:1px solid rgba(255,255,255,.06)}
@@ -940,7 +953,76 @@ section{padding:80px 0}
 /* Premium Gold Enhancements */ */
 
 /* ============================= */
-/* 3D ROTATING GOLD RING BEHIND PROFILE IMAGE */
+/* 3D ROTATING GOLD RING BEHIND PROFILE IMAGE — PREMIUM MODE (STRONG GOLD) */
+.profile-container{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px 0;
+}
+
+/* Strong premium rotating ring */
+.profile-gold-ring{
+  position:absolute;
+  top:50%;left:50%;
+  width:300px;height:300px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  border:5px solid rgba(255,215,128,0.85);
+  box-shadow:
+    0 0 35px rgba(255,215,128,0.55),
+    inset 0 0 22px rgba(255,215,128,0.35),
+    0 0 65px rgba(255,215,128,0.45);
+  animation:goldRingSpin 6s linear infinite;
+  z-index:-1;
+  filter:brightness(1.2) saturate(1.4);
+}
+
+@keyframes goldRingSpin{
+  0%{transform:translate(-50%,-50%) rotateX(0) rotateY(0) rotateZ(0)}
+  50%{transform:translate(-50%,-50%) rotateX(40deg) rotateY(200deg) rotateZ(20deg)}
+  100%{transform:translate(-50%,-50%) rotateX(0) rotateY(360deg) rotateZ(0)}
+}
+
+/* Strong HD profile card */
+.profile-card{
+  position:relative;
+  border-radius:9999px;
+  padding:32px;
+  background:linear-gradient(180deg,#1a1a1a,#0d0d0d);
+  border:2px solid rgba(255,215,128,0.55);
+  box-shadow:
+    0 0 40px rgba(255,215,128,0.32),
+    inset 0 0 18px rgba(255,215,128,0.22);
+  overflow:hidden;
+  filter:brightness(1.15);
+  transition:all .4s ease;
+}
+.profile-card:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:
+    0 0 55px rgba(255,215,128,0.45),
+    inset 0 0 25px rgba(255,215,128,0.32);
+}
+
+/* Strong HD image */
+.profile-image-wrapper{
+  width:210px;height:210px;
+  border-radius:50%;
+  overflow:hidden;
+  border:4px solid rgba(255,215,128,0.75);
+  box-shadow:0 0 30px rgba(255,215,128,0.45);
+  margin-bottom:14px;
+}
+.profile-image{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(1.12) contrast(1.08);
+}
+
+.profile-name{font-size:1.32rem;font-weight:800;color:var(--accent1)}
+.profile-title{font-size:1rem;color:var(--muted)}
+
 /* ============================= */
 .profile-container{
   position:relative;
@@ -1164,10 +1246,147 @@ section.visible::before{
 /* END GOLD EFFECTS 2.0 */
 
 /* =============================== */
-/* RESPONSIVE PREMIUM MOBILE + DESKTOP LAYOUT */
-/* =============================== */
+/* RESPONSIVE PREMIUM MOBILE + DESKTOP LAYOUT — CENTERING REMOVED */
 
-/* GLOBAL RESPONSIVE GAPS */
+/* Restore normal layout */
+section .container {
+  display:block;
+  width:100%;
+  text-align:left;
+}
+
+.hero {
+  text-align:left;
+  display:block;
+  padding-top:120px;
+  padding-bottom:100px;
+}
+
+.hero-content {
+  max-width:1200px;
+  width:100%;
+  margin:0;
+  text-align:left;
+}
+
+.profile-container {
+  display:block;
+  margin:0;
+}
+
+.skills-grid,
+.projects-grid,
+.experience-grid {
+  justify-items:start;
+  align-items:start;
+  text-align:left;
+}
+
+.section-title,
+.section-sub,
+.card-title,
+.card-sub,
+.education-meta,
+.education-details,
+.interest-details {
+  text-align:left;
+  margin:0;
+}
+
+.contact-form-card {
+  margin:0;
+  text-align:left;
+}
+
+.hero-buttons,
+.contact-buttons,
+.project-links {
+  justify-content:flex-start;
+  text-align:left;
+}
+
+.about-layout {
+  text-align:left;
+  align-items:flex-start;
+}
+
+.language-card,
+.interest-card,
+.cert-card {
+  text-align:left;
+  margin:0;
+}
+
+section {
+  display:block;
+  width:100%;
+  text-align:left;
+}
+
+/* HYBRID PREMIUM MODE — Hero Centered, Content Left */
+
+/* HERO — CENTERED */
+.hero{
+  text-align:center;
+  display:flex!important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.hero-content{
+  text-align:center!important;
+  margin:auto!important;
+  max-width:900px!important;
+}
+
+/* SECTION TITLES — CENTERED */
+.section-title,
+.section-sub{
+  text-align:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+/* CONTENT BACK TO LEFT ALIGN */
+.container > *:not(.section-header){
+  text-align:left!important;
+}
+
+.skills-grid,
+.projects-grid,
+.experience-grid,
+.about-layout,
+.contact-content{
+  text-align:left!important;
+  justify-items:start!important;
+}
+
+/* CONTACT FORM LEFT */
+.contact-form-card{
+  text-align:left!important;
+  margin:0!important;
+}
+
+/* BUTTONS CENTER ONLY IN HERO */
+.hero-buttons{
+  justify-content:center!important;
+}
+.contact-buttons,
+.project-links{
+  justify-content:flex-start!important;
+}
+
+/* LANGUAGE / INTEREST / CERT CARDS → LEFT */
+.language-card,
+.interest-card,
+.cert-card{
+  text-align:left!important;
+  margin:0!important;
+}
+
+/* END HYBRID PREMIUM MODE */
+
+/* GLOBAL RESPONSIVE GAPS */ */ */
 section{padding:60px 0;}
 @media(max-width:768px){section{padding:40px 0;}}
 
@@ -1274,118 +1493,4 @@ section{padding:60px 0;}
 
 /* BEAUTIFUL MOBILE SPACING */
 @media(max-width:768px){
-  h2.section-title{font-size:1.6rem;margin-bottom:22px;}
-  .section-sub{font-size:1rem;}
-}
-
-/* PERFECT TOUCH FEEL ON MOBILE */
-@media(max-width:768px){
-  *{scroll-behavior:smooth;} 
-  .experience-card,
-  .training-card,
-  .education-card,
-  .cert-card,
-  .language-card,
-  .interest-card,
-  .skill-box,
-  .contact-card{
-    transform:none !important;
-    transition:all .35s ease;
-  }
-  .experience-card:active,
-  .training-card:active,
-  .education-card:active,
-  .cert-card:active,
-  .language-card:active,
-  .interest-card:active,
-  .skill-box:active,
-  .contact-card:active{
-    transform:scale(.97);
-    box-shadow:0 0 25px rgba(212,175,55,0.32);
-  }
-}
-
-/* END RESPONSIVE PREMIUM */
-
-/* Premium Gold Enhancements */
-
-/* Premium Gold Enhancements (prev content below) */
-
-/* Gold Frame for Profile Image */
-.profile-image-wrapper{
-  border:3px solid var(--accent1);
-  box-shadow:0 0 25px rgba(212,175,55,0.35),0 0 45px rgba(255,204,92,0.25);
-  padding:4px;
-}
-
-/* Section Titles Gold Underline */
-.section-title{
-  position:relative;
-  display:inline-block;
-  padding-bottom:6px;
-}
-.section-title::after{
-  content:'';
-  position:absolute;
-  left:0;right:0;bottom:0;
-  height:3px;
-  border-radius:4px;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  box-shadow:0 0 10px rgba(212,175,55,0.4);
-}
-
-/* Gold Divider Lines */
-.gold-divider{
-  width:100%;height:2px;margin:22px 0;
-  background:linear-gradient(90deg,transparent,var(--accent1),transparent);
-  box-shadow:0 0 12px rgba(212,175,55,0.35);
-}
-
-/* Gold Glow on Cards */
-.experience-card:hover,
-.internship-card:hover,
-.training-card:hover,
-.cert-card:hover,
-.education-card:hover,
-.language-card:hover,
-.interest-card:hover,
-.contact-card:hover,
-.skill-highlight-card:hover{
-  box-shadow:0 0 35px rgba(212,175,55,0.35),0 0 55px rgba(255,204,92,0.25);
-  transform:translateY(-6px);
-}
-
-/* Buttons Premium Shine */
-.btn-primary{
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-  color:#000;font-weight:700;
-  box-shadow:0 0 22px rgba(212,175,55,0.35);
-}
-.btn-primary:hover{
-  box-shadow:0 0 38px rgba(212,175,55,0.55);
-  transform:translateY(-3px);
-}
-
-/* Gold Scrollbar */
-::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:#111}
-::-webkit-scrollbar-thumb{
-  background:linear-gradient(180deg,var(--accent1),var(--accent2));
-  border-radius:6px;
-  box-shadow:0 0 16px rgba(212,175,55,0.35);
-}
-
-/* Premium Card Shine on Hover */
-.skill-box:hover::after,
-.cert-box:hover::after,
-.language-box:hover::after,
-.interest-box:hover::after{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;bottom:0;
-  border-radius:inherit;
-  background:linear-gradient(135deg,rgba(212,175,55,0.18),rgba(255,204,92,0.12));
-  pointer-events:none;
-}
-
-/* end of file */
+  h2.section-title{font-size:1.6rem;margin-bottom:22p
