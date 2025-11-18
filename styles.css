@@ -1386,6 +1386,47 @@ section {
 
 /* END HYBRID PREMIUM MODE */
 
+/* =============================== */
+/* UNIFORM SECTION SPACING FIX     */
+/* Programming & Tools / Cert / Lang / Interests / Send Message */
+/* =============================== */
+
+/* Add identical spacing before every section block */
+#skills,
+#programming-tools,
+#certifications,
+#languages,
+#interests,
+#contact,
+.send-message-section {
+  padding-top:65px !important;
+  padding-bottom:65px !important;
+}
+
+/* Add consistent spacing between box items */
+.skill-category,
+.skill-box,
+.cert-card,
+.language-card,
+.interest-card,
+.contact-form-card {
+  margin-bottom:28px !important;
+}
+
+/* Ensure top and bottom spacing around headers */
+.section-header {
+  margin-bottom:38px !important;
+  margin-top:10px !important;
+}
+
+/* Extra clean spacing inside lists */
+.skill-list li,
+.cert-list li,
+.language-list li,
+.interest-list li {
+  margin-bottom:10px !important;
+}
+
 /* GLOBAL RESPONSIVE GAPS */ */ */
 section{padding:60px 0;}
 @media(max-width:768px){section{padding:40px 0;}}
