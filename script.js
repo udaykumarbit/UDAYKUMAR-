@@ -1,632 +1,391 @@
-// DOM Elements
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-const scrollTopBtn = document.getElementById('scroll-top');
-const contactForm = document.getElementById('contact-form');
-const loadingScreen = document.getElementById('loading-screen');
-const profileImage = document.getElementById('profile-image');
-const profileFallback = document.getElementById('profile-fallback');
+// script.fixed.js — fully fixed and hardening version of your original script.js
+// Replace your existing script.js with this file (or copy its content into script.js).
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function () {
-    initializePage();
-    setupEventListeners();
-    setupIntersectionObserver();
-    setupImageHandling();
+// Helper: safe query
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+// DOM Elements (lazy-get when needed to avoid nulls on early script execution)
+function getEl(id) { return document.getElementById(id); }
+
+// Debounce utility (works correctly)
+function debounce(fn, wait = 100) {
+  let t;
+  return function (...args) {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+// Safe download helper
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+// Initialization on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  initPage();
+  attachListeners();
+  setupObservers();
+  setupImageFallback();
 });
 
-// Page Initialization
-function initializePage() {
-    // Hide loading screen after a short delay
+function initPage() {
+  const loadingScreen = getEl('loading-screen');
+  if (loadingScreen) {
+    // Keep for minimum UX, hide after a short delay
     setTimeout(() => {
-        loadingScreen.classList.add('hidden');
-        document.body.classList.add('loaded');
-    }, 1000);
+      loadingScreen.classList.add('hidden');
+      document.body.classList.add('loaded');
+    }, 700);
+  } else {
+    document.body.classList.add('loaded');
+  }
 
-    // Initialize navigation
-    updateActiveNavLink();
+  // Initial navbar state
+  updateNavbarBackground();
+  updateActiveNavLink();
 
-    // Console welcome message
-    console.log('%c🚀 Welcome to Udaykumar Borale\'s Portfolio!', 'color: #a855f7; font-size: 16px; font-weight: bold;');
-    console.log('%c📧 Contact: udaykumarborale9@gmail.com', 'color: #3b82f6;');
-    console.log('%c📱 Phone: +91-8660272709', 'color: #10b981;');
-    console.log('%c💼 LinkedIn: linkedin.com/in/udaykumarborale', 'color: #0077b5;');
+  // Friendly console message
+  console.log('%cPortfolio loaded — hello!', 'color:#a855f7;font-weight:700');
 }
 
-// Event Listeners Setup
-function setupEventListeners() {
-    // Navigation toggle
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', toggleMobileMenu);
-    }
+function attachListeners() {
+  const navToggle = getEl('nav-toggle');
+  const navMenu = getEl('nav-menu');
+  const scrollTopBtn = getEl('scroll-top');
+  const contactForm = getEl('contact-form');
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      navToggle.classList.toggle('active');
+      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     });
+  }
 
-    // Scroll events
-    window.addEventListener('scroll', debounce(handleScroll, 10));
-
-    // Scroll to top button
-    if (scrollTopBtn) {
-        scrollTopBtn.addEventListener('click', scrollToTop);
-    }
-
-    // Contact form
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
-
-        // Real-time validation
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('blur', () => validateField(input));
-            input.addEventListener('input', () => clearFieldError(input));
-        });
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', handleKeyboardNavigation);
-
-    // Window resize
-    window.addEventListener('resize', debounce(handleResize, 250));
-}
-
-// Mobile Menu Functions
-function toggleMobileMenu() {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-
-    // Prevent body scroll when menu is open
-    if (navMenu.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = '';
-    }
-}
-
-function closeMobileMenu() {
-    navMenu.classList.remove('active');
-    navToggle.classList.remove('active');
+  // Close mobile menu when clicking a nav link
+  $$('.nav-link').forEach(link => link.addEventListener('click', () => {
+    const menu = getEl('nav-menu');
+    const toggle = getEl('nav-toggle');
+    if (menu) menu.classList.remove('active');
+    if (toggle) toggle.classList.remove('active');
     document.body.style.overflow = '';
+  }));
+
+  // Scroll handlers (debounced)
+  window.addEventListener('scroll', debounce(handleScroll, 20));
+  window.addEventListener('resize', debounce(() => {
+    // ensure mobile menu is closed on large screens
+    const menu = getEl('nav-menu');
+    if (window.innerWidth > 768 && menu && menu.classList.contains('active')) {
+      menu.classList.remove('active');
+      const toggle = getEl('nav-toggle');
+      if (toggle) toggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    updateActiveNavLink();
+  }, 200));
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  // Contact form handling
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleFormSubmit);
+
+    // real-time validation
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(i => {
+      i.addEventListener('blur', () => validateField(i));
+      i.addEventListener('input', () => clearFieldError(i));
+    });
+  }
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const menu = getEl('nav-menu');
+      const toggle = getEl('nav-toggle');
+      if (menu && menu.classList.contains('active')) {
+        menu.classList.remove('active');
+        if (toggle) toggle.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Enter on focused nav button should click it
+    if (e.key === 'Enter' && document.activeElement && document.activeElement.classList.contains('nav-link')) {
+      document.activeElement.click();
+    }
+  });
 }
 
-// Scroll Functions
 function handleScroll() {
-    updateScrollTopButton();
-    updateNavbarBackground();
-    updateActiveNavLink();
+  updateScrollTopButton();
+  updateNavbarBackground();
+  updateActiveNavLink();
 }
 
 function updateScrollTopButton() {
-    if (scrollTopBtn) {
-        if (window.pageYOffset > 500) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
-    }
+  const btn = getEl('scroll-top');
+  if (!btn) return;
+  if (window.pageYOffset > 500) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
 }
 
 function updateNavbarBackground() {
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(15, 23, 42, 0.98)';
-        } else {
-            navbar.style.background = 'rgba(15, 23, 42, 0.95)';
-        }
-    }
+  const navbar = getEl('navbar');
+  if (!navbar) return;
+  navbar.style.background = window.scrollY > 50 ? 'rgba(15,23,42,0.98)' : 'rgba(15,23,42,0.95)';
 }
 
 function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+  if (sections.length === 0 || navLinks.length === 0) return;
 
-    let currentSection = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-
-        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const linkText = link.textContent.toLowerCase();
-        if (linkText === currentSection ||
-            (currentSection === 'hero' && linkText === 'udaykumar borale')) {
-            link.classList.add('active');
-        }
-    });
-}
-
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Smooth scrolling function
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        const offsetTop = element.offsetTop - 70; // Account for fixed navbar
-        window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-        });
-        closeMobileMenu();
+  let current = sections[0].id || '';
+  const scrollPos = window.pageYOffset + 90; // offset to account for navbar
+  for (const sec of sections) {
+    const top = sec.offsetTop;
+    const bottom = top + sec.offsetHeight;
+    if (scrollPos >= top && scrollPos < bottom) {
+      current = sec.id;
+      break;
     }
-}
+  }
 
-// Resume Download Function (fixed: uses Blob and file name; content matches uploaded PDF summary)
-function downloadResume() {
-    try {
-        const pdfPath = 'UDAYKUMAR-1.pdf'; // exact filename you provided
-
-        const link = document.createElement('a');
-        link.href = pdfPath;
-        link.download = 'UDAYKUMAR.pdf'; 
-        link.style.display = 'none';
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        showNotification('Resume download started!', 'success');
-    } catch (error) {
-        console.error('Error downloading resume:', error);
-        showNotification('Error downloading resume. Please try again.', 'error');
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    const target = (link.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/);
+    // if link text matches id or onclick target
+    if ((target && target[1] === current) || link.textContent.trim().toLowerCase() === current) {
+      link.classList.add('active');
     }
+  });
 }
 
+// Smooth scroll exposed for HTML
+window.scrollToSection = function (sectionId) {
+  const el = getEl(sectionId);
+  if (!el) return;
+  const offset = el.offsetTop - 70; // navbar height
+  window.scrollTo({ top: offset, behavior: 'smooth' });
+  // close mobile menu
+  const menu = getEl('nav-menu');
+  const toggle = getEl('nav-toggle');
+  if (menu) menu.classList.remove('active');
+  if (toggle) toggle.classList.remove('active');
+  document.body.style.overflow = '';
+};
 
-+91-8660272709 | udaykumarborale9@gmail.com | linkedin.com/in/udaykumarborale
-https://udaykumar.online/ | Banashankari 1St stage Bangalore-560050
-
-SUMMARY
-Experienced Mechanical Design and Simulation Engineer specializing in advanced 3D modelling, simulation, and comprehensive product development. Proficient in industry-standard tools such as CATIA, SolidWorks, Solid Edge, PTC Creo, Siemens NX, ANSYS, Abaqus, Hyper Mesh, ANSA, and MATLAB. Skilled in utilizing PLM/PDM systems to streamline design workflows and ensure efficient project management.
-
-EDUCATION
-B.E. in Mechanical Engineering - Bangalore Institute of Technology (2022-2025) - CGPA: 8.5
-Diploma in Mechanical Engineering - Jawaharlal Nehru Polytechnic (2018-2021) - 72%
-
-WORK EXPERIENCE
-R&D Engineer – Powertrain & BIW Design - Chropynska India Private Ltd (Oct 2025 – Present)
-- Lead end-to-end design and development of Powertrain and Body-in-White (BIW) systems.
-- Optimized components for performance, durability and manufacturability.
-
-Quality and Product Design Engineer - JK Fenner India Ltd (2021-2022)
-- Created detailed 3D models and simulations to support product design initiatives.
-- Assisted quality assurance and collaborated with cross-functional teams.
-
-INTERNSHIPS & TRAINING
-- Bajaj Engineering & Skills Training (BEST), PES University — Mechatronics & Automation Trainee (Feb–Jul 2025)
-- CONCEPTIA KONNECT — Simulation & Structural Analysis (Feb–May 2025)
-- PRIME TOOLING — Design & Structural Analysis (Mar–Feb 2025)
-- CNC Machines & Manufacturing (Bharat Fritz Werner) — Oct–Nov 2023
-- BELATHUR INDUSTRIES — Machining Operations (May–Jun 2023)
-- BOSCH — CFD & Flow Simulation Intern (Feb–Mar 2023)
-
-PROJECTS
-- Modeling and Analysis of Vertical Axis Wind Turbine Blade (Apr–Jul 2024) — CATIA V5, SolidWorks, ANSYS
-- Studies on Free Convection in a Trapezoidal Cavity with Porous Media (Aug–Dec 2024) — MATLAB, FEM
-
-SKILLS
-3D Modeling: CATIA, SolidWorks, Solid Edge, PTC Creo, Siemens NX
-Simulation: ANSYS, Abaqus, HyperMesh, ANSA, MATLAB
-Programming & Tools: Python, MATLAB, Microsoft Office
-Certifications: CATIA V5, SolidWorks, ANSYS Workbench, Python Programming
-Languages: English, Kannada, Hindi, Marathi
-Interests: Reading, Traveling, Music, Carrom, Cricket
-`;
-
-        const blob = new Blob([resumeContent], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'UDAYKUMAR_resume.txt'; // text fallback download; change to .pdf if you want to serve actual PDF binary
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-
-        showNotification('Resume download started.', 'success');
-    } catch (error) {
-        console.error('Error downloading resume:', error);
-        showNotification('Error downloading resume. Please try again.', 'error');
+// Resume download — tries to fetch the PDF, falls back to a generated text resume (works in static hosts)
+window.downloadResume = async function () {
+  const pdfPath = 'UDAYKUMAR-1.pdf'; // change if your PDF has a different name
+  try {
+    // try to fetch the PDF
+    const res = await fetch(pdfPath, { method: 'GET' });
+    if (res.ok) {
+      const blob = await res.blob();
+      downloadBlob(blob, 'UDAYKUMAR.pdf');
+      showNotification('Resume download started!', 'success');
+      return;
     }
-}
+    // else fallback
+    throw new Error('PDF not found on server');
+  } catch (err) {
+    console.warn('PDF fetch failed, falling back to text resume:', err.message);
+    // Fallback text resume (brief summary) — you can replace the content below with your full resume string or to fetch another path
+    const resumeContent = `Name: Udaykumar Borale\nPhone: +91-8660272709\nEmail: udaykumarborale9@gmail.com\nLinkedIn: https://www.linkedin.com/in/udaykumarborale\nLocation: Bangalore-560050\n\nSummary:\nExperienced Mechanical Design and Simulation Engineer...`;
+    const blob = new Blob([resumeContent], { type: 'text/plain;charset=utf-8' });
+    downloadBlob(blob, 'UDAYKUMAR_resume.txt');
+    showNotification('Downloaded text resume fallback.', 'info');
+  }
+};
 
-// If you want to download the actual uploaded PDF (UDAYKUMAR-1.pdf) instead, replace downloadResume() to fetch and download that file
-// (I used a text fallback here because static binary serving depends on how your site is hosted).
+// Open LinkedIn
+window.openLinkedIn = function () {
+  try {
+    window.open('https://www.linkedin.com/in/udaykumarborale', '_blank', 'noopener,noreferrer');
+  } catch (err) {
+    console.error('Failed to open LinkedIn', err);
+    showNotification('Could not open LinkedIn.', 'error');
+  }
+};
 
-// Open LinkedIn Profile
-function openLinkedIn() {
-    try {
-        window.open('https://www.linkedin.com/in/udaykumarborale', '_blank', 'noopener,noreferrer');
-    } catch (error) {
-        console.error('Error opening LinkedIn:', error);
-        showNotification('Error opening LinkedIn. Please try again.', 'error');
-    }
-}
-
-// Form Handling
+// Contact form handling and validation
 function handleFormSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
+  const form = e.currentTarget;
+  if (!validateForm(form)) {
+    showNotification('Please fix the errors in the form.', 'error');
+    return;
+  }
 
-    if (!validateForm()) {
-        showNotification('Please fix the errors in the form.', 'error');
-        return;
-    }
+  try {
+    const fd = new FormData(form);
+    const firstName = (fd.get('firstName') || '').toString().trim();
+    const lastName = (fd.get('lastName') || '').toString().trim();
+    const email = (fd.get('email') || '').toString().trim();
+    const subject = (fd.get('subject') || '').toString().trim();
+    const message = (fd.get('message') || '').toString().trim();
 
-    try {
-        const formData = new FormData(contactForm);
-        const firstName = formData.get('firstName')?.trim();
-        const lastName = formData.get('lastName')?.trim();
-        const email = formData.get('email')?.trim();
-        const subject = formData.get('subject')?.trim();
-        const message = formData.get('message')?.trim();
-
-        // Create mailto link with form data
-        const mailtoLink = `mailto:udaykumarborale9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-
-        // Open email client
-        window.location.href = mailtoLink;
-
-        // Show success message
-        showNotification('Email client opened! Please send your message.', 'success');
-
-        // Reset form
-        contactForm.reset();
-        clearAllFieldErrors();
-
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        showNotification('Error submitting form. Please try again.', 'error');
-    }
+    const mailto = `mailto:udaykumarborale9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+    // open email client
+    window.location.href = mailto;
+    showNotification('Email client opened — please send your message.', 'success');
+    form.reset();
+    clearAllFieldErrors(form);
+  } catch (err) {
+    console.error(err);
+    showNotification('Error submitting form.', 'error');
+  }
 }
 
-// Form Validation
-function validateForm() {
-    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-
-    formInputs.forEach(input => {
-        if (!validateField(input)) {
-            isValid = false;
-        }
-    });
-
-    return isValid;
+function validateForm(form) {
+  const fields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
+  let ok = true;
+  fields.forEach(f => { if (!validateField(f)) ok = false; });
+  return ok;
 }
 
 function validateField(field) {
-    const value = field.value.trim();
-    const fieldName = field.name;
-    let isValid = true;
-    let errorMessage = '';
+  if (!field) return true;
+  const name = field.name;
+  const value = (field.value || '').trim();
+  let msg = '';
 
-    // Clear previous error
-    clearFieldError(field);
+  if (field.required && !value) msg = `${getFieldLabel(name)} is required.`;
+  if (!msg && name === 'email' && value) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!re.test(value)) msg = 'Please enter a valid email address.';
+  }
+  if (!msg && (name === 'firstName' || name === 'lastName') && value.length > 0 && value.length < 2) {
+    msg = `${getFieldLabel(name)} must be at least 2 characters long.`;
+  }
+  if (!msg && name === 'subject' && value.length > 0 && value.length < 5) {
+    msg = 'Subject must be at least 5 characters long.';
+  }
+  if (!msg && name === 'message' && value.length > 0 && value.length < 10) {
+    msg = 'Message must be at least 10 characters long.';
+  }
 
-    // Required field validation
-    if (field.hasAttribute('required') && !value) {
-        errorMessage = `${getFieldLabel(fieldName)} is required.`;
-        isValid = false;
-    }
-
-    // Email validation
-    if (fieldName === 'email' && value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
-            errorMessage = 'Please enter a valid email address.';
-            isValid = false;
-        }
-    }
-
-    // Name validation
-    if ((fieldName === 'firstName' || fieldName === 'lastName') && value) {
-        if (value.length < 2) {
-            errorMessage = `${getFieldLabel(fieldName)} must be at least 2 characters long.`;
-            isValid = false;
-        }
-    }
-
-    // Subject validation
-    if (fieldName === 'subject' && value && value.length < 5) {
-        errorMessage = 'Subject must be at least 5 characters long.';
-        isValid = false;
-    }
-
-    // Message validation
-    if (fieldName === 'message' && value && value.length < 10) {
-        errorMessage = 'Message must be at least 10 characters long.';
-        isValid = false;
-    }
-
-    if (!isValid) {
-        showFieldError(field, errorMessage);
-    }
-
-    return isValid;
+  if (msg) {
+    showFieldError(field, msg);
+    return false;
+  }
+  clearFieldError(field);
+  return true;
 }
 
-function getFieldLabel(fieldName) {
-    const labels = {
-        firstName: 'First Name',
-        lastName: 'Last Name',
-        email: 'Email',
-        subject: 'Subject',
-        message: 'Message'
-    };
-    return labels[fieldName] || fieldName;
+function getFieldLabel(n) {
+  const labels = { firstName: 'First Name', lastName: 'Last Name', email: 'Email', subject: 'Subject', message: 'Message' };
+  return labels[n] || n;
 }
 
 function showFieldError(field, message) {
-    const errorElement = document.getElementById(`${field.name}-error`);
-    if (errorElement) {
-        errorElement.textContent = message;
-        errorElement.style.display = 'block';
-    }
+  try {
+    const id = `${field.name}-error`;
+    const el = document.getElementById(id);
+    if (el) { el.textContent = message; el.style.display = 'block'; }
     field.style.borderColor = '#ef4444';
+  } catch (e) { /* ignore */ }
 }
 
 function clearFieldError(field) {
-    const errorElement = document.getElementById(`${field.name}-error`);
-    if (errorElement) {
-        errorElement.textContent = '';
-        errorElement.style.display = 'none';
-    }
+  try {
+    const id = `${field.name}-error`;
+    const el = document.getElementById(id);
+    if (el) { el.textContent = ''; el.style.display = 'none'; }
     field.style.borderColor = '';
+  } catch (e) { /* ignore */ }
 }
 
-function clearAllFieldErrors() {
-    const errorElements = contactForm.querySelectorAll('.error-message');
-    errorElements.forEach(element => {
-        element.textContent = '';
-        element.style.display = 'none';
+function clearAllFieldErrors(form) {
+  if (!form) return;
+  form.querySelectorAll('.error-message').forEach(e => { e.textContent = ''; e.style.display = 'none'; });
+  form.querySelectorAll('input, textarea').forEach(i => i.style.borderColor = '');
+}
+
+// Image fallback
+function setupImageFallback() {
+  const img = getEl('profile-image');
+  const fallback = getEl('profile-fallback');
+  if (!img || !fallback) return;
+
+  img.addEventListener('load', () => fallback.classList.add('hidden'));
+  img.addEventListener('error', () => fallback.classList.remove('hidden'));
+  // if already loaded
+  if (img.complete) {
+    if (img.naturalWidth && img.naturalWidth > 0) fallback.classList.add('hidden');
+    else fallback.classList.remove('hidden');
+  }
+}
+
+// Intersection observer for .fade-in and similar classes
+function setupObservers() {
+  const items = Array.from(document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right'));
+  if (items.length === 0) return;
+
+  const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
-    const inputs = contactForm.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-        input.style.borderColor = '';
-    });
+  items.forEach((el, i) => {
+    // small stagger
+    el.style.transitionDelay = `${i * 80}ms`;
+    obs.observe(el);
+  });
 }
 
-// Image Handling
-function setupImageHandling() {
-    if (profileImage && profileFallback) {
-        profileImage.addEventListener('load', function () {
-            profileFallback.classList.add('hidden');
-        });
-
-        profileImage.addEventListener('error', function () {
-            profileFallback.classList.remove('hidden');
-            console.log('Profile image not found, showing fallback');
-        });
-
-        // Check if image is already loaded
-        if (profileImage.complete) {
-            if (profileImage.naturalWidth > 0) {
-                profileFallback.classList.add('hidden');
-            } else {
-                profileFallback.classList.remove('hidden');
-            }
-        }
-    }
-}
-
-// Intersection Observer for Animations
-function setupIntersectionObserver() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Unobserve after animation to improve performance
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.fade-in');
-    animatedElements.forEach((element, index) => {
-        element.style.transitionDelay = `${index * 0.1}s`;
-        observer.observe(element);
-    });
-}
-
-// Notification System
+// Notifications (simple)
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
-
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-
-    const iconClass = type === 'success' ? 'fa-check-circle' :
-        type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
-
-    notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas ${iconClass}" aria-hidden="true"></i>
-            <span>${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()" aria-label="Close notification">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    `;
-
-    // Add notification styles
-    const bgColor = type === 'success' ? '#10b981' :
-        type === 'error' ? '#ef4444' : '#3b82f6';
-
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${bgColor};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 350px;
-        word-wrap: break-word;
-    `;
-
-    // Add to document
-    document.body.appendChild(notification);
-
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
-        }
-    }, 5000);
+  try {
+    // remove existing
+    document.querySelectorAll('.notification').forEach(n => n.remove());
+    const div = document.createElement('div');
+    div.className = `notification notification-${type}`;
+    const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+    div.innerHTML = `<div class="notification-content"><i class="fas ${icon}" aria-hidden="true"></i><span>${message}</span><button class="notification-close" aria-label="Close">✕</button></div>`;
+    // inline styles to avoid requiring CSS updates
+    div.style.cssText = `position:fixed;top:90px;right:20px;padding:12px 16px;border-radius:8px;color:white;z-index:10000;box-shadow:0 10px 30px rgba(0,0,0,0.2);max-width:360px;`;
+    div.style.background = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6';
+    document.body.appendChild(div);
+    // close button
+    const closeBtn = div.querySelector('.notification-close');
+    if (closeBtn) closeBtn.addEventListener('click', () => div.remove());
+    // auto remove
+    setTimeout(() => { if (div.parentNode) div.remove(); }, 4500);
+  } catch (e) { console.warn('Notification failed', e); }
 }
 
-// Keyboard Navigation
-function handleKeyboardNavigation(e) {
-    // Escape key to close mobile menu
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        closeMobileMenu();
-    }
+// Performance logging (optional)
+(function logPerf() {
+  if (!('performance' in window)) return;
+  window.addEventListener('load', () => {
+    try {
+      const nav = performance.getEntriesByType('navigation')[0];
+      if (nav) console.log('Page load time:', Math.round(nav.loadEventEnd - nav.loadEventStart), 'ms');
+    } catch (e) { /* ignore */ }
+  });
+})();
 
-    // Enter key on navigation buttons
-    if (e.key === 'Enter' && e.target.classList.contains('nav-link')) {
-        e.target.click();
-    }
-}
-
-// Window Resize Handler
-function handleResize() {
-    // Close mobile menu on resize to desktop
-    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-        closeMobileMenu();
-    }
-}
-
-// Utility Functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Performance Monitoring
-function logPerformance() {
-    if ('performance' in window) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.log(`Page load time: ${perfData.loadEventEnd - perfData.loadEventStart}ms`);
-            }, 0);
-        });
-    }
-}
-
-// Initialize performance monitoring
-logPerformance();
-
-// Service Worker Registration (for future PWA features)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Uncomment when you have a service worker
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered'))
-        //     .catch(error => console.log('SW registration failed'));
-    });
-}
-
-// Error Handling
-window.addEventListener('error', (e) => {
-    console.error('Global error:', e.error);
-});
-
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled promise rejection:', e.reason);
-});
-
-// Add CSS for notifications
-const notificationStyles = document.createElement('style');
-notificationStyles.textContent = `
-    .notification-content {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-    
-    .notification-close {
-        background: none;
-        border: none;
-        color: white;
-        cursor: pointer;
-        padding: 0.25rem;
-        margin-left: auto;
-        border-radius: 4px;
-        transition: background-color 0.2s;
-    }
-    
-    .notification-close:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .profile-fallback.hidden {
-        display: none !important;
-    }
-    
-    @media (max-width: 480px) {
-        .notification {
-            right: 10px !important;
-            left: 10px !important;
-            max-width: none !important;
-            transform: translateY(-100%) !important;
-            top: 80px !important;
-        }
-        
-        .notification.visible {
-            transform: translateY(0) !important;
-        }
-    }
-`;
-document.head.appendChild(notificationStyles);
-
-// Expose functions to global scope for HTML onclick handlers
-window.scrollToSection = scrollToSection;
-window.downloadResume = downloadResume;
-window.openLinkedIn = openLinkedIn;
-
-
-
+// Expose for debugging
+window.__portfolioHelpers = { debounce };
