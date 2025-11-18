@@ -62,16 +62,62 @@ body.loaded{opacity:1}
 .btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.12)}
 
 /* Profile card */
-.profile-container{position:relative;width:100%;max-width:420px;margin:0 auto}
-.profile-bg{position:absolute;inset:0;border-radius:9999px;background:linear-gradient(135deg,var(--accent1),var(--accent2));filter:blur(60px);opacity:.22}
-.profile-card{position:relative;border-radius:9999px;padding:26px;background:linear-gradient(180deg,#334155,#1e293b);display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.06);overflow:hidden}
-.profile-image-wrapper{width:190px;height:190px;border-radius:9999px;overflow:hidden;margin-bottom:10px}
-.profile-image{width:150%;height:120%;object-fit:cover;display:block}
-.profile-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:transparent}
-.profile-fallback.hidden{display:none!important}
-.profile-icon{font-size:3.6rem;color:#9aa6b2}
-.profile-name{font-weight:500;font-size:1.15rem}
-.profile-title{color:#97a1ad;font-size:.75rem}
+/* Centered Premium Profile Photo */
+
+.profile-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;     /* Centered size */
+    margin: 0 auto;       /* <<< This centers the whole photo */
+    text-align: center;
+}
+
+.profile-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    filter: blur(60px);
+    opacity: .22;
+}
+
+.profile-card {
+    position: relative;
+    padding: 20px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #334155, #1e293b);
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* <<< Centers image horizontally */
+    justify-content: center; /* <<< Centers image vertically */
+    border: 1px solid rgba(255,255,255,.06);
+    overflow: hidden;
+    margin: 0 auto;          /* <<< Center block */
+}
+
+.profile-image-wrapper {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;     /* <<< Center inside wrapper */
+    justify-content: center; /* <<< Center inside wrapper */
+    margin: 0 auto 10px auto;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* PERFECT crop */
+    display: block;
+}
+
+.profile-name,
+.profile-title {
+    text-align: center;      /* <<< Center text under image */
+}
+
 
 /* Sections */
 section{padding:80px 0}
