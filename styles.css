@@ -76,8 +76,21 @@ body.loaded{opacity:1}
 /* Sections */
 section{padding:80px 0}
 .section-header{text-align:center;margin-bottom:2.5rem}
-.section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#fff;margin-bottom:.4rem}
-.section-subtitle{color:var(--muted);max-width:64ch;margin:0 auto}
+.section-title {
+  font-size:2rem;
+  font-weight:800;
+  color:var(--accent1);
+  text-align:center;
+  margin:0 auto 26px auto;
+  width:100%;
+}
+.section-sub {
+  font-size:1.1rem;
+  color:var(--muted);
+  text-align:center;
+  margin:0 auto 40px auto;
+  max-width:650px;
+}
 
 /* Cards */
 .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;border:1px solid rgba(255,255,255,.06)}
@@ -1165,6 +1178,156 @@ section.visible::before{
 
 /* =============================== */
 /* RESPONSIVE PREMIUM MOBILE + DESKTOP LAYOUT */
+
+/* GLOBAL CENTERING IMPROVED */
+body, html {
+  display:block;
+  margin:0;
+  padding:0;
+  width:100%;
+  overflow-x:hidden;
+}
+
+/* UNIVERSAL PERFECT CENTER ALIGNMENT */
+.center-box, 
+.center-content, 
+section .container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  text-align:center;
+}
+
+/* SECTION CONTENT CENTERED AUTOMATICALLY */
+section .container > * {
+  margin-left:initial;
+  margin-right:initial;
+}
+
+/* FIX HERO CENTERING FOR ALL DEVICES */
+.hero {
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding-top:100px;
+  padding-bottom:100px;
+}
+
+.hero-content {
+  max-width:900px;
+  width:100%;
+  text-align:center;
+  margin:auto;
+}
+
+/* CENTER PROFILE BOX */
+.profile-container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  margin:auto;
+}
+
+/* GRID CENTERING FIX FOR MOBILE + DESKTOP */
+.skills-grid,
+.projects-grid,
+.experience-grid {
+  justify-items:center;
+  align-items:start;
+  width:100%;
+}
+
+/* Perfectly centered grid on mobile */
+@media(max-width:899px){
+  .skills-grid,
+  .projects-grid,
+  .experience-grid {
+    display:grid;
+    grid-template-columns:1fr;
+    justify-items:center;
+    align-items:center;
+    width:100%;
+  }
+}
+
+/* Detail Text Center Fix */
+.card-title,
+.card-sub,
+.section-title,
+.section-sub,
+.education-meta,
+.education-details,
+.interest-details {
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Contact Form Center */
+.contact-form-card {
+  margin-left:auto;
+  margin-right:auto;
+  max-width:600px;
+  width:100%;
+  text-align:center;
+}
+
+/* Buttons Always Center */
+.hero-buttons,
+.contact-buttons,
+.project-links {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+/* ABOUT SECTION PERFECT CENTER */
+.about-layout {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:22px;
+}
+@media(min-width:900px){
+  .about-layout {
+    flex-direction:row;
+    text-align:left;
+    justify-content:center;
+  }
+}
+
+/* PROJECT CARD CENTERING */
+.project-card {
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* LANGUAGE / INTEREST / CERT CARD CENTER FIX */
+.language-card,
+.interest-card,
+.cert-card {
+  margin-left:auto;
+  margin-right:auto;
+  width:100%;
+  max-width:700px;
+  text-align:center;
+}
+
+/* FINAL STRICT CENTERING FOR ALL SECTIONS */
+section {
+  display:block;
+  width:100%;
+}
+}
 /* =============================== */
 
 /* GLOBAL RESPONSIVE GAPS */
