@@ -518,7 +518,7 @@ body.loaded { opacity: 1; }
   transform: translateY(-4px) scale(1.03);
 }
 
-/* --- Responsive Profile Photo Size (Override) --- */
+/* --- Responsive Profile Photo Size (Override — Clean & Stable on all screens) --- */
 .hero img,
 .profile-photo,
 .profile-container img {
@@ -527,8 +527,30 @@ body.loaded { opacity: 1; }
   border-radius: 50%;
   margin: 0;
   border: 3px solid rgba(212,175,55,0.35);
-  width: 140px;
-  height: 140px;
+
+  /* MOBILE DEFAULT */
+  width: 120px;
+  height: 120px;
+}
+
+/* TABLET */
+@media (min-width: 600px) {
+  .hero img,
+  .profile-photo,
+  .profile-container img {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 992px) {
+  .hero img,
+  .profile-photo,
+  .profile-container img {
+    width: 230px;
+    height: 230px;
+  }
 }
 
 @media (min-width: 600px) {
