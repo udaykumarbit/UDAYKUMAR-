@@ -1,3 +1,4 @@
+/* styles.css editor
 /* =============================================================
    styles.css — preserved design + per-section premium animations
    Replace your existing styles.css contents with this file.
@@ -175,7 +176,30 @@ body.loaded { opacity: 1; }
 .experience-card:hover { transform: translateX(-10px); box-shadow: 0 12px 26px rgba(0,0,0,0.45); }
 .experience-title { font-weight:700; color: var(--accent1); margin-bottom: .4rem; }
 
-/* --- Projects (Zoom-In on reveal + hover) --- */
+/* --- Projects */
+/* HIGHLIGHT PROJECT TITLES + DATES IN GOLD */
+.project-title {
+  color: var(--accent1) !important; /* gold text only */
+  background: none !important;       /* remove pill */
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+}
+
+.project-date {
+  color: var(--accent1) !important;
+  font-weight: 800 !important;
+  letter-spacing: .5px;
+  font-size: .95rem;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* --- Projects (Updated with highlight) */ (Zoom-In on reveal + hover) --- */
 /* DISABLED SLOW PROJECT ZOOM ANIMATION */
 /*@keyframes projZoom {
   from { opacity: 0; transform: scale(.92); }
@@ -204,8 +228,48 @@ body.loaded { opacity: 1; }
 .project-card:hover { transform: scale(1.06); box-shadow: 0 18px 40px rgba(212,175,55,0.32); }
 .project-card:hover::after { left: 100%; }
 
-/* --- Skills (Optimized — faster loading, no heavy 3D) --- */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1rem; }
+/* --- Skills */
+/* GOLD TEXT ONLY — Technical Skills Heading */
+.skills-section-title {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .8px;
+}
+
+/* GOLD TEXT ONLY — Skill Category Titles */
+.skill-category .category-title {
+  color: var(--accent1) !important;
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+/* --- Skills (Optimized — faster loading) */ */
+/* HIGHLIGHT SPECIFIC SKILL CATEGORY TITLES IN GOLD PILL STYLE */
+.skill-category .category-title {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #000 !important;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+/* --- Skills (Optimized — faster loading, no heavy 3D) --- */ (Optimized — faster loading, no heavy 3D) --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important; /* 2 columns */
+  grid-template-rows: repeat(2, auto) !important;   /* 2 rows */
+  gap: 1.25rem !important;
+}: 1.25rem;
+} }
 .skill-category,
 .skill-box {
   background: linear-gradient(180deg,#0d0d0d,#1a1a1a);
@@ -222,7 +286,154 @@ body.loaded { opacity: 1; }
 .skill-title { font-weight:700; color: var(--accent1); margin-bottom:.6rem; }
 .skills-list { display:flex; flex-wrap:wrap; gap:.5rem; }
 
-/* --- Education */ (Fade-Up reveal + hover lift) --- */
+/* --- Education (FAST LOAD — no fade, no slide) */
+.education-card,
+.education-grid .education-card,
+.education-card.fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+} */
+
+/* EDUCATION — MATCH TECHNICAL SKILLS STYLE (Gold Pill Look) */
+.education-card .degree-title,
+.education-card .institution,
+.education-card .education-grade {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #000 !important;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 800 !important;
+  letter-spacing: .6px;
+  margin-bottom: 10px;
+}
+
+/* Remove underline because pill replaces it */
+.education-card .institution::after {
+  display: none !important;
+}, Institution, CGPA */
+.education-card .degree-title,
+.education-card .institution,
+.education-card .education-grade {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px !important;
+}
+
+/* UNDERLINE ONLY FOR INSTITUTION */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent1);
+  border-radius: 3px;
+} NAMES + DEGREE TITLE + CGPA */
+.education-card .institution,
+.education-card .degree-title,
+.education-card .education-grade {
+  color: var(--accent1) !important;   /* gold */
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+}
+
+/* Premium underline only for institution */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 3px;
+} — stronger color + bigger + underline */
+.education-card .institution {
+  color: var(--accent1) !important;  /* bright gold */
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: .6px;
+  position: relative;
+  padding-bottom: 6px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 3px;
+}
+/* FIX — FORCE GOLD COLOR FOR Degree Title, Institution, CGPA */
+.education-card .degree-title,
+.education-card .institution,
+.education-card .education-grade {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px !important;
+}
+
+/* UNDERLINE ONLY FOR INSTITUTION */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent1);
+  border-radius: 3px;
+} */ / DEGREE TITLES */
+.education-card .degree-title,
+.education-card .degree-field,
+.education-card .institution {
+  color: var(--accent1) !important; /* gold text color */
+}
+
+/* GOLD UNDERLINE BELOW COLLEGE NAME */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent1);
+  border-radius: 3px;
+}
+
+/* Existing Education Section Styles */ */ (Fade-Up reveal + hover lift) --- */
 /* DISABLED SLOW EDUCATION FADE-UP ANIMATION */
 /*@keyframes eduFadeUp {
   from { opacity:0; transform: translateY(28px); }
@@ -270,25 +481,52 @@ body.loaded { opacity: 1; }
 
 /* existing contact section */
 /* --- Contact */
-/* HIGH‑VISIBILITY PHONE & EMAIL COLORS */
-.contact-info a,
-.contact-links a,
-.contact-details a,
-.contact-phone,
-.contact-email {
-  color: #ffea8a !important;      /* brighter gold-yellow */
+
+/* Top Contact Section — Soft Gold */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header,
+.contact-info h3 {
+  color: var(--accent2) !important; /* soft gold */
   font-weight: 700 !important;
-  text-decoration: none;
-  transition: color .2s ease, text-shadow .2s ease;
+  letter-spacing: .3px;
+  margin-bottom: 12px;
+}
+}
 }
 
+/* Bottom Contact Section — Soft Gold Only */
+.contact-methods a,
+.contact-methods .contact-phone,
+.contact-methods .contact-email,
+.contact-methods .contact-linkedin,
+.contact-methods h3 {
+  color: var(--accent2) !important; /* soft gold */
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+} */
+
+/* Make "Send a Message" title gold */
+.contact-form-card h3,
+.contact-title,
+.send-message-title {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  margin-bottom: 12px;
+}
+
+/* --- Contact */
+/* Reset hover for email & phone to simple white */
 .contact-info a:hover,
 .contact-links a:hover,
 .contact-details a:hover,
 .contact-phone:hover,
 .contact-email:hover {
   color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255,230,150,0.8);
+  text-shadow: none !important;
+}
 }
 
 /* --- Contact */ (Glow Pulse on hover) --- */
@@ -329,7 +567,31 @@ body.loaded { opacity: 1; }
   outline: none;
 }
 
-/* -------------------- CERTIFICATIONS / LANGUAGES / INTERESTS BOXES -------------------- */
+/* -------------------- CERTIFICATIONS / LANGUAGES / INTERESTS BOXES (NO LOADING ANIMATION) */
+
+/* Disable fade‑in animation for Languages, Interests, Certifications, Skills */
+.language-box,
+.interest-box,
+.language-item,
+.interest-item,
+.cert-box,
+.certification-item,
+.skill-category,
+.skill-box,
+.skill-badge {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
+}‑in animation for Languages & Interests */
+.language-box,
+.interest-box,
+.language-item,
+.interest-item {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+ -------------------- */
 .cert-grid,
 .lang-grid,
 .interest-grid {
@@ -353,6 +615,30 @@ body.loaded { opacity: 1; }
 .certification-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 28px rgba(212,175,55,0.28);
+}
+
+/* Certifications titles gold — stronger & always gold */
+/* Certifications titles gold — stronger & always gold */
+.cert-box h3,
+.cert-card h3,
+.certification-item h3 {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .7px;
+  margin-bottom: 10px;
+  text-transform: none !important;
+}
+
+/* ALL CERTIFICATION WORDS GOLD */
+.cert-box li,
+.cert-box p,
+.certification-item li,
+.certification-item p,
+.certification-item span {
+  color: var(--accent1) !important;
+  font-weight: 600 !important;
+  letter-spacing: .2px !important;
+}
 }
 
 /* Languages boxes */
@@ -603,3 +889,163 @@ body.loaded { opacity: 1; }
     height: 220px;
   }
 }
+
+/* GOLD SECTION SUBTITLE STYLE */
+.section-subtitle {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent1);
+  margin: -6px auto 28px auto;
+  padding-bottom: 6px;
+  width: fit-content;
+  border-bottom: 3px solid var(--accent1);
+  letter-spacing: 1px;
+}
+
+/* GOLD UNDERLINE FOR SUBSECTION TITLES (e.g., Internship & Training) */
+.subsection-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent1);
+  margin: 10px auto 28px auto;
+  padding-bottom: 6px;
+  width: fit-content;
+  border-bottom: 3px solid var(--accent1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+/* Responsive Internship & Training Grid (Desktop=3, Tablet=2, Mobile=1) */
+.internships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* desktop */
+  gap: 1.5rem;
+  margin-top: 1rem;
+  align-items: stretch;
+}
+
+/* Tablet (2 columns) */
+@media (max-width: 992px) {
+  .internships-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (1 column) */
+@media (max-width: 600px) {
+  .internships-grid {
+    grid-template-columns: 1fr;
+  }
+}
+ /* ensure equal heights */
+}
+
+/* Equal height cards */
+.internship-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make description + tags push evenly */
+.internship-card .internship-description {
+  flex-grow: 1;
+} & Training to 2 rows × 3 columns */
+.internships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+/* Force Internship & Training to 2 rows × 3 columns */
+.internships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+Paste your CSS here. I'll edit/optimize animations, spacing, and layout as you request.
+
+Instructions:
+- Paste your full CSS below the comment block.
+- Tell me which sections you want changed (e.g., About, Experience, Skills wave, Technical Skills animation, spacing around Send a Message, remove location section).
+
+--- Paste starts here ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Highlight Internship & Training company name + dates in gold (stronger) */
+.internship-title {
+  color: var(--accent1) !important; /* gold only */
+  font-weight: 600 !important; /* normal bold */
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+.internship-date {
+  color: var(--accent1) !important;
+  font-weight: 800 !important;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-bottom: .4rem;
+} & Training company name + dates in gold */
+.internship-title {
+  color: var(--accent1) !important; /* gold only */
+  font-weight: 600 !important; /* normal bold */
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+.internship-date {
+  color: var(--accent1) !important;
+  font-weight: 700 !important;
+  font-size: .95rem;
+  margin-bottom: .4rem;
+} */
+.internship-title {
+  color: var(--accent1) !important; /* gold only */
+  font-weight: 600 !important; /* normal bold */
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+/* Remove bottom location section (always hide) */
+.contact-methods .contact-method:nth-child(4) {
+  display: none !important;
+} — DESKTOP ONLY */
+@media (min-width: 992px) {
+  /* Hide the entire Location box */
+  .contact-methods .contact-method:last-child {
+    display: none !important;
+  }
+} */
+@media (min-width: 992px) {
+  .contact-method-icon.green,
+  .contact-method-icon.green + .contact-method-info {
+    display: none !important;
+  }
+}
+
+/* End of paste */
