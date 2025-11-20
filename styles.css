@@ -33,6 +33,43 @@ body.loaded { opacity: 1; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* -------------------- NAVBAR / HERO / COMMON -------------------- */
+
+/* === HERO SOCIAL ICONS (LinkedIn, Gmail, College) — GOLD COLOR === */
+.hero-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.1rem;
+  margin-top: 0.8rem;
+}
+.hero-social a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent !important;
+  border: 2px solid var(--accent1) !important; /* gold border */
+  color: var(--accent1) !important; /* gold icons */
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.hero-social a:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 20px rgba(212,175,55,0.45);
+}
+
+/* Icons inside */
+.hero-social i {
+  font-size: 1.3rem;
+  color: var(--accent1) !important; /* gold icon color */
+} */
+.hero-social i {
+  font-size: 1.3rem;
+  color: #000;
+}
+
+/* (original code continues below) */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0;
   height: var(--nav-height);
@@ -482,6 +519,19 @@ body.loaded { opacity: 1; }
 /* existing contact section */
 /* --- Contact */
 
+/* ADD MORE SPACING BETWEEN "Send a Message" & "Interests" */
+.contact-form-card {
+  margin-top: 2.5rem !important; /* increased spacing */
+}
+
+/* Also increase spacing below Interests section */
+.interests-container,
+.interest-box {
+  margin-bottom: 2rem !important;
+}
+
+/* --- Contact (original below) */ */
+
 /* Top Contact Section — Soft Gold */
 .get-in-touch-title,
 .contact-section-title,
@@ -567,7 +617,22 @@ body.loaded { opacity: 1; }
   outline: none;
 }
 
-/* -------------------- CERTIFICATIONS / LANGUAGES / INTERESTS BOXES (NO LOADING ANIMATION) */
+/* -------------------- CERTIFICATIONS / LANGUAGES */
+
+/* EXTRA SPACING ABOVE & BELOW LANGUAGES SECTION */
+.languages-container {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+/* EXTRA SPACING ABOVE "GET IN TOUCH" TITLE */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header {
+  margin-top: 2.5rem !important;
+}
+
+/* -------------------- CERTIFICATIONS / LANGUAGES */ / INTERESTS BOXES (NO LOADING ANIMATION) */
 
 /* Disable fade‑in animation for Languages, Interests, Certifications, Skills */
 .language-box,
