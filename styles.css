@@ -619,6 +619,26 @@ body.loaded { opacity: 1; }
 
 /* -------------------- CERTIFICATIONS / LANGUAGES */
 
+/* >>> EXTRA LARGE SPACING FOR: GET IN TOUCH + LANGUAGES + INTERESTS <<< */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header {
+  margin-top: 4rem !important;   /* BIGGER space above Get In Touch */
+  margin-bottom: 2.5rem !important;
+}
+
+.languages-container {
+  margin-top: 3.5rem !important;  /* bigger */
+  margin-bottom: 3.5rem !important; /* bigger */
+}
+
+.interests-container {
+  margin-top: 3.5rem !important; /* more space */
+  margin-bottom: 4rem !important; /* big clean gap */
+}
+
+/* -------------------- CERTIFICATIONS / LANGUAGES */ */
+
 /* EXTRA SPACING ABOVE & BELOW LANGUAGES SECTION */
 .languages-container {
   margin-top: 2.5rem !important;
@@ -732,7 +752,26 @@ body.loaded { opacity: 1; }
 .interest-tag { background: rgba(255,255,255,0.03); padding:.45rem .75rem; border-radius:999px; font-weight:600; color:var(--muted); border:1px solid rgba(255,255,255,.04); transition: transform .18s; }
 .interest-tag:hover { transform: translateY(-3px); }
 
-/* -------------------- SKILLS BADGES (keeps your previous style) -------------------- */
+/* -------------------- SKILLS BADGES */
+
+/* EXTRA SPACING FOR — Get In Touch + Languages + Interests */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header {
+  margin-top: 3.5rem !important;   /* bigger spacing above Get In Touch */
+}
+
+.languages-container {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;   /* bigger gap above & below Languages */
+}
+
+.interests-container {
+  margin-top: 3rem !important;
+  margin-bottom: 3.5rem !important; /* more space around Interests */
+}
+
+/* -------------------- SKILLS BADGES */ (keeps your previous style) -------------------- */
 .skill-badge,
 .cert-badge,
 .language-badge,
