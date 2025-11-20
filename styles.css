@@ -61,13 +61,12 @@ body.loaded { opacity: 1; }
 
 /* HERO */
 .hero {
-  min-height: 88vh; /* reduced height for desktop */
-  padding: calc(var(--nav-height) + 20px) 0 40px; /* less top/bottom spacing */
+  min-height: 75vh; /* reduced height for desktop */
+  padding: calc(var(--nav-height) + 10px) 0 20px; /* smaller top & bottom spacing */
   background: linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
   display:flex;
   align-items:center;
 }
-.hero { min-height: 100vh; padding: calc(var(--nav-height) + 40px) 0 60px; background: linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%); display:flex; align-items:center; }
 .hero-content { display:grid; grid-template-columns:1fr 420px; gap:3rem; align-items:center; }
 .hero-subtitle{
   color:#ffdd74;            /* brighter gold for visibility */
@@ -177,8 +176,11 @@ body.loaded { opacity: 1; }
 .experience-title { font-weight:700; color: var(--accent1); margin-bottom: .4rem; }
 
 /* --- Projects (Zoom-In on reveal + hover) --- */
-@keyframes projZoom {
+/* DISABLED SLOW PROJECT ZOOM ANIMATION */
+/*@keyframes projZoom {
   from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}*/
   to   { opacity: 1; transform: scale(1); }
 }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.125rem; }
@@ -189,7 +191,9 @@ body.loaded { opacity: 1; }
   padding: 1.25rem;
   position: relative;
   overflow: hidden;
-  animation: projZoom .6s ease both;
+  /* animation removed for speed */
+  opacity:1 !important;
+  transform:none !important;
   transition: transform .28s ease, box-shadow .28s ease;
 }
 .project-card::after{
@@ -200,7 +204,7 @@ body.loaded { opacity: 1; }
 .project-card:hover { transform: scale(1.06); box-shadow: 0 18px 40px rgba(212,175,55,0.32); }
 .project-card:hover::after { left: 100%; }
 
-/* --- Skills (Soft 3D Lift effect on hover) --- */
+/* --- Skills (Optimized — faster loading, no heavy 3D) --- */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1rem; }
 .skill-category,
 .skill-box {
@@ -208,19 +212,22 @@ body.loaded { opacity: 1; }
   padding: 1.2rem;
   border-radius: 14px;
   border: 1px solid rgba(212,175,55,0.25);
-  transition: transform .32s cubic-bezier(.2,.9,.3,1), box-shadow .32s ease;
+  transition: transform .18s ease, box-shadow .18s ease;
 }
 .skill-category:hover,
 .skill-box:hover {
-  transform: translateY(-10px) rotateX(4deg) rotateY(-4deg) scale(1.03);
-  box-shadow: 0 20px 38px rgba(0,0,0,0.48);
+  transform: translateY(-4px); /* light, fast */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
 }
 .skill-title { font-weight:700; color: var(--accent1); margin-bottom:.6rem; }
 .skills-list { display:flex; flex-wrap:wrap; gap:.5rem; }
 
-/* --- Education (Fade-Up reveal + hover lift) --- */
-@keyframes eduFadeUp {
+/* --- Education */ (Fade-Up reveal + hover lift) --- */
+/* DISABLED SLOW EDUCATION FADE-UP ANIMATION */
+/*@keyframes eduFadeUp {
   from { opacity:0; transform: translateY(28px); }
+  to   { opacity:1; transform: none; }
+}*/
   to   { opacity:1; transform: none; }
 }
 .education-card {
@@ -230,7 +237,9 @@ body.loaded { opacity: 1; }
   padding: 1.5rem;
   border-radius: 14px;
   overflow: hidden;
-  animation: eduFadeUp .72s ease both;
+  /* animation removed for speed */
+  opacity:1 !important;
+  transform:none !important;
   transition: transform .28s ease, box-shadow .28s ease;
 }
 .education-card:hover { transform: translateY(-10px); box-shadow: 0 20px 36px rgba(212,175,55,0.28); }
