@@ -1039,8 +1039,11 @@ body.loaded { opacity: 1; }
 /* Mobile (1 column) */
 @media (max-width: 600px) {
   .internships-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(3, auto) !important;
+    gap: 1.25rem !important;
   }
+}
 }
  /* ensure equal heights */
 }
