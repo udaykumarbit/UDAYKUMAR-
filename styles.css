@@ -1058,7 +1058,7 @@ body.loaded { opacity: 1; }
 /* Make description + tags push evenly */
 .internship-card .internship-description {
   flex-grow: 1;
-} & Training to 2 rows × 3 columns */
+} & Training to 3 rows × 2 columns */
 .internships-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1066,7 +1066,7 @@ body.loaded { opacity: 1; }
   gap: 1.5rem;
   margin-top: 1rem;
 }
-/* Force Internship & Training to 2 rows × 3 columns */
+/* Force Internship & Training to 3 rows × 2 columns */
 .internships-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1156,3 +1156,4 @@ Instructions:
 }
 
 /* End of paste */
+
