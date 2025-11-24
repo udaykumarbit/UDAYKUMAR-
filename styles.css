@@ -545,14 +545,34 @@ body.loaded { opacity: 1; }
 }
 }
 
-/* Bottom Contact Section — Soft Gold Only */
+/* Bottom Contact Section */
+.contact-section *,
+.contact-methods *,
+.contact-info *,
+.contact-links *,
+.contact-details * {
+  color: var(--accent1) !important; /* gold */
+} — Bright Gold */
 .contact-methods a,
 .contact-methods .contact-phone,
 .contact-methods .contact-email,
 .contact-methods .contact-linkedin,
-.contact-methods h3 {
-  color: var(--accent2) !important; /* soft gold */
+.contact-methods h3,
+.contact-methods i {
+  color: var(--accent1) !important; /* bright gold */
   font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.contact-methods a,
+.contact-methods .contact-phone,
+.contact-methods .contact-email,
+.contact-methods .contact-linkedin,
+.contact-methods h3,
+.contact-methods i {
+  color: #ffdd74 !important; /* bright gold */
+  font-weight: 600 !important;
+: 600 !important;
   text-decoration: none !important;
 }
 } */
@@ -1156,4 +1176,3 @@ Instructions:
 }
 
 /* End of paste */
-
