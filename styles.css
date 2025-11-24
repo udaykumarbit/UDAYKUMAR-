@@ -107,16 +107,26 @@ body.loaded { opacity: 1; }
 }
 .hero-content { display:grid; grid-template-columns:1fr 420px; gap:3rem; align-items:center; }
 .hero-subtitle{
-  color:#ffdd74;            /* brighter gold for visibility */
+  color:#ffdd74;
   text-transform:uppercase;
-  font-weight:700;          /* stronger weight */
+  font-weight:700;
   letter-spacing:.14em;
-  font-size:.90rem;
-  margin-bottom:0.4rem;     /* closer spacing */
+  font-size:2rem;
+  margin-top:1rem;
+  margin-bottom:0.4rem;
+  text-align:center !important;
+  margin-top:1rem; /* moved subtitle further down */
+  margin-bottom:0.4rem;:0.4rem;     /* closer spacing */
   text-align:center !important;
 }
 .hero-title{
-  font-size: clamp(2rem,5vw,3.2rem);
+  font-size:1.2rem;
+  font-weight:800;
+  line-height:1.05;
+  margin-top:0.4rem;
+  margin-bottom:0.4rem;
+  text-align:center !important;
+  color:#ffe9a8;
   font-weight:800;
   line-height:1.05;
   margin-top:0.4rem;      /* closer to photo */
