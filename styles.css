@@ -1570,3 +1570,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 });
+
+/* Make specific skills section titles Green */
+.skills-category-title {
+    color: #3ccf70 !important;   /* Green */
+}
+   
