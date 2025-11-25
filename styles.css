@@ -1604,3 +1604,30 @@ Instructions:
     background: #b9962f;
     box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
 }
+
+// -----------------------------
+// EmailJS Contact Form
+// -----------------------------
+document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init("5muRzVJinIh6V4qiL"); // your PUBLIC KEY
+
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        status.innerHTML = "Sending...";
+
+        emailjs.sendForm("service_3n7lhrd", "template_ld4gc8y", this)
+            .then(() => {
+                status.style.color = "green";
+                status.innerHTML = "Message sent successfully!";
+
+                form.reset();
+            }, (err) => {
+                status.style.color = "red";
+                status.innerHTML = "Failed to send message. Please try again.";
+            });
+    });
+});
