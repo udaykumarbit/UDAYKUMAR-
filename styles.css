@@ -31,6 +31,51 @@ body {
 body.loaded { opacity: 1; }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+/* Top Contact (Phone + Email) Premium Colors */
+.hero .contact-link {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.hero .contact-link:hover {
+    color: #E9D8A6 !important;   /* Champagne Gold */
+}
+
+
+/* Top Phone + Email Premium Colors */
+.top-contact a,
+.header-contact a,
+.hero-contact a {
+    color: #A8C3A0; /* Champagne Gold */
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.top-contact a:hover,
+.header-contact a:hover,
+.hero-contact a:hover {
+    color: #E9D8A6; /* Champagne Gold */
+}
+
+/* Top Buttons Premium Colors */
+.top-buttons .btn,
+.hero-buttons .btn {
+    background: #A8C3A0; /* Sage Green */
+    color: #1D1D1D;
+    border: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.top-buttons .btn:hover,
+.hero-buttons .btn:hover {
+    background: #E9D8A6; /* Champagne Gold */
+    color: #1D1D1D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+}
+
 
 /* -------------------- NAVBAR / HERO / COMMON -------------------- */
 
