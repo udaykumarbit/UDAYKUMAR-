@@ -1526,3 +1526,81 @@ Instructions:
 .skills-list {
     gap: 14px !important;
 }
+/* Fix spacing for Languages & Interests sections */
+.additional-info {
+    margin-top: 40px !important;   /* space above whole block */
+}
+
+.info-section {
+    margin-bottom: 30px !important; /* space below each section */
+}
+
+/* Space between section title and items */
+.info-title {
+    margin-bottom: 15px !important;
+}
+
+/* Space between icons/text inside Languages & Interests */
+.info-details {
+    gap: 12px !important;
+}
+/* Add space above Send Message section */
+.contact-form-section {
+    margin-top: 60px !important;   /* increase or decrease as you want */
+}
+/* Premium Contact Form Box */
+.contact-form-section {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 60px !important;
+}
+
+/* Form Inputs Premium Style */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d2d2d2;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+/* Input Hover + Focus */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #d4af37; /* soft gold */
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+/* Larger Message Box */
+.contact-form textarea {
+    min-height: 140px;
+    resize: none;
+}
+
+/* Premium Button */
+.contact-form button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #d4af37; /* gold */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Button Hover */
+.contact-form button:hover {
+    background: #b9962f;
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
