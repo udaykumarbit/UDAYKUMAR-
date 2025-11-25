@@ -63,13 +63,19 @@ function attachListeners() {
   const scrollTopBtn = getEl('scroll-top');
   const contactForm = getEl('contact-form');
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      navToggle.classList.toggle('active');
-      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-    });
-  }
+ if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
+
+    // FIX — allow scroll ALWAYS
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto'; 
+    }
+  });
+}
 
   // Close mobile menu when clicking a nav link
   $$('.nav-link').forEach(link => link.addEventListener('click', () => {
@@ -389,3 +395,78 @@ function showNotification(message, type = 'info') {
 
 // Expose for debugging
 window.__portfolioHelpers = { debounce };
+/* ================== CHATBOT SCRIPT ================== */
+
+// Auto-filled answers extracted from your page
+const botAnswers = {
+  about: `Experienced Mechanical Design and Simulation Engineer specializing in advanced 3D modeling, simulation, and full-cycle product development. Skilled in CATIA, SolidWorks, Creo, NX, Inventor, ANSYS, Abaqus, MATLAB, with a strong focus on automation-driven engineering.`,
+
+  experience: `Current Role: R&D Engineer – Powertrain & BIW Design at Chropynska India Pvt Ltd.
+Previous: Quality & Product Design Engineer at JK Fenner India Ltd.
+Internships: BEST Mechatronics, Conceptia Konnect, Prime Tooling, BFW CNC, Belathur Industries, Bosch.`,
+
+  skills: `3D Modeling: CATIA, SolidWorks, Creo, NX, Inventor
+Simulation: ANSYS, Abaqus, HyperMesh, ANSA, MATLAB
+Product Development: PLM/PDM tools, Design Optimization
+Programming: Python, MATLAB.`,
+
+  projects: `1) Vertical Axis Wind Turbine Blade – CATIA, SolidWorks, ANSYS.
+2) Free Convection in Trapezoidal Cavity – MATLAB CFD simulation.`,
+
+  contact: `Email: udaykumarborale9@gmail.com
+Phone: +91-8660272709
+Location: Banashankari 1st Stage, Bangalore.`
+};
+
+// DOM
+const chatBtn = document.getElementById("chatbot-button");
+const chatBox = document.getElementById("chatbot-container");
+const chatClose = document.getElementById("chatbot-close");
+const chatInput = document.getElementById("chatbot-input");
+const chatSend = document.getElementById("chatbot-send");
+const chatMsgArea = document.getElementById("chatbot-messages");
+
+// Toggle
+chatBtn.onclick = () => chatBox.classList.toggle("hidden");
+chatClose.onclick = () => chatBox.classList.add("hidden");
+
+// Add message
+function addMessage(text, sender="bot") {
+  const div = document.createElement("div");
+  div.className = `chatbot-msg ${sender}`;
+  div.innerText = text;
+  chatMsgArea.appendChild(div);
+  chatMsgArea.scrollTop = chatMsgArea.scrollHeight;
+}
+
+// Bot reply system
+function botReply(msg) {
+  const text = msg.toLowerCase();
+
+  if (text.includes("about")) return botAnswers.about;
+  if (text.includes("experience")) return botAnswers.experience;
+  if (text.includes("skill")) return botAnswers.skills;
+  if (text.includes("project")) return botAnswers.projects;
+  if (text.includes("contact") || text.includes("email") || text.includes("phone"))
+    return botAnswers.contact;
+
+  return "I’m here to help! Try asking about: About, Experience, Skills, Projects, Contact.";
+}
+
+// Send
+function sendMessage() {
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+
+  addMessage(msg, "user");
+  chatInput.value = "";
+
+  setTimeout(() => {
+    addMessage(botReply(msg), "bot");
+  }, 400);
+}
+
+chatSend.onclick = sendMessage;
+chatInput.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
+});
