@@ -1186,3 +1186,119 @@ Instructions:
 }
 
 /* End of paste */
+/* ================= CHATBOT STYLES ================= */
+#chatbot-button {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  color: #000;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(255,255,255,0.15);
+  transition: 0.2s;
+}
+
+#chatbot-button:hover {
+  transform: scale(1.08);
+}
+
+#chatbot-container {
+  position: fixed;
+  right: 25px;
+  bottom: 100px;
+  width: 320px;
+  height: 420px;
+  background: #0f0f0f;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+#chatbot-container.hidden {
+  display: none;
+}
+
+#chatbot-header {
+  background: linear-gradient(135deg,var(--accent1),var(--accent2));
+  color: #000;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatbot-close {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+#chatbot-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.chatbot-msg {
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  max-width: 85%;
+  line-height: 1.4;
+}
+
+.bot {
+  background: #1c1c1c;
+  border-left: 3px solid var(--accent1);
+}
+
+.user {
+  background: #222;
+  margin-left: auto;
+}
+
+#chatbot-input-area {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  background: #0b0b0b;
+}
+
+#chatbot-input {
+  flex: 1;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #111;
+  padding: 10px;
+  color: white;
+  border-radius: 8px;
+}
+
+#chatbot-send {
+  width: 46px;
+  background: var(--accent1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#chatbot-button {
+  bottom: 95px !important;
+}
+
+#chatbot-container {
+  bottom: 160px !important;
+}
+
