@@ -1474,3 +1474,21 @@ Instructions:
     padding-left: 40px !important;
     padding-right: 40px !important;
 }
+.institution a {
+  color: #A8C3A0 !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.institution a:hover {
+  text-decoration: underline;
+}
+.company-name a {
+    color: #A8C3A0 !important;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.company-name a:hover {
+    text-decoration: underline;
+}
