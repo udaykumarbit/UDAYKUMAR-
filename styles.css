@@ -75,6 +75,45 @@ body.loaded { opacity: 1; }
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0,0,0,0.10);
 }
+/* Company Name – Solid Sage Green */
+.company-name {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+
+/* Company Names (All Sections) – Sage Green */
+.company-name {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+/* Internship Provider Names – Sage Green */
+.internship-title {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+
+/* Internship Icons beside provider name – Sage Green */
+.internship-card i {
+    color: #A8C3A0 !important; /* Sage Green */
+}
+
+/* Internship Dates – Champagne Gold */
+.internship-date {
+    color: #E9D8A6 !important; /* Gold */
+    font-weight: 600;
+}
+
+/* Certifications – Sage Green */
+.certification-item i,
+.certification-item span {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+/* --- FINAL OVERRIDE: Certifications in Sage Green --- */
+.certifications-section .certification-item i,
+.certifications-section .certification-item span {
+    color: #A8C3A0 !important; /* Sage Green */
+}
 
 
 /* -------------------- NAVBAR / HERO / COMMON -------------------- */
@@ -1366,4 +1405,67 @@ Instructions:
     animation: none !important;
     transition: none !important;
     filter: none !important;
+}
+/* Education College Names – Sage Green */
+.institution {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700;
+}
+/* === FINAL FIX — Force College Names to Sage Green === */
+.education-card .institution {
+    color: #A8C3A0 !important;   /* Sage Green */
+}
+
+.education-card .institution::after {
+    background: #A8C3A0 !important;   /* Underline also Sage Green */
+}
+/* Languages & Interests Titles – Sage Green */
+.info-section .info-title {
+    color: #A8C3A0 !important;  /* Sage Green */
+    font-weight: 700;
+}
+
+/* Contact Form Title – Send a Message – Sage Green */
+.contact-form-section .form-title {
+    color: #d4af37; !important;  /* gold */
+    font-weight: 700;
+}
+/* FINAL FIX — Bottom Contact Email, Phone, LinkedIn → Sage Green */
+.contact-method-value {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700 !important;
+}
+/* === SAGE GREEN for Specific Section Subtitles === */
+.section-header .section-subtitle {
+    color: #A8C3A0 !important;      /* Sage Green */
+    font-weight: 700 !important;
+}
+
+/* === Underlines under Section Titles → Sage Green === */
+.section-header .section-title::after {
+    background: #A8C3A0 !important; /* Sage Green underline */
+}
+/* About Section Titles – Sage Green */
+.about-card .card-title {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700 !important;
+}
+/* Work Experience Dates – Gold */
+.date-info span,
+.date-info i {
+    color: #E9D8A6 !important;   /* Gold */
+    font-weight: 600;
+}
+.project-title {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700 !important;
+}
+/* Featured Projects Dates – Gold */
+.project-date {
+    color: #E9D8A6 !important;   /* Gold */
+    font-weight: 600;
+}
+/* Add more space between LinkedIn and Languages section */
+.additional-info {
+    margin-top: 40px !important;  /* increase space */
 }
