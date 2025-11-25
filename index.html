@@ -635,7 +635,7 @@
                 </div>
 
                 <!-- Contact Form -->
-              <form action="sendmail.php" method="POST" class="contact-form">
+           <form id="contact-form" class="contact-form">
 
   <div class="form-group">
     <input type="text" name="first_name" required placeholder="First Name">
@@ -659,7 +659,11 @@
 
   <button type="submit" class="btn primary-btn">Send Message</button>
 
+  <p id="form-status" style="margin-top:10px;"></p>
+
 </form>
+
+
 
 
             <div class="footer-separator"></div>
@@ -676,3 +680,4 @@
 
 
 </html>
+
