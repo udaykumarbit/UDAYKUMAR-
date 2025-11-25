@@ -1576,3 +1576,10 @@ document.addEventListener("DOMContentLoaded", function () {
     color: #3ccf70 !important;   /* Green */
 }
    
+/* FORCE green text for specific headings only */
+.skills-category-title {
+color: #3ccf70 !important;
+background: none !important;
+-webkit-text-fill-color: #3ccf70 !important;
+}
+   
