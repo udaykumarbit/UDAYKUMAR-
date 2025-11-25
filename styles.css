@@ -1492,3 +1492,37 @@ Instructions:
 .company-name a:hover {
     text-decoration: underline;
 }
+.skill-badge a {
+    color: #A8C3A0 !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.skill-badge a:hover {
+    text-decoration: underline;
+}
+/* Make skill links behave like normal text (Sage Green / your theme color) */
+.skill-badge a {
+    color: inherit !important;        /* keep the exact same color */
+    text-decoration: none !important; /* no underline */
+    font-weight: inherit !important;  /* same thickness */
+}
+
+/* Hover effect – only underline (optional, clean) */
+.skill-badge a:hover {
+    text-decoration: underline !important;
+}
+/* Fix spacing between skill category titles (clean + premium) */
+.skills-category {
+    margin-bottom: 35px !important;   /* adds breathing space below each category */
+}
+
+/* Extra space between category title and the badges */
+.skills-category-title {
+    margin-bottom: 15px !important;
+}
+
+/* Extra spacing between skill rows */
+.skills-list {
+    gap: 14px !important;
+}
