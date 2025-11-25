@@ -1301,4 +1301,24 @@ Instructions:
 #chatbot-container {
   bottom: 160px !important;
 }
-
+/* === FAST LOADING for Technical Skills + Certifications === */
+#skills .skill-category,
+#skills .skill-box,
+#skills .skill-item,
+#certifications .cert-box,
+#certifications .certification-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+/* === MAKE CERTIFICATIONS LOAD INSTANTLY (SUPER FAST) === */
+#certifications .cert-box,
+#certifications .certification-item,
+#certifications .cert-badge {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+}
