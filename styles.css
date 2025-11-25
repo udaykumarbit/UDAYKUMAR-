@@ -1469,3 +1469,8 @@ Instructions:
 .additional-info {
     margin-top: 40px !important;  /* increase space */
 }
+/* Make navbar headings better spaced from corners */
+.nav-container {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
