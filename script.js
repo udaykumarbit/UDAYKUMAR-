@@ -37,6 +37,8 @@ function downloadBlob(blob, filename) {
    Page Load  
 ============================== */
 
+emailjs.init("5muRzVJinIh6V4qiL");
+
 document.addEventListener("DOMContentLoaded", () => {
   initPage();
   attachListeners();
@@ -550,11 +552,11 @@ function handleFormSubmit(e) {
   }
 
   // Initialize EmailJS
-  emailjs.init("5muRzVJinIh6V4qiL"); // Your public key
+   // Your public key
 
   // SEND EMAIL via EmailJS
   emailjs
-    .sendForm("service_3n7lhrd", "template_ld4gc8y", form)
+    .sendForm("service_3n7lhrd", "template_0f74wlr", form)
     .then(() => {
       if (status) {
         status.style.color = "lightgreen";
