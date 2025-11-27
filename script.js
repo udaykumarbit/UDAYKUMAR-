@@ -358,27 +358,29 @@ function showNotification(message, type = "info") {
   setTimeout(() => div.remove(), 4000);
 }
 /* ==============================
-   Chatbot Toggle
+   Chatbot Toggle (Fixed)
 ============================== */
 
 const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbotWindow = document.getElementById("chatbot-window");
 const chatbotClose = document.getElementById("chatbot-close");
 
+// OPEN CHATBOT
 if (chatbotToggle && chatbotWindow) {
   chatbotToggle.addEventListener("click", () => {
-    chatbotWindow.classList.add("open");
+    chatbotWindow.classList.remove("hidden");
   });
 }
 
+// CLOSE CHATBOT
 if (chatbotClose && chatbotWindow) {
   chatbotClose.addEventListener("click", () => {
-    chatbotWindow.classList.remove("open");
+    chatbotWindow.classList.add("hidden");
   });
 }
 
 /* ==============================
-   Chatbot Functionality
+   Chatbot Functionality (Rule‑Based)
 ============================== */
 
 const chatbotInput = document.getElementById("chatbot-input");
@@ -399,19 +401,79 @@ function sendChatbotMessage() {
   appendChatMessage("user", text);
   chatbotInput.value = "";
 
+  // Typing animation
+  const typingDiv = document.createElement("div");
+  typingDiv.className = "chat-message bot typing";
+  typingDiv.textContent = "Typing...";
+  chatbotMessages.appendChild(typingDiv);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
   setTimeout(() => {
-    appendChatMessage(
-      "bot",
-      "Thanks! I will improve soon. For now, this chatbot is under development."
-    );
-  }, 500);
+    typingDiv.remove();
+    appendChatMessage("bot", getBotReply(text));
+  }, 900);
+}
+
+function sendChatbotMessage_OLD() {
+  const text = chatbotInput.value.trim();
+  if (!text) return;
+
+  appendChatMessage("user", text);
+  chatbotInput.value = "";
+
+  setTimeout(() => {
+    appendChatMessage("bot", getBotReply(text));
+  }, 400);
+}
+
+function getBotReply(msg) {
+  msg = msg.toLowerCase();
+
+  // Greetings + Emoji Reactions + Smart Synonyms
+  if (msg.includes("hi") || msg.includes("hello") || msg.includes("hey") || msg.includes("hii") || msg.includes("yo"))
+    return "Hello! 😊 I'm Uday's AI Assistant. How can I help you today?";
+
+  if (msg.includes("how are you"))
+    return "I'm doing great 😄 and ready to help you with anything about Uday or this website!";
+
+  if (msg.includes("who are you") || msg.includes("your name") || msg.includes("introduce"))
+    return "I'm Uday's personal AI assistant 🤖 here to guide you through his portfolio.";
+
+  if (msg.includes("what can you do") || msg.includes("help me") || msg.includes("your work"))
+    return "I can tell you about Uday's skills, projects, resume, contact, location and more! 💡";
+
+  if (msg.includes("thanks") || msg.includes("thank you"))
+    return "You're welcome! 😊 Happy to help!";
+
+  if (msg.includes("bye") || msg.includes("goodbye") || msg.includes("see you"))
+    return "Goodbye! 👋 Have a wonderful day!";
+  if (msg.includes("hi") || msg.includes("hello") || msg.includes("hey"))
+    return "Hello! I'm Uday's AI Assistant. How can I help you today?";
+  if (msg.includes("how are you"))
+    return "I'm doing great and ready to help you with anything about Uday or this website!";
+  if (msg.includes("who are you"))
+    return "I'm Uday's personal AI assistant here to guide you through his portfolio.";
+  if (msg.includes("what can you do"))
+    return "I can tell you about Uday, his projects, skills, resume, location, and contact details.";
+  if (msg.includes("bye") || msg.includes("goodbye"))
+    return "Goodbye! Have a great day 😊";
+
+  if (msg.includes("name")) return "I am Uday’s AI Assistant!";
+  if (msg.includes("about") || msg.includes("yourself")) return "Uday is an R&D Engineer specializing in Powertrain & BIW Design.";
+  if (msg.includes("project")) return "You can view Uday’s projects in the Projects section of this website.";
+  if (msg.includes("contact") || msg.includes("email")) return "You can contact Uday at udaykumarborale9@gmail.com.";
+  if (msg.includes("phone") || msg.includes("number")) return "His phone number is +91‑8660272709.";
+  if (msg.includes("social") || msg.includes("linkedin")) return "LinkedIn: linkedin.com/in/udaykumarborale";
+  if (msg.includes("location") || msg.includes("from")) return "Uday is based in Bangalore, India 🇮🇳.";
+  if (msg.includes("resume") || msg.includes("cv")) return "You can download the resume using the 'Download Resume' button above.";
+
+  return "I can help you with information about Uday, his skills, projects, resume, contact details, and location. What would you like to know?";
 }
 
 function appendChatMessage(sender, text) {
   const div = document.createElement("div");
   div.className = `chat-message ${sender}`;
   div.textContent = text;
-
   chatbotMessages.appendChild(div);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
