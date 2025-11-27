@@ -623,7 +623,7 @@
                 </div>
 
                 <!-- Contact Form -->
-             <form id="contact-form" class="contact-form">
+            <form id="contact-form" class="contact-form" onsubmit="handleFormSubmit(event)">
 
     <div class="form-group">
         <input type="text" name="first_name" required placeholder="First Name">
@@ -652,10 +652,10 @@
 
     <button type="submit" class="btn primary-btn">Send Message</button>
 
-    <!-- This element displays EmailJS success/error -->
     <p id="form-status" style="margin-top: 10px; color: white;"></p>
 
 </form>
+
 <!-- Chatbot Toggle Button -->
 <div id="chatbot-toggle">💬</div>
 
@@ -690,3 +690,4 @@
 
 
 </html>
+
