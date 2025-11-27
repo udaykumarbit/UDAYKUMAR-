@@ -589,3 +589,40 @@ function handleFormSubmit(e) {
 ============================== */
 
 console.log("script.js loaded successfully (Corrected Version A)");
+
+async function handleFormSubmit(e) {
+  e.preventDefault();
+
+  const contactForm = document.getElementById("contact-form");
+
+  // Validate form
+  if (!validateForm(contactForm)) {
+    showNotification("Please fill all fields correctly.", "error");
+    return;
+  }
+
+  const formData = {
+    first_name: contactForm.first_name.value,
+    last_name: contactForm.last_name.value,
+    email: contactForm.email.value,
+    subject: contactForm.subject.value,
+    message: contactForm.message.value
+  };
+
+  showNotification("Sending message...", "info");
+
+  try {
+    await emailjs.send(
+      "service_3n7lhrd",     // Your Service ID
+      "template_0f74wlr",    // Your Template ID
+      formData
+    );
+
+    showNotification("Message sent successfully!", "success");
+    contactForm.reset();
+
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    showNotification("Failed to send message.", "error");
+  }
+}
