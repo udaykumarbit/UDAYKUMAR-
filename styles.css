@@ -1,0 +1,1595 @@
+
+<!-- Favicon for all browsers -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+<!-- For Safari / iPhone / iPad -->
+<link rel="apple-touch-icon" href="favicon.png">
+
+<!-- Optional: Theme Color (Chrome mobile) -->
+<meta name="theme-color" content="#0a0f1f">
+
+/* styles.css editor
+/* =============================================================
+   styles.css — preserved design + per-section premium animations
+   Replace your existing styles.css contents with this file.
+   (Based on your uploaded styles.css — kept visual design)
+   ============================================================= */
+
+/* -------------------- RESET & VARIABLES -------------------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root{
+  --bg: #000000;
+  --card: #0f0f0f;
+  --muted: #b3b3b3;
+  --accent1: #d4af37;   /* gold */
+  --accent2: #ffcc5c;   /* soft gold */
+  --glass: rgba(255,255,255,0.03);
+  --radius: 12px;
+  --nav-height: 70px;
+  --border: rgba(255,255,255,0.06);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.6;
+  color: #fff;
+  background: var(--bg);
+  overflow-x: hidden;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+body.loaded { opacity: 1; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+/* Top Contact (Phone + Email) Premium Colors */
+.hero .contact-link {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.hero .contact-link:hover {
+    color: #E9D8A6 !important;   /* Champagne Gold */
+}
+
+
+/* Top Phone + Email Premium Colors */
+.top-contact a,
+.header-contact a,
+.hero-contact a {
+    color: #A8C3A0; /* Champagne Gold */
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.top-contact a:hover,
+.header-contact a:hover,
+.hero-contact a:hover {
+    color: #E9D8A6; /* Champagne Gold */
+}
+
+/* Top Buttons Premium Colors */
+.top-buttons .btn,
+.hero-buttons .btn {
+    background: #A8C3A0; /* Sage Green */
+    color: #1D1D1D;
+    border: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.top-buttons .btn:hover,
+.hero-buttons .btn:hover {
+    background: #E9D8A6; /* Champagne Gold */
+    color: #1D1D1D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+}
+/* Company Name – Solid Sage Green */
+.company-name {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+
+/* Company Names (All Sections) – Sage Green */
+.company-name {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+/* Internship Provider Names – Sage Green */
+.internship-title {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+
+/* Internship Icons beside provider name – Sage Green */
+.internship-card i {
+    color: #A8C3A0 !important; /* Sage Green */
+}
+
+/* Internship Dates – Champagne Gold */
+.internship-date {
+    color: #E9D8A6 !important; /* Gold */
+    font-weight: 600;
+}
+
+/* Certifications – Sage Green */
+.certification-item i,
+.certification-item span {
+    color: #A8C3A0 !important; /* Sage Green */
+    font-weight: 700;
+}
+/* --- FINAL OVERRIDE: Certifications in Sage Green --- */
+.certifications-section .certification-item i,
+.certifications-section .certification-item span {
+    color: #A8C3A0 !important; /* Sage Green */
+}
+
+
+/* -------------------- NAVBAR / HERO / COMMON -------------------- */
+
+/* === HERO SOCIAL ICONS (LinkedIn, Gmail, College) — GOLD COLOR === */
+.hero-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.1rem;
+  margin-top: 0.8rem;
+}
+.hero-social a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent !important;
+  border: 2px solid var(--accent1) !important; /* gold border */
+  color: var(--accent1) !important; /* gold icons */
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.hero-social a:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 20px rgba(212,175,55,0.45);
+}
+
+/* Icons inside */
+.hero-social i {
+  font-size: 1.3rem;
+  color: var(--accent1) !important; /* gold icon color */
+} */
+.hero-social i {
+  font-size: 1.3rem;
+  color: #000;
+}
+
+/* (original code continues below) */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  display: flex; align-items: center;
+  background: rgba(15,23,42,.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  z-index: 1100;
+}
+.nav-container { display:flex; align-items:center; justify-content:space-between; width:100%; height:100%; }
+.nav-logo-link { background:none; border:none; color:#fff; font-weight:700; font-size:1.05rem; cursor:pointer; }
+.nav-menu { display:flex; gap:1.5rem; align-items:center; }
+.nav-link { background:none; border:none; color:var(--muted); font-weight:500; cursor:pointer; padding:.4rem 0; position:relative; }
+.nav-link:hover, .nav-link.active { color:#fff; }
+.nav-link::after { content:''; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--accent1); transition:width .12s; }
+.nav-link:hover::after, .nav-link.active::after { width:100%; }
+
+.scroll-top {
+  position: fixed; right:30px; bottom:30px;
+  width:50px; height:50px; border-radius:50%;
+  border:none; display:grid; place-items:center;
+  background: linear-gradient(135deg,var(--accent1),var(--accent2));
+  color:#fff; font-size:1rem; box-shadow:0 8px 30px rgba(168,85,247,.12);
+  opacity: 0; visibility: hidden; transition: all .12s;
+}
+.scroll-top.visible { opacity:1; visibility:visible; transform: translateY(-6px); }
+
+/* HERO */
+.hero {
+  min-height: 75vh; /* reduced height for desktop */
+  padding: calc(var(--nav-height) + 10px) 0 20px; /* smaller top & bottom spacing */
+  background: linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+  display:flex;
+  align-items:center;
+}
+.hero-content { display:grid; grid-template-columns:1fr 420px; gap:3rem; align-items:center; }
+.hero-subtitle{
+  color:#ffdd74;
+  text-transform:uppercase;
+  font-weight:700;
+  letter-spacing:.14em;
+  font-size:2rem;
+  margin-top:1rem;
+  margin-bottom:0.4rem;
+  text-align:center !important;
+  margin-top:1rem; /* moved subtitle further down */
+  margin-bottom:0.4rem;:0.4rem;     /* closer spacing */
+  text-align:center !important;
+}
+.hero-title{
+  font-size:1.2rem;
+  font-weight:800;
+  line-height:1.05;
+  margin-top:0.4rem;
+  margin-bottom:0.4rem;
+  text-align:center !important;
+  color:#ffe9a8;
+  font-weight:800;
+  line-height:1.05;
+  margin-top:0.4rem;      /* closer to photo */
+  margin-bottom:0.4rem;   /* tighter spacing */
+  text-align:center !important;
+  color:#ffe9a8;          /* bold premium gold */
+}
+.gradient-text { background: linear-gradient(135deg,var(--accent1),var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-description { color: var(--muted); max-width: 56ch; margin-bottom: 1.25rem; }
+
+/* -------------------- GLOBAL CARD BASE */
+.card,
+.card-base,
+.project-card,
+.skill-category,
+.skill-box,
+.education-card,
+.experience-card,
+.internship-card,
+.training-card,
+.language-box,
+.interest-box,
+.cert-box {
+  margin-bottom: 1.25rem !important;
+}
+
+/* -------------------- ORIGINAL GLOBAL CARD BASE */ -------------------- */
+.card,
+.card-base {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  transition: transform .28s ease, box-shadow .28s ease;
+  overflow: hidden;
+}
+
+/* unified title styles */
+.section-title { font-size: 2rem; font-weight: 800; color: var(--accent1); text-align:center; margin: 0 auto 26px auto; }
+.section-sub { color: var(--muted); text-align:center; margin: 0 auto 40px auto; max-width: 650px; }
+
+/* -------------------- SECTION-SPECIFIC: PREMIUM ANIMATIONS -------------------- */
+
+/* --- About (Fade In, elegant) --- */
+@keyframes aboutFadeIn {
+  from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+.about-card {
+  margin-bottom: 1.25rem !important;
+  background: linear-gradient(180deg,#0d0d0d,#171717);
+  border: 1px solid rgba(212,175,55,0.32);
+  padding: 1.6rem;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  animation: aboutFadeIn .7s cubic-bezier(.2,.9,.3,1) both;
+}
+.about-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.18), transparent 60%);
+  opacity:0; transition: opacity .45s ease;
+}
+.about-card:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:0 0 32px rgba(212,175,55,0.28);
+}
+.about-card:hover::before{ opacity: 1; }
+.about-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.18), transparent 60%);
+  opacity:0; transition: opacity .45s ease;
+}
+.about-card:hover{ transform: translateY(-6px) scale(1.02); box-shadow:0 0 32px rgba(212,175,55,0.28); }
+.about-card:hover::before{ opacity: 1; }
+
+/* --- Experience (Slide-Left on reveal + subtle hover) --- */
+@keyframes expSlideIn {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: none; }
+}
+.experience-wrapper { display: grid; gap: 1rem; }
+.experience-card {
+  background: var(--card);
+  padding: 1.2rem;
+  border-left: 3px solid var(--accent1);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  animation: expSlideIn .7s ease both;
+  transition: transform .28s ease;
+}
+.experience-card:hover { transform: translateX(-10px); box-shadow: 0 12px 26px rgba(0,0,0,0.45); }
+.experience-title { font-weight:700; color: var(--accent1); margin-bottom: .4rem; }
+
+/* --- Projects */
+/* HIGHLIGHT PROJECT TITLES + DATES IN GOLD */
+.project-title {
+  color: var(--accent1) !important; /* gold text only */
+  background: none !important;       /* remove pill */
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+}
+
+.project-date {
+  color: var(--accent1) !important;
+  font-weight: 800 !important;
+  letter-spacing: .5px;
+  font-size: .95rem;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* --- Projects (Updated with highlight) */ (Zoom-In on reveal + hover) --- */
+/* DISABLED SLOW PROJECT ZOOM ANIMATION */
+/*@keyframes projZoom {
+  from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}*/
+  to   { opacity: 1; transform: scale(1); }
+}
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.125rem; }
+.project-card {
+  background: linear-gradient(180deg,#0d0d0d,#1a1a1a);
+  border: 1px solid rgba(212,175,55,0.28);
+  border-radius: 14px;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  /* animation removed for speed */
+  opacity:1 !important;
+  transform:none !important;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.project-card::after{
+  content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background: linear-gradient(115deg, transparent, rgba(255,204,92,0.28), transparent);
+  transition: left .7s ease;
+}
+.project-card:hover { transform: scale(1.06); box-shadow: 0 18px 40px rgba(212,175,55,0.32); }
+.project-card:hover::after { left: 100%; }
+
+/* --- Skills */
+/* GOLD TEXT ONLY — Technical Skills Heading */
+.skills-section-title {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .8px;
+}
+
+/* GOLD TEXT ONLY — Skill Category Titles */
+.skill-category .category-title {
+  color: var(--accent1) !important;
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+/* --- Skills (Optimized — faster loading) */ */
+/* HIGHLIGHT SPECIFIC SKILL CATEGORY TITLES IN GOLD PILL STYLE */
+.skill-category .category-title {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #000 !important;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+}
+
+/* --- Skills (Optimized — faster loading, no heavy 3D) --- */ (Optimized — faster loading, no heavy 3D) --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important; /* 2 columns */
+  grid-template-rows: repeat(2, auto) !important;   /* 2 rows */
+  gap: 1.25rem !important;
+}: 1.25rem;
+} }
+.skill-category,
+.skill-box {
+  background: linear-gradient(180deg,#0d0d0d,#1a1a1a);
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212,175,55,0.25);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.skill-category:hover,
+.skill-box:hover {
+  transform: translateY(-4px); /* light, fast */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+.skill-title { font-weight:700; color: var(--accent1); margin-bottom:.6rem; }
+.skills-list { display:flex; flex-wrap:wrap; gap:.5rem; }
+
+/* --- Education (FAST LOAD — no fade, no slide) */
+.education-card,
+.education-grid .education-card,
+.education-card.fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+} */
+
+/* EDUCATION — MATCH TECHNICAL SKILLS STYLE (Gold Pill Look) */
+.education-card .degree-title,
+.education-card .institution,
+.education-card .education-grade {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #000 !important;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 800 !important;
+  letter-spacing: .6px;
+  margin-bottom: 10px;
+}
+
+/* Remove underline because pill replaces it */
+.education-card .institution::after {
+  display: none !important;
+}, Institution, CGPA */
+.education-card .degree-title,
+.education-card .institution,
+.education-card .education-grade {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px !important;
+}
+
+/* UNDERLINE ONLY FOR INSTITUTION */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent1);
+  border-radius: 3px;
+} NAMES + DEGREE TITLE + CGPA */
+.education-card .institution,
+.education-card .degree-title,
+.education-card .education-grade {
+  color: var(--accent1) !important;   /* gold */
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+}
+
+/* Premium underline only for institution */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 3px;
+} — stronger color + bigger + underline */
+.education-card .institution {
+  color: var(--accent1) !important;  /* bright gold */
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: .6px;
+  position: relative;
+  padding-bottom: 6px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 3px;
+}
+/* FIX — FORCE GOLD COLOR FOR Degree Title, Institution, CGPA */
+.education-card .degree-title,
+.education-card .institution,
+.education-card .education-grade {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px !important;
+}
+
+/* UNDERLINE ONLY FOR INSTITUTION */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent1);
+  border-radius: 3px;
+} */ / DEGREE TITLES */
+.education-card .degree-title,
+.education-card .degree-field,
+.education-card .institution {
+  color: var(--accent1) !important; /* gold text color */
+}
+
+/* GOLD UNDERLINE BELOW COLLEGE NAME */
+.education-card .institution {
+  position: relative;
+  padding-bottom: 6px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.education-card .institution::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent1);
+  border-radius: 3px;
+}
+
+/* Existing Education Section Styles */ */ (Fade-Up reveal + hover lift) --- */
+/* DISABLED SLOW EDUCATION FADE-UP ANIMATION */
+/*@keyframes eduFadeUp {
+  from { opacity:0; transform: translateY(28px); }
+  to   { opacity:1; transform: none; }
+}*/
+  to   { opacity:1; transform: none; }
+}
+.education-card {
+  position: relative;
+  background: linear-gradient(180deg,#0d0d0d,#151515);
+  border: 1px solid rgba(212,175,55,0.28);
+  padding: 1.5rem;
+  border-radius: 14px;
+  overflow: hidden;
+  /* animation removed for speed */
+  opacity:1 !important;
+  transform:none !important;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.education-card:hover { transform: translateY(-10px); box-shadow: 0 20px 36px rgba(212,175,55,0.28); }
+.education-title { font-size: 1.1rem; font-weight:700; color: var(--accent1); margin-bottom:.6rem; }
+
+/* --- Highlighted Action Buttons (Resume, Contact, LinkedIn) --- */
+.action-btn,
+.resume-btn,
+.contact-btn,
+.linkedin-btn {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #000 !important;
+  font-weight: 700;
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.action-btn:hover,
+.resume-btn:hover,
+.contact-btn:hover,
+.linkedin-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 22px rgba(255,204,92,0.45);
+  background: linear-gradient(135deg, var(--accent2), var(--accent1));
+}
+
+/* existing contact section */
+/* --- Contact */
+
+/* ADD MORE SPACING BETWEEN "Send a Message" & "Interests" */
+.contact-form-card {
+  margin-top: 2.5rem !important; /* increased spacing */
+}
+
+/* Also increase spacing below Interests section */
+.interests-container,
+.interest-box {
+  margin-bottom: 2rem !important;
+}
+
+/* --- Contact (original below) */ */
+
+/* Top Contact Section — Soft Gold */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header,
+.contact-info h3 {
+  color: var(--accent2) !important; /* soft gold */
+  font-weight: 700 !important;
+  letter-spacing: .3px;
+  margin-bottom: 12px;
+}
+}
+}
+
+/* Bottom Contact Section */
+.contact-section *,
+.contact-methods *,
+.contact-info *,
+.contact-links *,
+.contact-details * {
+  color: var(--accent1) !important; /* gold */
+} — Bright Gold */
+.contact-methods a,
+.contact-methods .contact-phone,
+.contact-methods .contact-email,
+.contact-methods .contact-linkedin,
+.contact-methods h3,
+.contact-methods i {
+  color: var(--accent1) !important; /* bright gold */
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.contact-methods a,
+.contact-methods .contact-phone,
+.contact-methods .contact-email,
+.contact-methods .contact-linkedin,
+.contact-methods h3,
+.contact-methods i {
+  color: #ffdd74 !important; /* bright gold */
+  font-weight: 600 !important;
+: 600 !important;
+  text-decoration: none !important;
+}
+} */
+
+/* Make "Send a Message" title gold */
+.contact-form-card h3,
+.contact-title,
+.send-message-title {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px;
+  margin-bottom: 12px;
+}
+
+/* --- Contact */
+/* Reset hover for email & phone to simple white */
+.contact-info a:hover,
+.contact-links a:hover,
+.contact-details a:hover,
+.contact-phone:hover,
+.contact-email:hover {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+}
+
+/* --- Contact */ (Glow Pulse on hover) --- */
+.contact-form-card {
+  background: linear-gradient(180deg,#0c0c0c,#161616);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(212,175,55,0.22);
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  max-width: 560px; margin: 0 auto;
+}
+@keyframes contactPulse {
+  0% { box-shadow: 0 0 0 rgba(212,175,55,0.0); }
+  50% { box-shadow: 0 0 26px rgba(212,175,55,0.34); }
+  100% { box-shadow: 0 0 0 rgba(212,175,55,0.0); }
+}
+.contact-form-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(255,204,92,0.55);
+  animation: contactPulse 1.2s ease-in-out;
+}
+
+/* inputs */
+.contact-form-card input,
+.contact-form-card textarea {
+  width: 100%;
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: #151515;
+  color: #fff;
+  transition: box-shadow .28s ease, border-color .28s ease;
+}
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+  border-color: var(--accent1);
+  box-shadow: 0 0 12px rgba(212,175,55,0.28);
+  outline: none;
+}
+
+/* -------------------- CERTIFICATIONS / LANGUAGES */
+
+/* >>> EXTRA LARGE SPACING FOR: GET IN TOUCH + LANGUAGES + INTERESTS <<< */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header {
+  margin-top: 4rem !important;   /* BIGGER space above Get In Touch */
+  margin-bottom: 2.5rem !important;
+}
+
+.languages-container {
+  margin-top: 3.5rem !important;  /* bigger */
+  margin-bottom: 3.5rem !important; /* bigger */
+}
+
+.interests-container {
+  margin-top: 3.5rem !important; /* more space */
+  margin-bottom: 4rem !important; /* big clean gap */
+}
+
+/* -------------------- CERTIFICATIONS / LANGUAGES */ */
+
+/* EXTRA SPACING ABOVE & BELOW LANGUAGES SECTION */
+.languages-container {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+/* EXTRA SPACING ABOVE "GET IN TOUCH" TITLE */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header {
+  margin-top: 2.5rem !important;
+}
+
+/* -------------------- CERTIFICATIONS / LANGUAGES */ / INTERESTS BOXES (NO LOADING ANIMATION) */
+
+/* Disable fade‑in animation for Languages, Interests, Certifications, Skills */
+.language-box,
+.interest-box,
+.language-item,
+.interest-item,
+.cert-box,
+.certification-item,
+.skill-category,
+.skill-box,
+.skill-badge {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
+}‑in animation for Languages & Interests */
+.language-box,
+.interest-box,
+.language-item,
+.interest-item {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
+}
+ -------------------- */
+.cert-grid,
+.lang-grid,
+.interest-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Uniform boxed style that matches your design */
+.cert-box,
+.cert-card,
+.certification-item {
+  background: linear-gradient(180deg,#0d0d0d,#141414);
+  padding: 1.1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.cert-box:hover,
+.cert-card:hover,
+.certification-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px rgba(212,175,55,0.28);
+}
+
+/* Certifications titles gold — stronger & always gold */
+/* Certifications titles gold — stronger & always gold */
+.cert-box h3,
+.cert-card h3,
+.certification-item h3 {
+  color: var(--accent1) !important;
+  font-weight: 900 !important;
+  letter-spacing: .7px;
+  margin-bottom: 10px;
+  text-transform: none !important;
+}
+
+/* ALL CERTIFICATION WORDS GOLD */
+.cert-box li,
+.cert-box p,
+.certification-item li,
+.certification-item p,
+.certification-item span {
+  color: var(--accent1) !important;
+  font-weight: 600 !important;
+  letter-spacing: .2px !important;
+}
+}
+
+/* Languages boxes */
+.language-box,
+.language-card {
+  background: linear-gradient(180deg,#0d0d0d,#151515);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.language-tags,
+.language-list { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
+.language-tag { background: rgba(255,255,255,0.03); padding:.45rem .75rem; border-radius:999px; font-weight:600; color:var(--muted); border:1px solid rgba(255,255,255,.04); transition: transform .18s; }
+.language-tag:hover { transform: translateY(-3px); }
+
+/* Interests boxes */
+.interest-box,
+.interest-card {
+  background: linear-gradient(180deg,#0d0d0d,#141414);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.interest-tags,
+.interest-list { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
+.interest-tag { background: rgba(255,255,255,0.03); padding:.45rem .75rem; border-radius:999px; font-weight:600; color:var(--muted); border:1px solid rgba(255,255,255,.04); transition: transform .18s; }
+.interest-tag:hover { transform: translateY(-3px); }
+
+/* -------------------- SKILLS BADGES */
+
+/* EXTRA SPACING FOR — Get In Touch + Languages + Interests */
+.get-in-touch-title,
+.contact-section-title,
+.contact-header {
+  margin-top: 3.5rem !important;   /* bigger spacing above Get In Touch */
+}
+
+.languages-container {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;   /* bigger gap above & below Languages */
+}
+
+.interests-container {
+  margin-top: 3rem !important;
+  margin-bottom: 3.5rem !important; /* more space around Interests */
+}
+
+/* -------------------- SKILLS BADGES */ (keeps your previous style) -------------------- */
+.skill-badge,
+.cert-badge,
+.language-badge,
+.interest-badge {
+  padding: .45rem .85rem;
+  font-size: .9rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,55,0.18);
+  color: var(--muted);
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+.skill-badge:hover,
+.cert-badge:hover,
+.language-badge:hover,
+.interest-badge:hover {
+  background: linear-gradient(135deg,var(--accent1),var(--accent2));
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* -------------------- GLOBAL MICRO-ANIM: reveal classes used by JS observer -------------------- */
+.fade-in { opacity: 0; transform: translateY(18px); transition: all .6s cubic-bezier(.2,.9,.3,1); }
+.fade-in.visible { opacity: 1; transform: none; }
+.slide-in-left { opacity: 0; transform: translateX(-36px); transition: all .6s; }
+.slide-in-left.visible { opacity: 1; transform: none; }
+.slide-in-right { opacity: 0; transform: translateX(36px); transition: all .6s; }
+.slide-in-right.visible { opacity: 1; transform: none; }
+
+/* -------------------- FOOTER, RESPONSIVE -------------------- */
+.footer { display:flex; justify-content:space-between; align-items:center; color:#97a1ad; font-size:.9rem; padding:1.25rem 0; }
+.footer-separator { height:1px; background:rgba(255,255,255,.04); margin:2rem 0; }
+
+/* Responsive tweaks */
+@media (max-width: 980px) {
+  .hero-content { grid-template-columns: 1fr 360px; }
+  .contact-content { grid-template-columns: 1fr; }
+}
+@media (max-width:760px) {
+  .nav-menu { display:none; }
+  .nav-toggle { display:block; }
+  .hero-content { grid-template-columns:1fr; padding:0; }
+  .profile-container { max-width: 320px; }
+}
+@media (max-width:480px) {
+  .container{ padding: 0 12px; }
+  .hero { padding: calc(var(--nav-height) + 24px) 0 40px; }
+}
+
+/* Print */
+@media print {
+  .navbar, .scroll-top, .loading-screen { display:none !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* Accessibility */
+:focus-visible { outline: 3px solid rgba(168,85,247,.15); outline-offset: 3px; }
+
+/* ============================================================
+   INTERNSHIP & TRAINING BOXES (Matches your existing card design)
+   ============================================================ */
+
+.internship-grid,
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.internship-card,
+.training-card {
+  background: linear-gradient(180deg, #0d0d0d, #151515);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.internship-card:hover,
+.training-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 26px rgba(212, 175, 55, 0.28);
+}
+
+.internship-card h3,
+.training-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent1);
+  margin-bottom: 0.6rem;
+}
+
+.internship-card p,
+.training-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* End of styles.css */ */
+/* ============================================================
+   LANGUAGE & INTERESTS BOX DESIGN (Matches your card layout)
+   ============================================================ */
+
+.languages-container,
+.interests-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.language-box,
+.interest-box {
+  background: linear-gradient(180deg, #0d0d0d, #141414);
+  padding: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.language-box:hover,
+.interest-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 26px rgba(212, 175, 55, 0.28);
+}
+
+.language-title,
+.interest-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent1);
+  margin-bottom: 0.6rem;
+}
+
+.language-items,
+.interest-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.language-item,
+.interest-item {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.language-item:hover,
+.interest-item:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: #000;
+}
+
+/* Get In Touch button — reverted to default gold theme */
+.contact-btn:hover {
+  background: linear-gradient(135deg, #6ec8ff, #3ba3ff) !important;
+  box-shadow: 0 0 22px rgba(100, 180, 255, 0.55) !important;
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* --- Responsive Profile Photo Size (Override — Clean & Stable on all screens) --- */
+.hero img,
+.profile-photo,
+.profile-container img {
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0;
+  border: 3px solid rgba(212,175,55,0.35);
+
+  /* MOBILE DEFAULT */
+  width: 120px;
+  height: 120px;
+}
+
+/* TABLET */
+@media (min-width: 600px) {
+  .hero img,
+  .profile-photo,
+  .profile-container img {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 992px) {
+  .hero img,
+  .profile-photo,
+  .profile-container img {
+    width: 180px;
+    height: 180px;
+  }
+}
+}
+
+@media (min-width: 600px) {
+  .hero img,
+  .profile-photo,
+  .profile-container img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero img,
+  .profile-photo,
+  .profile-container img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* GOLD SECTION SUBTITLE STYLE */
+.section-subtitle {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent1);
+  margin: -6px auto 28px auto;
+  padding-bottom: 6px;
+  width: fit-content;
+  border-bottom: 3px solid var(--accent1);
+  letter-spacing: 1px;
+}
+
+/* GOLD UNDERLINE FOR SUBSECTION TITLES (e.g., Internship & Training) */
+.subsection-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent1);
+  margin: 10px auto 28px auto;
+  padding-bottom: 6px;
+  width: fit-content;
+  border-bottom: 3px solid var(--accent1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+/* Responsive Internship & Training Grid (Desktop=3, Tablet=2, Mobile=1) */
+.internships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* desktop */
+  gap: 1.5rem;
+  margin-top: 1rem;
+  align-items: stretch;
+}
+
+/* Tablet (2 columns) */
+@media (max-width: 992px) {
+  .internships-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (1 column) */
+@media (max-width: 600px) {
+  .internships-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(3, auto) !important;
+    gap: 1.25rem !important;
+  }
+}
+}
+ /* ensure equal heights */
+}
+
+/* Equal height cards */
+.internship-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make description + tags push evenly */
+.internship-card .internship-description {
+  flex-grow: 1;
+} & Training to 3 rows × 2 columns */
+.internships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+/* Force Internship & Training to 3 rows × 2 columns */
+.internships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+Paste your CSS here. I'll edit/optimize animations, spacing, and layout as you request.
+
+Instructions:
+- Paste your full CSS below the comment block.
+- Tell me which sections you want changed (e.g., About, Experience, Skills wave, Technical Skills animation, spacing around Send a Message, remove location section).
+
+--- Paste starts here ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Highlight Internship & Training company name + dates in gold (stronger) */
+.internship-title {
+  color: var(--accent1) !important; /* gold only */
+  font-weight: 600 !important; /* normal bold */
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+.internship-date {
+  color: var(--accent1) !important;
+  font-weight: 800 !important;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-bottom: .4rem;
+} & Training company name + dates in gold */
+.internship-title {
+  color: var(--accent1) !important; /* gold only */
+  font-weight: 600 !important; /* normal bold */
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+.internship-date {
+  color: var(--accent1) !important;
+  font-weight: 700 !important;
+  font-size: .95rem;
+  margin-bottom: .4rem;
+} */
+.internship-title {
+  color: var(--accent1) !important; /* gold only */
+  font-weight: 600 !important; /* normal bold */
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+/* Remove bottom location section (always hide) */
+.contact-methods .contact-method:nth-child(4) {
+  display: none !important;
+} — DESKTOP ONLY */
+@media (min-width: 992px) {
+  /* Hide the entire Location box */
+  .contact-methods .contact-method:last-child {
+    display: none !important;
+  }
+} */
+@media (min-width: 992px) {
+  .contact-method-icon.green,
+  .contact-method-icon.green + .contact-method-info {
+    display: none !important;
+  }
+}
+
+/* End of paste */
+/* ================= CHATBOT STYLES ================= */
+#chatbot-button {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  color: #000;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(255,255,255,0.15);
+  transition: 0.2s;
+}
+
+#chatbot-button:hover {
+  transform: scale(1.08);
+}
+
+#chatbot-container {
+  position: fixed;
+  right: 25px;
+  bottom: 100px;
+  width: 320px;
+  height: 420px;
+  background: #0f0f0f;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+#chatbot-container.hidden {
+  display: none;
+}
+
+#chatbot-header {
+  background: linear-gradient(135deg,var(--accent1),var(--accent2));
+  color: #000;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatbot-close {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+#chatbot-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.chatbot-msg {
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  max-width: 85%;
+  line-height: 1.4;
+}
+
+.bot {
+  background: #1c1c1c;
+  border-left: 3px solid var(--accent1);
+}
+
+.user {
+  background: #222;
+  margin-left: auto;
+}
+
+#chatbot-input-area {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  background: #0b0b0b;
+}
+
+#chatbot-input {
+  flex: 1;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #111;
+  padding: 10px;
+  color: white;
+  border-radius: 8px;
+}
+
+#chatbot-send {
+  width: 46px;
+  background: var(--accent1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#chatbot-button {
+  bottom: 95px !important;
+}
+
+#chatbot-container {
+  bottom: 160px !important;
+}
+/* === FAST LOADING for Technical Skills + Certifications === */
+#skills .skill-category,
+#skills .skill-box,
+#skills .skill-item,
+#certifications .cert-box,
+#certifications .certification-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+/* === MAKE CERTIFICATIONS LOAD INSTANTLY (SUPER FAST) === */
+#certifications .cert-box,
+#certifications .certification-item,
+#certifications .cert-badge {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+}
+/* Education College Names – Sage Green */
+.institution {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700;
+}
+/* === FINAL FIX — Force College Names to Sage Green === */
+.education-card .institution {
+    color: #A8C3A0 !important;   /* Sage Green */
+}
+
+.education-card .institution::after {
+    background: #A8C3A0 !important;   /* Underline also Sage Green */
+}
+/* Languages & Interests Titles – Sage Green */
+.info-section .info-title {
+    color: #A8C3A0 !important;  /* Sage Green */
+    font-weight: 700;
+}
+
+/* Contact Form Title – Send a Message – Sage Green */
+.contact-form-section .form-title {
+    color: #d4af37; !important;  /* gold */
+    font-weight: 700;
+}
+/* FINAL FIX — Bottom Contact Email, Phone, LinkedIn → Sage Green */
+.contact-method-value {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700 !important;
+}
+/* === SAGE GREEN for Specific Section Subtitles === */
+.section-header .section-subtitle {
+    color: #A8C3A0 !important;      /* Sage Green */
+    font-weight: 700 !important;
+}
+
+/* === Underlines under Section Titles → Sage Green === */
+.section-header .section-title::after {
+    background: #A8C3A0 !important; /* Sage Green underline */
+}
+/* About Section Titles – Sage Green */
+.about-card .card-title {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700 !important;
+}
+/* Work Experience Dates – Gold */
+.date-info span,
+.date-info i {
+    color: #E9D8A6 !important;   /* Gold */
+    font-weight: 600;
+}
+.project-title {
+    color: #A8C3A0 !important;   /* Sage Green */
+    font-weight: 700 !important;
+}
+/* Featured Projects Dates – Gold */
+.project-date {
+    color: #E9D8A6 !important;   /* Gold */
+    font-weight: 600;
+}
+/* Add more space between LinkedIn and Languages section */
+.additional-info {
+    margin-top: 40px !important;  /* increase space */
+}
+/* Make navbar headings better spaced from corners */
+.nav-container {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+.institution a {
+  color: #A8C3A0 !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.institution a:hover {
+  text-decoration: underline;
+}
+.company-name a {
+    color: #A8C3A0 !important;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.company-name a:hover {
+    text-decoration: underline;
+}
+.skill-badge a {
+    color: #A8C3A0 !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.skill-badge a:hover {
+    text-decoration: underline;
+}
+/* Make skill links behave like normal text (Sage Green / your theme color) */
+.skill-badge a {
+    color: inherit !important;        /* keep the exact same color */
+    text-decoration: none !important; /* no underline */
+    font-weight: inherit !important;  /* same thickness */
+}
+
+/* Hover effect – only underline (optional, clean) */
+.skill-badge a:hover {
+    text-decoration: underline !important;
+}
+/* Fix spacing between skill category titles (clean + premium) */
+.skills-category {
+    margin-bottom: 35px !important;   /* adds breathing space below each category */
+}
+
+/* Extra space between category title and the badges */
+.skills-category-title {
+    margin-bottom: 15px !important;
+}
+
+/* Extra spacing between skill rows */
+.skills-list {
+    gap: 14px !important;
+}
+/* Fix spacing for Languages & Interests sections */
+.additional-info {
+    margin-top: 40px !important;   /* space above whole block */
+}
+
+.info-section {
+    margin-bottom: 30px !important; /* space below each section */
+}
+
+/* Space between section title and items */
+.info-title {
+    margin-bottom: 15px !important;
+}
+
+/* Space between icons/text inside Languages & Interests */
+.info-details {
+    gap: 12px !important;
+}
+// -----------------------------
+// EmailJS Contact Form
+// -----------------------------
+document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init("5muRzVJinIh6V4qiL"); // your PUBLIC KEY
+
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        status.innerHTML = "Sending...";
+
+        emailjs.sendForm("service_3n7lhrd", "template_ld4gc8y", this)
+            .then(() => {
+                status.style.color = "green";
+                status.innerHTML = "Message sent successfully!";
+
+                form.reset();
+            }, (err) => {
+                status.style.color = "red";
+                status.innerHTML = "Failed to send message. Please try again.";
+            });
+    });
+});
+
+/* Make specific skills section titles Green */
+.skills-category-title {
+    color: #A8C3A0  !important;   /* Sage Green */
+}
+   
+/* FORCE green text for specific headings only */
+.skills-category-title {
+color: #A8C3A0  !important;
+background: none !important;
+-webkit-text-fill-color: #A8C3A0  !important;
+}
+   
