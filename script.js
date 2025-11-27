@@ -626,3 +626,50 @@ async function handleFormSubmit(e) {
     showNotification("Failed to send message.", "error");
   }
 }
+
+// --- EmailJS Initialization ---
+emailjs.init("public_5muRzVJinIh6V4qiL"); 
+// IMPORTANT: Replace above with your actual PUBLIC KEY that starts with "public_"
+
+
+// --- Contact Form Submit Handler ---
+async function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const contactForm = document.getElementById("contact-form");
+    const statusBox = document.getElementById("form-status");
+
+    statusBox.style.color = "white";
+    statusBox.innerText = "Sending message...";
+
+    const formData = {
+        first_name: contactForm.first_name.value,
+        last_name: contactForm.last_name.value,
+        email: contactForm.email.value,
+        subject: contactForm.subject.value,
+        message: contactForm.message.value
+    };
+
+    try {
+        await emailjs.send(
+            "service_3n7lhrd",     // Your Service ID
+            "template_0f74wlr",    // Your Template ID
+            formData
+        );
+
+        statusBox.style.color = "#4CAF50";
+        statusBox.innerText = "Message sent successfully!";
+
+        contactForm.reset();
+
+        setTimeout(() => {
+            statusBox.innerText = "";
+        }, 4000);
+
+    } catch (error) {
+        console.error("EmailJS ERROR:", error);
+
+        statusBox.style.color = "red";
+        statusBox.innerText = "Failed to send message.";
+    }
+}
