@@ -1,1739 +1,674 @@
-
-<!-- Favicon for all browsers -->
-<link rel="icon" type="image/png" href="favicon.png">
-
-<!-- For Safari / iPhone / iPad -->
-<link rel="apple-touch-icon" href="favicon.png">
-
-<!-- Optional: Theme Color (Chrome mobile) -->
-<meta name="theme-color" content="#0a0f1f">
-
-/* styles.css editor
-/* =============================================================
-   styles.css — preserved design + per-section premium animations
-   Replace your existing styles.css contents with this file.
-   (Based on your uploaded styles.css — kept visual design)
-   ============================================================= */
-
-/* -------------------- RESET & VARIABLES -------------------- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
 :root{
-  --bg: #000000;
-  --card: #0f0f0f;
-  --muted: #b3b3b3;
-  --accent1: #d4af37;   /* gold */
-  --accent2: #ffcc5c;   /* soft gold */
-  --glass: rgba(255,255,255,0.03);
-  --radius: 12px;
-  --nav-height: 70px;
-  --border: rgba(255,255,255,0.06);
-}
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  line-height: 1.6;
-  color: #fff;
-  background: var(--bg);
-  overflow-x: hidden;
-  opacity: 0;
-  transition: opacity .18s ease;
-}
-body.loaded { opacity: 1; }
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-/* Top Contact (Phone + Email) Premium Colors */
-.hero .contact-link {
-    color: #A8C3A0 !important;   /* Sage Green */
-    font-weight: 600;
-    transition: 0.3s ease;
+  --bg-dark:#04051a;
+  --hero-deep:#020317;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#ff7a00;
+  --glass: rgba(2,8,23,0.65);
+  --glass-border: rgba(0,0,0,0.08);
+  --maxw:1200px;
+  --pad:20px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-.hero .contact-link:hover {
-    color: #E9D8A6 !important;   /* Champagne Gold */
+/* Reset & container */
+html, body {
+  height: 100%;
+  margin: 0;
+
+  /* PREMIUM ANIMATED BACKGROUND */
+  background: linear-gradient(120deg, #020314, #0a1a3a, #ff7a00);
+  background-size: 300% 300%;
+  animation: bgMove 12s ease infinite;
+
+  font-size: 16px;
+
+  /* SPACING FIX */
+  overflow-x: hidden !important;
 }
 
-
-/* Top Phone + Email Premium Colors */
-.top-contact a,
-.header-contact a,
-.hero-contact a {
-    color: #A8C3A0; /* Champagne Gold */
-    font-weight: 600;
-    transition: 0.3s;
+.container {
+  max-width: var(--maxw);
+  width: 100% !important;
+  margin: 0 auto;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box;
 }
 
-.top-contact a:hover,
-.header-contact a:hover,
-.hero-contact a:hover {
-    color: #E9D8A6; /* Champagne Gold */
+/* Header */
+.site-header{position:fixed;left:0;right:0;top:0;z-index:80;background:linear-gradient(180deg, rgba(2,3,10,0.55), rgba(2,3,10,0.15));backdrop-filter:blur(6px)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px;background:transparent;border:none;color:#fff}
+.logo-mark{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#05183a,#0b3f7a);font-weight:700;color:#fff}
+.brand-text .name{font-weight:700}
+.brand-text .subtitle{font-size:12px;color:var(--muted)}
+.nav-links{display:flex;gap:12px;align-items:center}
+.nav-link{background:transparent;border:none;color:rgba(255,255,255,0.85);padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+.nav-link:hover{color:var(--accent)}
+.nav-toggle{display:none}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:none;cursor:pointer}
+.btn-primary{background:var(--accent);color:#07102a;font-weight:700}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+.btn-hireme{background:linear-gradient(90deg,var(--accent),#ffbb33);color:#07102a;font-weight:800;border-radius:12px;padding:10px 16px;box-shadow:0 6px 20px rgba(255,122,0,0.18);animation:hireme-pulse 1.8s infinite}
+@keyframes hireme-pulse{0%{box-shadow:0 0 0 rgba(255,122,0,0.25)}50%{box-shadow:0 0 18px rgba(255,122,0,0.45)}100%{box-shadow:0 0 0 rgba(255,122,0,0.25)}}
+
+/* Hero */
+.hero{padding-top:110px;padding-bottom:40px}
+.dark-hero{background:linear-gradient(180deg, rgba(2,3,10,0.85), rgba(3,6,18,0.85))}
+.hero-grid{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
+.hero-subtitle{color:var(--muted);font-weight:700}
+.hero-title{font-size:34px;margin:6px 0 6px;font-weight:800;color:#fff}
+.hero-role{font-size:18px;color:#dbe9ff;margin-bottom:12px}
+.typing{font-weight:700}
+.cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:8px;vertical-align:bottom;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.hero-desc{color:#c6d6ee;max-width:48rem;margin-bottom:12px}
+.contact-quick{display:flex;gap:12px;margin-top:12px}
+.quick-link{display:inline-flex;gap:8px;align-items:center;color:#cfe6ff;text-decoration:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02)}
+
+/* METRICS */
+.hero-metrics{display:flex;gap:12px;margin-top:18px}
+.metric-card{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);text-align:center;min-width:120px}
+.metric-num{font-size:20px;font-weight:800;color:#fff}
+.metric-label{font-size:12px;color:var(--muted)}
+
+/* Hero 3D */
+.hero-3d{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden !important;
+  background:linear-gradient(180deg,#02031a,#05102a);
+  height:360px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+}
+.hero-3d canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100% !important;
+}
+.hero-3d .hero-3d-overlay{position:absolute;left:18px;bottom:18px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+.hero-3d .overlay-title{font-size:12px;color:var(--muted)}
+.hero-3d .overlay-sub{font-weight:700;color:#fff}
+
+/* Profile */
+.profile-card{display:flex;align-items:center;gap:12px;padding:12px;background:linear-gradient(180deg,#07102a,#071b2a);border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-top:12px}
+.profile-image-wrap{position:relative;width:84px;height:84px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#0b2340,#0d3f60)}
+.profile-image{width:100%;height:100%;object-fit:cover;display:block}
+.profile-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6)}
+.profile-info .profile-name{font-weight:700;color:#fff}
+.profile-info .profile-role{font-size:13px;color:var(--muted)}
+
+/* White sections */
+.white-section{background:#fff;color:#0b1220;padding:42px 0}
+.white-section .section-header h2{color:#0b1220}
+.white-section .section-subtitle{color:var(--muted)}
+.section{padding:52px 0}
+
+/* Cards & grids */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.about-card{background:#f8fafc;padding:18px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
+.card-icon{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e6eef8,#dbe9ff);margin-bottom:12px}
+.experience-card{background:#f8fafc;padding:18px;border-radius:12px;border:1px solid rgba(10,24,40,0.04);margin-bottom:12px}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.project-card{background:#f8fafc;padding:16px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.skill-block{background:#f8fafc;padding:12px;border-radius:10px;border:1px solid rgba(10,24,40,0.04)}
+
+/* Skill tags — separated and wrapped */
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.skill{background:#eef2ff;padding:6px 10px;border-radius:8px;font-size:13px;color:#07203a}
+
+/* Internships explicit cards */
+.internships-grid.explicit-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:12px}
+.internship-card.card-box{background:#fff;padding:14px;border-radius:10px;border:1px solid rgba(10,24,40,0.06);box-shadow:0 6px 18px rgba(2,8,23,0.03)}
+.internship-card.card-box h4{margin:0 0 6px}
+.internship-subtitle{color:var(--muted);font-weight:600}
+.internship-date{font-size:13px;color:var(--muted);margin:8px 0}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+.contact-card{display:flex;gap:12px;align-items:center;background:#f8fafc;padding:12px;border-radius:10px;border:1px solid rgba(10,24,40,0.04)}
+.contact-form{background:#f8fafc;padding:16px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid rgba(10,24,40,0.06);background:#fff;color:#07102a}
+
+/* Footer */
+.site-footer{padding:28px 0;border-top:1px solid rgba(10,24,40,0.04);color:var(--muted)}
+
+/* Floating Hire Me */
+.floating-hireme{position:fixed;right:24px;bottom:24px;background:linear-gradient(90deg,var(--accent),#ffbb33);padding:12px 22px;border-radius:50px;color:#07102a;font-weight:800;z-index:1000;box-shadow:0 10px 30px rgba(255,122,0,0.25)}
+
+/* Responsive */
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-toggle{display:inline-block}
+  .about-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .internships-grid.explicit-cards{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .hero-3d{height:260px}
 }
 
-/* Top Buttons Premium Colors */
-.top-buttons .btn,
-.hero-buttons .btn {
-    background: #A8C3A0; /* Sage Green */
-    color: #1D1D1D;
-    border: none;
-    font-weight: 600;
-    transition: 0.3s;
+/* Small animations */
+.fade-in{opacity:0;transform:translateY(8px);animation:fadeUp .8s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.muted{color:var(--muted)}
+.form-status{color:#05273b;margin-top:8px}
+
+/* Certifications spacing */
+.certifications-block {
+  margin-top: 20px !important;
+}
+.certifications-block h4 {
+  margin-bottom: 12px !important;
+}
+.certifications-block .skill-tags {
+  gap: 12px !important;
 }
 
-.top-buttons .btn:hover,
-.hero-buttons .btn:hover {
-    background: #E9D8A6; /* Champagne Gold */
-    color: #1D1D1D;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+/* PREMIUM GRADIENT NAME EFFECT */
+.name,
+.profile-name {
+  background: linear-gradient(90deg, #ff7a00, #ffbb33, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  animation: nameShine 4s linear infinite;
+  background-size: 200%;
 }
-/* Company Name – Solid Sage Green */
-.company-name {
-    color: #A8C3A0 !important; /* Sage Green */
-    font-weight: 700;
-}
-
-/* Company Names (All Sections) – Sage Green */
-.company-name {
-    color: #A8C3A0 !important; /* Sage Green */
-    font-weight: 700;
-}
-/* Internship Provider Names – Sage Green */
-.internship-title {
-    color: #A8C3A0 !important; /* Sage Green */
-    font-weight: 700;
+@keyframes nameShine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-/* Internship Icons beside provider name – Sage Green */
-.internship-card i {
-    color: #A8C3A0 !important; /* Sage Green */
+/* BG animation */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Internship Dates – Champagne Gold */
-.internship-date {
-    color: #E9D8A6 !important; /* Gold */
-    font-weight: 600;
+/* ----------------------------------------------------- */
+/* FULL SPACING FIX (safe, bottom of file) */
+/* ----------------------------------------------------- */
+section {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
-/* Certifications – Sage Green */
-.certification-item i,
-.certification-item span {
-    color: #A8C3A0 !important; /* Sage Green */
-    font-weight: 700;
-}
-/* --- FINAL OVERRIDE: Certifications in Sage Green --- */
-.certifications-section .certification-item i,
-.certifications-section .certification-item span {
-    color: #A8C3A0 !important; /* Sage Green */
+img, canvas {
+  max-width: 100% !important;
+  display: block;
 }
 
-
-/* -------------------- NAVBAR / HERO / COMMON -------------------- */
-
-/* === HERO SOCIAL ICONS (LinkedIn, Gmail, College) — GOLD COLOR === */
-.hero-social {
-  display: flex;
-  justify-content: center;
-  gap: 1.1rem;
-  margin-top: 0.8rem;
+body * {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
 }
-.hero-social a {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: transparent !important;
-  border: 2px solid var(--accent1) !important; /* gold border */
-  color: var(--accent1) !important; /* gold icons */
-  font-size: 1.25rem;
-  text-decoration: none;
-  transition: transform .22s ease, box-shadow .22s ease;
-}
-.hero-social a:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 20px rgba(212,175,55,0.45);
-}
-
-/* Icons inside */
-.hero-social i {
-  font-size: 1.3rem;
-  color: var(--accent1) !important; /* gold icon color */
-} */
-.hero-social i {
-  font-size: 1.3rem;
-  color: #000;
-}
-
-/* (original code continues below) */
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--nav-height);
-  display: flex; align-items: center;
-  background: rgba(15,23,42,.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  z-index: 1100;
-}
-.nav-container { display:flex; align-items:center; justify-content:space-between; width:100%; height:100%; }
-.nav-logo-link { background:none; border:none; color:#fff; font-weight:700; font-size:1.05rem; cursor:pointer; }
-.nav-menu { display:flex; gap:1.5rem; align-items:center; }
-.nav-link { background:none; border:none; color:var(--muted); font-weight:500; cursor:pointer; padding:.4rem 0; position:relative; }
-.nav-link:hover, .nav-link.active { color:#fff; }
-.nav-link::after { content:''; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--accent1); transition:width .12s; }
-.nav-link:hover::after, .nav-link.active::after { width:100%; }
-
-.scroll-top {
-  position: fixed; right:30px; bottom:30px;
-  width:50px; height:50px; border-radius:50%;
-  border:none; display:grid; place-items:center;
-  background: linear-gradient(135deg,var(--accent1),var(--accent2));
-  color:#fff; font-size:1rem; box-shadow:0 8px 30px rgba(168,85,247,.12);
-  opacity: 0; visibility: hidden; transition: all .12s;
-}
-.scroll-top.visible { opacity:1; visibility:visible; transform: translateY(-6px); }
-
-/* HERO */
-.hero {
-  min-height: 75vh; /* reduced height for desktop */
-  padding: calc(var(--nav-height) + 10px) 0 20px; /* smaller top & bottom spacing */
-  background: linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
-  display:flex;
-  align-items:center;
-}
-.hero-content { display:grid; grid-template-columns:1fr 420px; gap:3rem; align-items:center; }
-.hero-subtitle{
-  color:#ffdd74;
-  text-transform:uppercase;
-  font-weight:700;
-  letter-spacing:.14em;
-  font-size:2rem;
-  margin-top:1rem;
-  margin-bottom:0.4rem;
-  text-align:center !important;
-  margin-top:1rem; /* moved subtitle further down */
-  margin-bottom:0.4rem;:0.4rem;     /* closer spacing */
-  text-align:center !important;
-}
-.hero-title{
-  font-size:1.2rem;
-  font-weight:800;
-  line-height:1.05;
-  margin-top:0.4rem;
-  margin-bottom:0.4rem;
-  text-align:center !important;
-  color:#ffe9a8;
-  font-weight:800;
-  line-height:1.05;
-  margin-top:0.4rem;      /* closer to photo */
-  margin-bottom:0.4rem;   /* tighter spacing */
-  text-align:center !important;
-  color:#ffe9a8;          /* bold premium gold */
-}
-.gradient-text { background: linear-gradient(135deg,var(--accent1),var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero-description { color: var(--muted); max-width: 56ch; margin-bottom: 1.25rem; }
-
-/* -------------------- GLOBAL CARD BASE */
-.card,
-.card-base,
-.project-card,
-.skill-category,
-.skill-box,
-.education-card,
-.experience-card,
-.internship-card,
-.training-card,
-.language-box,
-.interest-box,
-.cert-box {
-  margin-bottom: 1.25rem !important;
-}
-
-/* -------------------- ORIGINAL GLOBAL CARD BASE */ -------------------- */
-.card,
-.card-base {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  transition: transform .28s ease, box-shadow .28s ease;
-  overflow: hidden;
-}
-
-/* unified title styles */
-.section-title { font-size: 2rem; font-weight: 800; color: var(--accent1); text-align:center; margin: 0 auto 26px auto; }
-.section-sub { color: var(--muted); text-align:center; margin: 0 auto 40px auto; max-width: 650px; }
-
-/* -------------------- SECTION-SPECIFIC: PREMIUM ANIMATIONS -------------------- */
-
-/* --- About (Fade In, elegant) --- */
-@keyframes aboutFadeIn {
-  from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
-  to   { opacity: 1; transform: none; filter: none; }
-}
-.about-card {
-  margin-bottom: 1.25rem !important;
-  background: linear-gradient(180deg,#0d0d0d,#171717);
-  border: 1px solid rgba(212,175,55,0.32);
-  padding: 1.6rem;
-  border-radius: 14px;
-  position: relative;
-  overflow: hidden;
-  animation: aboutFadeIn .7s cubic-bezier(.2,.9,.3,1) both;
-}
-.about-card::before{
-  content:"";
-  position:absolute; inset:0;
-  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.18), transparent 60%);
-  opacity:0; transition: opacity .45s ease;
-}
-.about-card:hover{
-  transform: translateY(-6px) scale(1.02);
-  box-shadow:0 0 32px rgba(212,175,55,0.28);
-}
-.about-card:hover::before{ opacity: 1; }
-.about-card::before{
-  content:"";
-  position:absolute; inset:0;
-  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.18), transparent 60%);
-  opacity:0; transition: opacity .45s ease;
-}
-.about-card:hover{ transform: translateY(-6px) scale(1.02); box-shadow:0 0 32px rgba(212,175,55,0.28); }
-.about-card:hover::before{ opacity: 1; }
-
-/* --- Experience (Slide-Left on reveal + subtle hover) --- */
-@keyframes expSlideIn {
-  from { opacity: 0; transform: translateX(36px); }
-  to   { opacity: 1; transform: none; }
-}
-.experience-wrapper { display: grid; gap: 1rem; }
-.experience-card {
-  background: var(--card);
-  padding: 1.2rem;
-  border-left: 3px solid var(--accent1);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  animation: expSlideIn .7s ease both;
-  transition: transform .28s ease;
-}
-.experience-card:hover { transform: translateX(-10px); box-shadow: 0 12px 26px rgba(0,0,0,0.45); }
-.experience-title { font-weight:700; color: var(--accent1); margin-bottom: .4rem; }
-
-/* --- Projects */
-/* HIGHLIGHT PROJECT TITLES + DATES IN GOLD */
-.project-title {
-  color: var(--accent1) !important; /* gold text only */
-  background: none !important;       /* remove pill */
-  padding: 0 !important;
-  border-radius: 0 !important;
-  font-weight: 900 !important;
-  letter-spacing: .6px;
-  font-size: 1.05rem;
-  margin-bottom: 10px;
-}
-}
-
-.project-date {
-  color: var(--accent1) !important;
-  font-weight: 800 !important;
-  letter-spacing: .5px;
-  font-size: .95rem;
-  margin-bottom: 10px;
-  display: inline-block;
-}
-
-/* --- Projects (Updated with highlight) */ (Zoom-In on reveal + hover) --- */
-/* DISABLED SLOW PROJECT ZOOM ANIMATION */
-/*@keyframes projZoom {
-  from { opacity: 0; transform: scale(.92); }
-  to   { opacity: 1; transform: scale(1); }
-}*/
-  to   { opacity: 1; transform: scale(1); }
-}
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.125rem; }
+/* FIX PROJECT UP-DOWN SPACING */
 .project-card {
-  background: linear-gradient(180deg,#0d0d0d,#1a1a1a);
-  border: 1px solid rgba(212,175,55,0.28);
-  border-radius: 14px;
-  padding: 1.25rem;
-  position: relative;
-  overflow: hidden;
-  /* animation removed for speed */
-  opacity:1 !important;
-  transform:none !important;
-  transition: transform .28s ease, box-shadow .28s ease;
-}
-.project-card::after{
-  content:""; position:absolute; top:0; left:-100%; width:100%; height:100%;
-  background: linear-gradient(115deg, transparent, rgba(255,204,92,0.28), transparent);
-  transition: left .7s ease;
-}
-.project-card:hover { transform: scale(1.06); box-shadow: 0 18px 40px rgba(212,175,55,0.32); }
-.project-card:hover::after { left: 100%; }
-
-/* --- Skills */
-/* GOLD TEXT ONLY — Technical Skills Heading */
-.skills-section-title {
-  color: var(--accent1) !important;
-  font-weight: 900 !important;
-  letter-spacing: .8px;
+  padding: 28px !important;
+  border-radius: 16px !important;
 }
 
-/* GOLD TEXT ONLY — Skill Category Titles */
-.skill-category .category-title {
-  color: var(--accent1) !important;
-  background: none !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  font-weight: 900 !important;
-  letter-spacing: .6px;
-  font-size: 1.05rem;
-  margin-bottom: 10px;
+.projects-grid {
+  gap: 28px !important;
 }
 
-/* --- Skills (Optimized — faster loading) */ */
-/* HIGHLIGHT SPECIFIC SKILL CATEGORY TITLES IN GOLD PILL STYLE */
-.skill-category .category-title {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #000 !important;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 900 !important;
-  letter-spacing: .6px;
-  margin-bottom: 12px;
-  font-size: 1.05rem;
+.project-card .project-header {
+  margin-bottom: 12px !important;
 }
 
-/* --- Skills (Optimized — faster loading, no heavy 3D) --- */ (Optimized — faster loading, no heavy 3D) --- */
-.skills-grid {
+.project-card .project-description {
+  margin: 12px 0 16px !important;
+  line-height: 1.55 !important;
+}
+
+.project-card ul.project-features li {
+  margin-bottom: 8px !important;
+}
+/* Internship & Training Section */
+.internships-section {
+  margin-top: 40px;
+}
+
+.internships-grid.explicit-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr) !important; /* 2 columns */
-  grid-template-rows: repeat(2, auto) !important;   /* 2 rows */
-  gap: 1.25rem !important;
-}: 1.25rem;
-} }
-.skill-category,
-.skill-box {
-  background: linear-gradient(180deg,#0d0d0d,#1a1a1a);
-  padding: 1.2rem;
-  border-radius: 14px;
-  border: 1px solid rgba(212,175,55,0.25);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.skill-category:hover,
-.skill-box:hover {
-  transform: translateY(-4px); /* light, fast */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
-}
-.skill-title { font-weight:700; color: var(--accent1); margin-bottom:.6rem; }
-.skills-list { display:flex; flex-wrap:wrap; gap:.5rem; }
-
-/* --- Education (FAST LOAD — no fade, no slide) */
-.education-card,
-.education-grid .education-card,
-.education-card.fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-  animation: none !important;
-} */
-
-/* EDUCATION — MATCH TECHNICAL SKILLS STYLE (Gold Pill Look) */
-.education-card .degree-title,
-.education-card .institution,
-.education-card .education-grade {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #000 !important;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 800 !important;
-  letter-spacing: .6px;
-  margin-bottom: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 
-/* Remove underline because pill replaces it */
-.education-card .institution::after {
-  display: none !important;
-}, Institution, CGPA */
-.education-card .degree-title,
-.education-card .institution,
-.education-card .education-grade {
-  color: var(--accent1) !important;
-  font-weight: 900 !important;
-  letter-spacing: .6px !important;
-}
-
-/* UNDERLINE ONLY FOR INSTITUTION */
-.education-card .institution {
-  position: relative;
-  padding-bottom: 6px;
-  margin-bottom: 10px;
-  width: fit-content;
-}
-.education-card .institution::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--accent1);
-  border-radius: 3px;
-} NAMES + DEGREE TITLE + CGPA */
-.education-card .institution,
-.education-card .degree-title,
-.education-card .education-grade {
-  color: var(--accent1) !important;   /* gold */
-  font-weight: 900 !important;
-  letter-spacing: .6px;
-}
-
-/* Premium underline only for institution */
-.education-card .institution {
-  position: relative;
-  padding-bottom: 6px;
-  margin-bottom: 10px;
-}
-.education-card .institution::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  border-radius: 3px;
-} — stronger color + bigger + underline */
-.education-card .institution {
-  color: var(--accent1) !important;  /* bright gold */
-  font-weight: 900 !important;
-  font-size: 1.05rem !important;
-  letter-spacing: .6px;
-  position: relative;
-  padding-bottom: 6px;
-  width: fit-content;
-  margin-bottom: 10px;
-}
-.education-card .institution::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  border-radius: 3px;
-}
-/* FIX — FORCE GOLD COLOR FOR Degree Title, Institution, CGPA */
-.education-card .degree-title,
-.education-card .institution,
-.education-card .education-grade {
-  color: var(--accent1) !important;
-  font-weight: 900 !important;
-  letter-spacing: .6px !important;
-}
-
-/* UNDERLINE ONLY FOR INSTITUTION */
-.education-card .institution {
-  position: relative;
-  padding-bottom: 6px;
-  margin-bottom: 10px;
-  width: fit-content;
-}
-.education-card .institution::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--accent1);
-  border-radius: 3px;
-} */ / DEGREE TITLES */
-.education-card .degree-title,
-.education-card .degree-field,
-.education-card .institution {
-  color: var(--accent1) !important; /* gold text color */
-}
-
-/* GOLD UNDERLINE BELOW COLLEGE NAME */
-.education-card .institution {
-  position: relative;
-  padding-bottom: 6px;
-  width: fit-content;
-  margin-bottom: 10px;
-}
-.education-card .institution::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--accent1);
-  border-radius: 3px;
-}
-
-/* Existing Education Section Styles */ */ (Fade-Up reveal + hover lift) --- */
-/* DISABLED SLOW EDUCATION FADE-UP ANIMATION */
-/*@keyframes eduFadeUp {
-  from { opacity:0; transform: translateY(28px); }
-  to   { opacity:1; transform: none; }
-}*/
-  to   { opacity:1; transform: none; }
-}
-.education-card {
-  position: relative;
-  background: linear-gradient(180deg,#0d0d0d,#151515);
-  border: 1px solid rgba(212,175,55,0.28);
-  padding: 1.5rem;
-  border-radius: 14px;
-  overflow: hidden;
-  /* animation removed for speed */
-  opacity:1 !important;
-  transform:none !important;
-  transition: transform .28s ease, box-shadow .28s ease;
-}
-.education-card:hover { transform: translateY(-10px); box-shadow: 0 20px 36px rgba(212,175,55,0.28); }
-.education-title { font-size: 1.1rem; font-weight:700; color: var(--accent1); margin-bottom:.6rem; }
-
-/* --- Highlighted Action Buttons (Resume, Contact, LinkedIn) --- */
-.action-btn,
-.resume-btn,
-.contact-btn,
-.linkedin-btn {
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #000 !important;
-  font-weight: 700;
-  padding: 0.75rem 1.4rem;
-  border-radius: 10px;
-  display: inline-block;
-  text-decoration: none;
-  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
-}
-.action-btn:hover,
-.resume-btn:hover,
-.contact-btn:hover,
-.linkedin-btn:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 0 22px rgba(255,204,92,0.45);
-  background: linear-gradient(135deg, var(--accent2), var(--accent1));
-}
-
-/* existing contact section */
-/* --- Contact */
-
-/* ADD MORE SPACING BETWEEN "Send a Message" & "Interests" */
-.contact-form-card {
-  margin-top: 2.5rem !important; /* increased spacing */
-}
-
-/* Also increase spacing below Interests section */
-.interests-container,
-.interest-box {
-  margin-bottom: 2rem !important;
-}
-
-/* --- Contact (original below) */ */
-
-/* Top Contact Section — Soft Gold */
-.get-in-touch-title,
-.contact-section-title,
-.contact-header,
-.contact-info h3 {
-  color: var(--accent2) !important; /* soft gold */
-  font-weight: 700 !important;
-  letter-spacing: .3px;
-  margin-bottom: 12px;
-}
-}
-}
-
-/* Bottom Contact Section */
-.contact-section *,
-.contact-methods *,
-.contact-info *,
-.contact-links *,
-.contact-details * {
-  color: var(--accent1) !important; /* gold */
-} — Bright Gold */
-.contact-methods a,
-.contact-methods .contact-phone,
-.contact-methods .contact-email,
-.contact-methods .contact-linkedin,
-.contact-methods h3,
-.contact-methods i {
-  color: var(--accent1) !important; /* bright gold */
-  font-weight: 600 !important;
-  text-decoration: none !important;
-}
-
-.contact-methods a,
-.contact-methods .contact-phone,
-.contact-methods .contact-email,
-.contact-methods .contact-linkedin,
-.contact-methods h3,
-.contact-methods i {
-  color: #ffdd74 !important; /* bright gold */
-  font-weight: 600 !important;
-: 600 !important;
-  text-decoration: none !important;
-}
-} */
-
-/* Make "Send a Message" title gold */
-.contact-form-card h3,
-.contact-title,
-.send-message-title {
-  color: var(--accent1) !important;
-  font-weight: 900 !important;
-  letter-spacing: .6px;
-  margin-bottom: 12px;
-}
-
-/* --- Contact */
-/* Reset hover for email & phone to simple white */
-.contact-info a:hover,
-.contact-links a:hover,
-.contact-details a:hover,
-.contact-phone:hover,
-.contact-email:hover {
-  color: #ffffff !important;
-  text-shadow: none !important;
-}
-}
-
-/* --- Contact */ (Glow Pulse on hover) --- */
-.contact-form-card {
-  background: linear-gradient(180deg,#0c0c0c,#161616);
-  padding: 1.25rem;
-  border-radius: 14px;
-  border: 1px solid rgba(212,175,55,0.22);
-  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-  max-width: 560px; margin: 0 auto;
-}
-@keyframes contactPulse {
-  0% { box-shadow: 0 0 0 rgba(212,175,55,0.0); }
-  50% { box-shadow: 0 0 26px rgba(212,175,55,0.34); }
-  100% { box-shadow: 0 0 0 rgba(212,175,55,0.0); }
-}
-.contact-form-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: rgba(255,204,92,0.55);
-  animation: contactPulse 1.2s ease-in-out;
-}
-
-/* inputs */
-.contact-form-card input,
-.contact-form-card textarea {
-  width: 100%;
-  padding: .75rem 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,.06);
-  background: #151515;
+.internship-card.card-box {
+  background: linear-gradient(135deg, #ff7a00, #ffbb33);
   color: #fff;
-  transition: box-shadow .28s ease, border-color .28s ease;
-}
-.contact-form-card input:focus,
-.contact-form-card textarea:focus {
-  border-color: var(--accent1);
-  box-shadow: 0 0 12px rgba(212,175,55,0.28);
-  outline: none;
-}
-
-/* -------------------- CERTIFICATIONS / LANGUAGES */
-
-/* >>> EXTRA LARGE SPACING FOR: GET IN TOUCH + LANGUAGES + INTERESTS <<< */
-.get-in-touch-title,
-.contact-section-title,
-.contact-header {
-  margin-top: 4rem !important;   /* BIGGER space above Get In Touch */
-  margin-bottom: 2.5rem !important;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.languages-container {
-  margin-top: 3.5rem !important;  /* bigger */
-  margin-bottom: 3.5rem !important; /* bigger */
-}
-
-.interests-container {
-  margin-top: 3.5rem !important; /* more space */
-  margin-bottom: 4rem !important; /* big clean gap */
-}
-
-/* -------------------- CERTIFICATIONS / LANGUAGES */ */
-
-/* EXTRA SPACING ABOVE & BELOW LANGUAGES SECTION */
-.languages-container {
-  margin-top: 2.5rem !important;
-  margin-bottom: 2.5rem !important;
-}
-
-/* EXTRA SPACING ABOVE "GET IN TOUCH" TITLE */
-.get-in-touch-title,
-.contact-section-title,
-.contact-header {
-  margin-top: 2.5rem !important;
-}
-
-/* -------------------- CERTIFICATIONS / LANGUAGES */ / INTERESTS BOXES (NO LOADING ANIMATION) */
-
-/* Disable fade‑in animation for Languages, Interests, Certifications, Skills */
-.language-box,
-.interest-box,
-.language-item,
-.interest-item,
-.cert-box,
-.certification-item,
-.skill-category,
-.skill-box,
-.skill-badge {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
-}‑in animation for Languages & Interests */
-.language-box,
-.interest-box,
-.language-item,
-.interest-item {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease !important;
-}
- -------------------- */
-.cert-grid,
-.lang-grid,
-.interest-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-/* Uniform boxed style that matches your design */
-.cert-box,
-.cert-card,
-.certification-item {
-  background: linear-gradient(180deg,#0d0d0d,#141414);
-  padding: 1.1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.06);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.cert-box:hover,
-.cert-card:hover,
-.certification-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 28px rgba(212,175,55,0.28);
-}
-
-/* Certifications titles gold — stronger & always gold */
-/* Certifications titles gold — stronger & always gold */
-.cert-box h3,
-.cert-card h3,
-.certification-item h3 {
-  color: var(--accent1) !important;
-  font-weight: 900 !important;
-  letter-spacing: .7px;
-  margin-bottom: 10px;
-  text-transform: none !important;
-}
-
-/* ALL CERTIFICATION WORDS GOLD */
-.cert-box li,
-.cert-box p,
-.certification-item li,
-.certification-item p,
-.certification-item span {
-  color: var(--accent1) !important;
-  font-weight: 600 !important;
-  letter-spacing: .2px !important;
-}
-}
-
-/* Languages boxes */
-.language-box,
-.language-card {
-  background: linear-gradient(180deg,#0d0d0d,#151515);
-  padding: 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.06);
-}
-.language-tags,
-.language-list { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
-.language-tag { background: rgba(255,255,255,0.03); padding:.45rem .75rem; border-radius:999px; font-weight:600; color:var(--muted); border:1px solid rgba(255,255,255,.04); transition: transform .18s; }
-.language-tag:hover { transform: translateY(-3px); }
-
-/* Interests boxes */
-.interest-box,
-.interest-card {
-  background: linear-gradient(180deg,#0d0d0d,#141414);
-  padding: 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.06);
-}
-.interest-tags,
-.interest-list { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem; }
-.interest-tag { background: rgba(255,255,255,0.03); padding:.45rem .75rem; border-radius:999px; font-weight:600; color:var(--muted); border:1px solid rgba(255,255,255,.04); transition: transform .18s; }
-.interest-tag:hover { transform: translateY(-3px); }
-
-/* -------------------- SKILLS BADGES */
-
-/* EXTRA SPACING FOR — Get In Touch + Languages + Interests */
-.get-in-touch-title,
-.contact-section-title,
-.contact-header {
-  margin-top: 3.5rem !important;   /* bigger spacing above Get In Touch */
-}
-
-.languages-container {
-  margin-top: 3rem !important;
-  margin-bottom: 3rem !important;   /* bigger gap above & below Languages */
-}
-
-.interests-container {
-  margin-top: 3rem !important;
-  margin-bottom: 3.5rem !important; /* more space around Interests */
-}
-
-/* -------------------- SKILLS BADGES */ (keeps your previous style) -------------------- */
-.skill-badge,
-.cert-badge,
-.language-badge,
-.interest-badge {
-  padding: .45rem .85rem;
-  font-size: .9rem;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(212,175,55,0.18);
-  color: var(--muted);
-  transition: background .18s ease, color .18s ease, transform .18s ease;
-}
-.skill-badge:hover,
-.cert-badge:hover,
-.language-badge:hover,
-.interest-badge:hover {
-  background: linear-gradient(135deg,var(--accent1),var(--accent2));
-  color: #000;
-  transform: translateY(-3px);
-}
-
-/* -------------------- GLOBAL MICRO-ANIM: reveal classes used by JS observer -------------------- */
-.fade-in { opacity: 0; transform: translateY(18px); transition: all .6s cubic-bezier(.2,.9,.3,1); }
-.fade-in.visible { opacity: 1; transform: none; }
-.slide-in-left { opacity: 0; transform: translateX(-36px); transition: all .6s; }
-.slide-in-left.visible { opacity: 1; transform: none; }
-.slide-in-right { opacity: 0; transform: translateX(36px); transition: all .6s; }
-.slide-in-right.visible { opacity: 1; transform: none; }
-
-/* -------------------- FOOTER, RESPONSIVE -------------------- */
-.footer { display:flex; justify-content:space-between; align-items:center; color:#97a1ad; font-size:.9rem; padding:1.25rem 0; }
-.footer-separator { height:1px; background:rgba(255,255,255,.04); margin:2rem 0; }
-
-/* Responsive tweaks */
-@media (max-width: 980px) {
-  .hero-content { grid-template-columns: 1fr 360px; }
-  .contact-content { grid-template-columns: 1fr; }
-}
-@media (max-width:760px) {
-  .nav-menu { display:none; }
-  .nav-toggle { display:block; }
-  .hero-content { grid-template-columns:1fr; padding:0; }
-  .profile-container { max-width: 320px; }
-}
-@media (max-width:480px) {
-  .container{ padding: 0 12px; }
-  .hero { padding: calc(var(--nav-height) + 24px) 0 40px; }
-}
-
-/* Print */
-@media print {
-  .navbar, .scroll-top, .loading-screen { display:none !important; }
-  body { background: #fff; color: #000; }
-}
-
-/* Accessibility */
-:focus-visible { outline: 3px solid rgba(168,85,247,.15); outline-offset: 3px; }
-
-/* ============================================================
-   INTERNSHIP & TRAINING BOXES (Matches your existing card design)
-   ============================================================ */
-
-.internship-grid,
-.training-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.internship-card,
-.training-card {
-  background: linear-gradient(180deg, #0d0d0d, #151515);
-  padding: 1.25rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-}
-
-.internship-card:hover,
-.training-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 26px rgba(212, 175, 55, 0.28);
-}
-
-.internship-card h3,
-.training-card h3 {
-  font-size: 1.1rem;
+.internship-card h4 {
+  margin: 0;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--accent1);
-  margin-bottom: 0.6rem;
 }
 
-.internship-card p,
-.training-card p {
-  color: var(--muted);
+.internship-subtitle {
   font-size: 0.9rem;
-  line-height: 1.55;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
 }
 
-/* End of styles.css */ */
-/* ============================================================
-   LANGUAGE & INTERESTS BOX DESIGN (Matches your card layout)
-   ============================================================ */
-
-.languages-container,
-.interests-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+.internship-date {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
 }
 
-.language-box,
-.interest-box {
-  background: linear-gradient(180deg, #0d0d0d, #141414);
-  padding: 1.2rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+.internship-description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.9);
 }
 
-.language-box:hover,
-.interest-box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 26px rgba(212, 175, 55, 0.28);
-}
-
-.language-title,
-.interest-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent1);
-  margin-bottom: 0.6rem;
-}
-
-.language-items,
-.interest-items {
+.skills-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 6px;
+  margin-top: 6px;
 }
 
-.language-item,
-.interest-item {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 0.45rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(212, 175, 55, 0.18);
-  color: var(--muted);
-  font-size: 0.9rem;
-  transition: transform 0.18s ease, background 0.18s ease;
+.skill-tag {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
-.language-item:hover,
-.interest-item:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: #000;
+/* Hover effect */
+.internship-card.card-box:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, #ffbb33, #ff7a00);
 }
 
-/* Get In Touch button — reverted to default gold theme */
-.contact-btn:hover {
-  background: linear-gradient(135deg, #6ec8ff, #3ba3ff) !important;
-  box-shadow: 0 0 22px rgba(100, 180, 255, 0.55) !important;
-  transform: translateY(-4px) scale(1.03);
-}
+/* Optional: Unique gradient per card */
+.internships-grid.explicit-cards .internship-card:nth-child(1) { background: linear-gradient(135deg, #ff7a00, #ffbb33); }
+.internships-grid.explicit-cards .internship-card:nth-child(2) { background: linear-gradient(135deg, #0ea5a4, #06b6d4); }
+.internships-grid.explicit-cards .internship-card:nth-child(3) { background: linear-gradient(135deg, #8b5cf6, #c084fc); }
+.internships-grid.explicit-cards .internship-card:nth-child(4) { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+.internships-grid.explicit-cards .internship-card:nth-child(5) { background: linear-gradient(135deg, #10b981, #06b6d4); }
+.internships-grid.explicit-cards .internship-card:nth-child(6) { background: linear-gradient(135deg, #facc15, #f97316); }
 
-/* --- Responsive Profile Photo Size (Override — Clean & Stable on all screens) --- */
-.hero img,
-.profile-photo,
-.profile-container img {
-  display: block;
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 0;
-  border: 3px solid rgba(212,175,55,0.35);
-
-  /* MOBILE DEFAULT */
-  width: 120px;
-  height: 120px;
-}
-
-/* TABLET */
-@media (min-width: 600px) {
-  .hero img,
-  .profile-photo,
-  .profile-container img {
-    width: 170px;
-    height: 170px;
+/* Responsive */
+@media (max-width: 800px) {
+  .internships-grid.explicit-cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .internship-card.card-box {
+    padding: 18px;
   }
 }
-
-/* DESKTOP */
-@media (min-width: 992px) {
-  .hero img,
-  .profile-photo,
-  .profile-container img {
-    width: 180px;
-    height: 180px;
-  }
-}
-}
-
-@media (min-width: 600px) {
-  .hero img,
-  .profile-photo,
-  .profile-container img {
-    width: 180px;
-    height: 180px;
-  }
-}
-
-@media (min-width: 992px) {
-  .hero img,
-  .profile-photo,
-  .profile-container img {
-    width: 220px;
-    height: 220px;
-  }
-}
-
-/* GOLD SECTION SUBTITLE STYLE */
-.section-subtitle {
-  text-align: center;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--accent1);
-  margin: -6px auto 28px auto;
-  padding-bottom: 6px;
-  width: fit-content;
-  border-bottom: 3px solid var(--accent1);
-  letter-spacing: 1px;
-}
-
-/* GOLD UNDERLINE FOR SUBSECTION TITLES (e.g., Internship & Training) */
-.subsection-title {
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--accent1);
-  margin: 10px auto 28px auto;
-  padding-bottom: 6px;
-  width: fit-content;
-  border-bottom: 3px solid var(--accent1);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-/* Responsive Internship & Training Grid (Desktop=3, Tablet=2, Mobile=1) */
-.internships-grid {
+/* ---------------- Education Cards ---------------- */
+.education-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* desktop */
-  gap: 1.5rem;
-  margin-top: 1rem;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px; /* Spacious gap between cards */
+  margin-top: 24px;
 }
 
-/* Tablet (2 columns) */
-@media (max-width: 992px) {
-  .internships-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile (1 column) */
-@media (max-width: 600px) {
-  .internships-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(3, auto) !important;
-    gap: 1.25rem !important;
-  }
-}
-}
- /* ensure equal heights */
-}
-
-/* Equal height cards */
-.internship-card {
-  height: 100%;
+/* Individual Card */
+.education-card {
+  background: linear-gradient(135deg, #06b6d4, #0ea5a4); /* Soft gradient */
+  color: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.5s ease;
   display: flex;
   flex-direction: column;
-}
-
-/* Make description + tags push evenly */
-.internship-card .internship-description {
-  flex-grow: 1;
-} & Training to 3 rows × 2 columns */
-.internships-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-/* Force Internship & Training to 3 rows × 2 columns */
-.internships-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-Paste your CSS here. I'll edit/optimize animations, spacing, and layout as you request.
-
-Instructions:
-- Paste your full CSS below the comment block.
-- Tell me which sections you want changed (e.g., About, Experience, Skills wave, Technical Skills animation, spacing around Send a Message, remove location section).
-
---- Paste starts here ---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Highlight Internship & Training company name + dates in gold (stronger) */
-.internship-title {
-  color: var(--accent1) !important; /* gold only */
-  font-weight: 600 !important; /* normal bold */
-  letter-spacing: 0 !important;
-  font-size: 1rem !important;
-  text-transform: none !important;
-}
-
-.internship-date {
-  color: var(--accent1) !important;
-  font-weight: 800 !important;
-  font-size: 1rem;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  margin-bottom: .4rem;
-} & Training company name + dates in gold */
-.internship-title {
-  color: var(--accent1) !important; /* gold only */
-  font-weight: 600 !important; /* normal bold */
-  letter-spacing: 0 !important;
-  font-size: 1rem !important;
-  text-transform: none !important;
-}
-
-.internship-date {
-  color: var(--accent1) !important;
-  font-weight: 700 !important;
-  font-size: .95rem;
-  margin-bottom: .4rem;
-} */
-.internship-title {
-  color: var(--accent1) !important; /* gold only */
-  font-weight: 600 !important; /* normal bold */
-  letter-spacing: 0 !important;
-  font-size: 1rem !important;
-  text-transform: none !important;
-}
-
-/* Remove bottom location section (always hide) */
-.contact-methods .contact-method:nth-child(4) {
-  display: none !important;
-} — DESKTOP ONLY */
-@media (min-width: 992px) {
-  /* Hide the entire Location box */
-  .contact-methods .contact-method:last-child {
-    display: none !important;
-  }
-} */
-@media (min-width: 992px) {
-  .contact-method-icon.green,
-  .contact-method-icon.green + .contact-method-info {
-    display: none !important;
-  }
-}
-
-/* End of paste */
-/* ================= CHATBOT STYLES ================= */
-#chatbot-button {
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 26px;
-  color: #000;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 0 10px 25px rgba(255,255,255,0.15);
-  transition: 0.2s;
-}
-
-#chatbot-button:hover {
-  transform: scale(1.08);
-}
-
-#chatbot-container {
-  position: fixed;
-  right: 25px;
-  bottom: 100px;
-  width: 320px;
-  height: 420px;
-  background: #0f0f0f;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
+  gap: 12px;
+  position: relative;
   overflow: hidden;
-  z-index: 9999;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  will-change: transform;
 }
 
-#chatbot-container.hidden {
-  display: none;
-}
-
-#chatbot-header {
-  background: linear-gradient(135deg,var(--accent1),var(--accent2));
-  color: #000;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: 700;
+/* Header section with icon and title */
+.education-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
-#chatbot-close {
-  cursor: pointer;
-  font-size: 22px;
+.education-icon {
+  font-size: 28px;
+  flex-shrink: 0;
 }
 
-#chatbot-messages {
-  flex: 1;
-  padding: 12px;
-  overflow-y: auto;
-  font-size: 0.9rem;
-}
-
-.chatbot-msg {
-  margin-bottom: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  max-width: 85%;
-  line-height: 1.4;
-}
-
-.bot {
-  background: #1c1c1c;
-  border-left: 3px solid var(--accent1);
-}
-
-.user {
-  background: #222;
-  margin-left: auto;
-}
-
-#chatbot-input-area {
-  display: flex;
-  padding: 10px;
-  gap: 8px;
-  background: #0b0b0b;
-}
-
-#chatbot-input {
-  flex: 1;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: #111;
-  padding: 10px;
-  color: white;
-  border-radius: 8px;
-}
-
-#chatbot-send {
-  width: 46px;
-  background: var(--accent1);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-#chatbot-button {
-  bottom: 95px !important;
-}
-
-#chatbot-container {
-  bottom: 160px !important;
-}
-/* === FAST LOADING for Technical Skills + Certifications === */
-#skills .skill-category,
-#skills .skill-box,
-#skills .skill-item,
-#certifications .cert-box,
-#certifications .certification-item {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-}
-/* === MAKE CERTIFICATIONS LOAD INSTANTLY (SUPER FAST) === */
-#certifications .cert-box,
-#certifications .certification-item,
-#certifications .cert-badge {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-    filter: none !important;
-}
-/* Education College Names – Sage Green */
-.institution {
-    color: #A8C3A0 !important;   /* Sage Green */
-    font-weight: 700;
-}
-/* === FINAL FIX — Force College Names to Sage Green === */
-.education-card .institution {
-    color: #A8C3A0 !important;   /* Sage Green */
-}
-
-.education-card .institution::after {
-    background: #A8C3A0 !important;   /* Underline also Sage Green */
-}
-/* Languages & Interests Titles – Sage Green */
-.info-section .info-title {
-    color: #A8C3A0 !important;  /* Sage Green */
-    font-weight: 700;
-}
-
-/* Contact Form Title – Send a Message – Sage Green */
-.contact-form-section .form-title {
-    color: #d4af37; !important;  /* gold */
-    font-weight: 700;
-}
-/* FINAL FIX — Bottom Contact Email, Phone, LinkedIn → Sage Green */
-.contact-method-value {
-    color: #A8C3A0 !important;   /* Sage Green */
-    font-weight: 700 !important;
-}
-/* === SAGE GREEN for Specific Section Subtitles === */
-.section-header .section-subtitle {
-    color: #A8C3A0 !important;      /* Sage Green */
-    font-weight: 700 !important;
-}
-
-/* === Underlines under Section Titles → Sage Green === */
-.section-header .section-title::after {
-    background: #A8C3A0 !important; /* Sage Green underline */
-}
-/* About Section Titles – Sage Green */
-.about-card .card-title {
-    color: #A8C3A0 !important;   /* Sage Green */
-    font-weight: 700 !important;
-}
-/* Work Experience Dates – Gold */
-.date-info span,
-.date-info i {
-    color: #E9D8A6 !important;   /* Gold */
-    font-weight: 600;
-}
-.project-title {
-    color: #A8C3A0 !important;   /* Sage Green */
-    font-weight: 700 !important;
-}
-/* Featured Projects Dates – Gold */
-.project-date {
-    color: #E9D8A6 !important;   /* Gold */
-    font-weight: 600;
-}
-/* Add more space between LinkedIn and Languages section */
-.additional-info {
-    margin-top: 40px !important;  /* increase space */
-}
-/* Make navbar headings better spaced from corners */
-.nav-container {
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-}
-.institution a {
-  color: #A8C3A0 !important;
+/* Education info */
+.education-info h3.degree-title {
+  margin: 0;
+  font-size: 1.1rem;
   font-weight: 700;
-  text-decoration: none;
 }
 
-.institution a:hover {
-  text-decoration: underline;
+.education-info p.degree-field {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Details section */
+.education-details p.institution {
+  margin: 8px 0 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.education-meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  display: flex;
+  gap: 12px;
+}
+
+/* Hover effect for interactivity */
+.education-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, #0ea5a4, #06b6d4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .education-card {
+    padding: 18px;
+  }
+}
+/* Contact section – Languages spacing and full display */
+.extra-info .extra-row {
+  margin-bottom: 1.5rem; /* space below each row */
+  margin-top: 1rem;      /* space above row */
+  display: flex;
+  flex-direction: column; /* stack label and tags */
+  gap: 0.5rem;            /* space between label and tags */
+}
+
+.extra-info .extra-row strong {
+  font-size: 1rem;
+  line-height: 1.4;       /* ensures text wraps nicely */
+}
+
+.extra-info .extra-row .skill-tags {
+  display: flex;
+  flex-wrap: wrap;        /* allow tags to wrap to next line */
+  gap: 0.5rem 0.75rem;    /* vertical and horizontal spacing between tags */
+}
+
+.extra-info .extra-row .skill-tags .skill {
+  font-size: 0.875rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  background-color: #f1f3f8;
+  color: #0a0f1f;
+  white-space: normal;    /* allow full titles to wrap */
+}
+/* Main headings and important labels */
+.section-title,
+.hero-title,
+.project-title,
+.contact .section-header h2,
+.extra-row strong {
+  color: #ff4b2b; /* Vibrant red-orange */
+  font-weight: 700;
+}
+
+/* Project titles with another pop color */
+.project-title {
+  color: #0072ff; /* Bright blue */
+}
+
+/* Languages label */
+.extra-row strong {
+  color: #ff6a00; /* Deep orange */
+}
+/* MAIN SECTION HEADINGS */
+.section-title {
+  color: #0a0f1f; /* Dark Navy - professional and readable */
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: #495057; /* Muted Gray - complements dark heading */
+  font-weight: 400;
+}
+
+/* ABOUT CARDS */
+.about-card .card-title {
+  color: #6f42c1; /* Purple - design excellence */
+}
+.about-card .card-description {
+  color: #343a40; /* Dark Gray */
+}
+
+/* EXPERIENCE */
+.experience-title {
+  color: #0077b6; /* Deep Sky Blue - draws attention */
 }
 .company-name a {
-    color: #A8C3A0 !important;
-    text-decoration: none;
-    font-weight: 700;
+  color: #023e8a; /* Dark Blue - clickable links */
+}
+.date-info span {
+  color: #495057; /* Muted Gray */
 }
 
-.company-name a:hover {
-    text-decoration: underline;
+/* INTERNSHIP & TRAINING */
+.subsection-title {
+  color: #0096c7; /* Medium Cyan - distinct from main experience */
 }
-.skill-badge a {
-    color: #A8C3A0 !important;
-    text-decoration: none;
-    font-weight: 600;
+.internship-card h4 {
+  color: #0077b6; /* Deep Sky Blue */
 }
-
-.skill-badge a:hover {
-    text-decoration: underline;
-}
-/* Make skill links behave like normal text (Sage Green / your theme color) */
-.skill-badge a {
-    color: inherit !important;        /* keep the exact same color */
-    text-decoration: none !important; /* no underline */
-    font-weight: inherit !important;  /* same thickness */
+.internship-subtitle, .internship-date {
+  color: #495057;
 }
 
-/* Hover effect – only underline (optional, clean) */
-.skill-badge a:hover {
-    text-decoration: underline !important;
+/* PROJECTS */
+.project-title {
+  color: #d9480f; /* Orange/Red - highlights projects */
 }
-/* Fix spacing between skill category titles (clean + premium) */
-.skills-category {
-    margin-bottom: 35px !important;   /* adds breathing space below each category */
+.project-date {
+  color: #495057;
+}
+.project-technologies .tech-tag.purple { color: #6f42c1; }
+.project-technologies .tech-tag.blue { color: #0077b6; }
+.project-technologies .tech-tag.green { color: #198754; }
+.project-technologies .tech-tag.orange { color: #d9480f; }
+.project-technologies .tech-tag.red { color: #dc3545; }
+.project-technologies .tech-tag.cyan { color: #0dcaf0; }
+.project-technologies .tech-tag.yellow { color: #ffc107; }
+
+/* SKILLS & TOOLS */
+.skill-block h4 {
+  font-weight: 600;
+}
+#skills .skill-block:nth-of-type(1) h4 {
+  color: #6f42c1; /* Purple - 3D Modeling Tools */
+}
+#skills .skill-block:nth-of-type(2) h4 {
+  color: #0077b6; /* Deep Sky Blue - Simulation Software */
+}
+#skills .skill-block:nth-of-type(3) h4 {
+  color: #198754; /* Green - Product Development & Tools */
+}
+.certifications-block h4 {
+  color: #fd7e14; /* Orange - Certifications */
+}
+.skill-tags .skill {
+  color: #343a40; /* Dark Gray for individual skills */
+  background-color: #f8f9fa; /* Soft background for readability */
 }
 
-/* Extra space between category title and the badges */
-.skills-category-title {
-    margin-bottom: 15px !important;
+/* EDUCATION */
+.education-card .degree-title {
+  color: #0077b6; /* Deep Sky Blue */
+}
+.education-card .degree-field {
+  color: #495057; /* Muted Gray */
+}
+.education-period, .education-grade {
+  color: #343a40;
 }
 
-/* Extra spacing between skill rows */
-.skills-list {
-    gap: 14px !important;
+/* CONTACT - Languages */
+.extra-info .skill-tags .skill {
+  color: #0a0f1f; /* Dark Navy */
+  background-color: #e9ecef; /* light gray background */
 }
-/* Fix spacing for Languages & Interests sections */
-.additional-info {
-    margin-top: 40px !important;   /* space above whole block */
-}
-
-.info-section {
-    margin-bottom: 30px !important; /* space below each section */
-}
-
-/* Space between section title and items */
-.info-title {
-    margin-bottom: 15px !important;
-}
-
-/* Space between icons/text inside Languages & Interests */
-.info-details {
-    gap: 12px !important;
-}
-// -----------------------------
-// EmailJS Contact Form
-// -----------------------------
-document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init("5muRzVJinIh6V4qiL"); // your PUBLIC KEY
-
-    const form = document.getElementById("contact-form");
-    const status = document.getElementById("form-status");
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        status.innerHTML = "Sending...";
-
-        emailjs.sendForm("service_3n7lhrd", "template_ld4gc8y", this)
-            .then(() => {
-                status.style.color = "green";
-                status.innerHTML = "Message sent successfully!";
-
-                form.reset();
-            }, (err) => {
-                status.style.color = "red";
-                status.innerHTML = "Failed to send message. Please try again.";
-            });
-    });
-});
-
-/* Make specific skills section titles Green */
-.skills-category-title {
-    color: #A8C3A0  !important;   /* Sage Green */
-}
-   
-/* FORCE green text for specific headings only */
-.skills-category-title {
-color: #A8C3A0  !important;
-background: none !important;
--webkit-text-fill-color: #A8C3A0  !important;
-}
-   /* Chatbot CSS (fixed IDs) */
-#chatbot-toggle {
-  position: fixed;
-  right: 25px;
-  bottom: 95px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  border-radius: 50%;
+.project-technologies {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 26px;
-  color: #000;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 0 10px 25px rgba(255,255,255,0.15);
-  transition: 0.2s;
+  flex-wrap: wrap; /* allows wrapping to next line if needed */
+  gap: 8px; /* space between tags */
+  margin-top: 8px;
 }
 
-#chatbot-toggle:hover {
-  transform: scale(1.08);
+.project-technologies .tech-tag {
+  display: inline-block;
+  padding: 4px 8px; /* makes them look like pills */
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: #f1f3f5; /* light gray background for contrast */
+  color: #0a0f1f; /* text color */
 }
-
-#chatbot-window {
-  position: fixed;
-  right: 25px;
-  bottom: 160px;
-  width: 320px;
-  height: 420px;
-  background: #0f0f0f;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
+.about-grid.single-row {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 9999;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  flex-direction: row;      /* Horizontal row */
+  justify-content: space-between; /* Even spacing between cards */
+  gap: 1.5rem;              /* Space between cards */
+  flex-wrap: wrap;           /* Wrap on small screens */
 }
 
-#chatbot-window.hidden {
-  display: none;
+.about-card {
+  background: #1a1f3a;
+  padding: 2rem;
+  border-radius: 15px;
+  flex: 1;                  /* Each card grows equally */
+  min-width: 250px;         /* Ensure text doesn’t shrink too much */
+  max-width: 350px;         /* Prevent cards from getting too wide */
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-#chatbot-header {
-  background: linear-gradient(135deg,var(--accent1),var(--accent2));
-  color: #000;
-  padding: 12px;
+.about-card .card-icon {
+  font-size: 3rem;          /* Big visible icon */
+  margin-bottom: 1rem;
+  color: #ff6f61;           /* Or any 3D gradient color */
+}
+.about-grid.single-row {
+  display: flex;
+  flex-direction: row;      
+  justify-content: space-between; 
+  gap: 1.5rem;              
+  flex-wrap: wrap;           
+}
+
+.about-card {
+  background: linear-gradient(145deg, #ffffff, #e0e0e0); /* Light gradient for good contrast */
+  color: #1a1f3a;          /* Dark text for visibility */
+  padding: 2rem;
+  border-radius: 15px;
+  flex: 1;                  
+  min-width: 250px;         
+  max-width: 350px;         
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Soft shadow for 3D feel */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+.about-card .card-icon {
+  font-size: 3rem;          
+  margin-bottom: 1rem;
+  color: #ff6f61;           
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* Slight 3D effect */
+}
+
+.about-card .card-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.about-card .card-description {
   font-size: 1rem;
-  font-weight: 700;
-  display: flex;
-  justify-content: space-between;
+  line-height: 1.5;
+}
+.btn-linkedin {
+  display: inline-flex;
   align-items: center;
-}
-
-#chatbot-close {
-  cursor: pointer;
-  font-size: 22px;
-}
-
-#chatbot-messages {
-  flex: 1;
-  padding: 12px;
-  overflow-y: auto;
-  font-size: 0.9rem;
-}
-
-.chatbot-msg {
-  margin-bottom: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  max-width: 85%;
-  line-height: 1.4;
-}
-
-.bot {
-  background: #1c1c1c;
-  border-left: 3px solid var(--accent1);
-}
-
-.user {
-  background: #222;
-  margin-left: auto;
-}
-
-#chatbot-input-area {
-  display: flex;
-  padding: 10px;
   gap: 8px;
-  background: #0b0b0b;
-}
-
-#chatbot-input {
-  flex: 1;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: #111;
-  padding: 10px;
-  color: white;
-  border-radius: 8px;
-}
-
-#chatbot-send {
-  width: 46px;
-  background: var(--accent1);
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
+  background-color: #0a66c2; /* LinkedIn blue */
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-/* Responsive Chatbot Fix for Mobile */
-@media (max-width: 600px) {
-  #chatbot-toggle {
-    right: 15px;
-    bottom: 25px;
-    width: 50px;
-    height: 50px;
-  }
-
-  #chatbot-window {
-    right: 10px;
-    bottom: 90px;
-    width: 90vw;
-    height: 70vh;
-    border-radius: 12px;
-  }
-
-  #chatbot-messages {
-    font-size: 0.85rem;
-  }
-
-  #chatbot-input-area {
-    padding: 8px;
-  }
-
-  #chatbot-input {
-    padding: 8px;
-    font-size: 0.85rem;
-  }
-
-  #chatbot-send {
-    width: 40px;
-  }
+.btn-linkedin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 102, 194, 0.4);
 }
 
+.linkedin-icon {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+/* FIX: Force Get in Touch button to be visible */
+.btn-ghost {
+  background: rgba(255,255,255,0.12) !important;
+  border: 2px solid rgba(255,255,255,0.35) !important;
+  color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255,122,0,0.25) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
