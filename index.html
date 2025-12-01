@@ -1,693 +1,501 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Udaykumar Borale - Mechanical Design Engineer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Udaykumar Borale - Mechanical Design Engineer</title>
+  <meta name="description" content="Experienced Mechanical Design and Simulation Engineer specializing in 3D modeling, simulation, and product development.">
 
-    <!-- Favicon (Correct for Google Search & Browsers) -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <meta name="theme-color" content="#0a0f1f">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <meta name="theme-color" content="#0a0f1f">
 
-    <meta name="description" content="Experienced Mechanical Design and Simulation Engineer specializing in 3D modeling, simulation, and product development.">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.min.js" defer></script>
 </head>
-
-
-
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loading-spinner"></div>
-        <p>Loading Portfolio...</p>
+
+  <!-- Loading -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-spinner" aria-hidden="true"></div>
+    <p>Loading Portfolio...</p>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav container">
+      <button class="brand" onclick="scrollToSection('hero')" aria-label="Go to top">
+        <div class="logo-mark">UB</div>
+        <div class="brand-text">
+          <div class="name">Udaykumar Borale</div>
+          <div class="subtitle">R&D — Powertrain · BIW</div>
+        </div>
+      </button>
+
+      <div id="nav-links" class="nav-links">
+        <button class="nav-link" onclick="scrollToSection('about')">About</button>
+        <button class="nav-link" onclick="scrollToSection('experience')">Experience</button>
+        <button class="nav-link" onclick="scrollToSection('projects')">Projects</button>
+        <button class="nav-link" onclick="scrollToSection('skills')">Skills</button>
+        <button class="nav-link" onclick="scrollToSection('education')">Education</button>
+        <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+        <a class="btn btn-primary" href="#" onclick="downloadResume()">Download Resume</a>
+      </div>
+
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
     </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <button class="nav-logo-link" onclick="scrollToSection('hero')" aria-label="Go to top">
-                    Udaykumar Borale
-                </button>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <button class="nav-link" onclick="scrollToSection('about')" aria-label="Go to About section">About</button>
-                <button class="nav-link" onclick="scrollToSection('experience')" aria-label="Go to Experience section">Experience</button>
-                <button class="nav-link" onclick="scrollToSection('projects')" aria-label="Go to Projects section">Projects</button>
-                <button class="nav-link" onclick="scrollToSection('skills')" aria-label="Go to Skills section">Skills</button>
-                <button class="nav-link" onclick="scrollToSection('education')" aria-label="Go to Education section">Education</button>
-                <button class="nav-link" onclick="scrollToSection('contact')" aria-label="Go to Contact section">Contact</button>
-            </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </nav>
+  <!-- HERO -->
+  <main>
+    <section id="hero" class="hero dark-hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <p class="hero-subtitle">Hi, I'm Udaykumar</p>
+          <h1 class="hero-title">R&D Engineer — Powertrain &amp; BIW Design</h1>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+          <h2 class="hero-role">
+            <span id="role-typing" class="typing">R&D Engineer — Powertrain &amp; BIW Design</span>
+            <span class="cursor" aria-hidden="true"></span>
+          </h2>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <p class="hero-subtitle">Hi, I'm Udaykumar</p>
-<h1 class="hero-title">R&D Engineer — Powertrain & BIW Design</h1>
+          <p class="hero-desc">
+            Experienced Mechanical Design and Simulation Engineer specializing in advanced 3D modeling,
+            simulation, and full-cycle product development. Skilled in CATIA, SolidWorks, Creo, Siemenns NX, Autodesk Inventor, ANSYS,
+            Abaqus, and MATLAB, with a strong focus on delivering innovative and reliable engineering solutions.
+          </p>
 
-                    </h1>
-                    <p class="hero-description">
-    Experienced Mechanical Design and Simulation Engineer specializing in advanced 3D modeling,
-    simulation, and full-cycle product development. Skilled in CATIA, SolidWorks, Creo, Siemenns NX, Autodesk Inventor, ANSYS,
-    Abaqus, and MATLAB, with a strong focus on delivering innovative and reliable engineering solutions.
-</p>
+          <p class="hero-desc">
+            Currently working at <strong>Chropynska India Private Ltd</strong> as an
+            <strong>R&D Engineer (Powertrain and BIW Design)</strong>, leading end-to-end design and development
+            of Powertrain and Body-in-White systems. Dedicated to driving engineering excellence through
+            automation-driven design and continuous innovation.
+          </p>
 
-<p class="hero-description">
-    Currently working at <strong>Chropynska India Private Ltd</strong> as an 
-    <strong>R&D Engineer (Powertrain and BIW Design)</strong>, leading end-to-end design and development
-    of Powertrain and Body-in-White systems. Dedicated to driving engineering excellence through
-    automation-driven design and continuous innovation.
-</p>
+          <div class="contact-quick">
+            <a href="tel:+918660272709" class="quick-link"><i class="fas fa-phone"></i> +91-8660272709</a>
+            <a href="mailto:udaykumarborale9@gmail.com" class="quick-link"><i class="fas fa-envelope"></i> udaykumarborale9@gmail.com</a>
+          </div>
 
-
-                    <!-- Contact Info -->
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <a href="tel:+918660272709" class="contact-link" aria-label="Call Udaykumar">
-                                <i class="fas fa-phone" aria-hidden="true"></i>
-                                <span>+91-8660272709</span>
-                            </a>
-                        </div>
-                        <div class="contact-item">
-                            <a href="mailto:udaykumarborale9@gmail.com" class="contact-link" aria-label="Email Udaykumar">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
-                                <span>udaykumarborale9@gmail.com</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="location-info">
-                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        <span>Banashankari 1St stage, Bangalore-560050</span>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="downloadResume()" aria-label="Download resume">
-                            <i class="fas fa-download" aria-hidden="true"></i>
-                            Download Resume
-                        </button>
-                        <button class="btn btn-secondary" onclick="scrollToSection('contact')" aria-label="Go to contact section">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            Get In Touch
-                        </button>
-                        <button class="btn btn-outline" onclick="openLinkedIn()" aria-label="Open LinkedIn profile">
-                            <i class="fab fa-linkedin" aria-hidden="true"></i>
-                            LinkedIn
-                        </button>
-                    </div>
-                </div>
-
-                <div class="hero-image">
-                    <div class="profile-container">
-                        <div class="profile-bg"></div>
-                        <div class="profile-card">
-                            <div class="profile-image-wrapper">
-                                <img src="image.jpg.png"  class="profile-image" id="profile-image">
-                                <div class="profile-fallback" id="profile-fallback">
-                                    <i class="fas fa-user profile-icon"></i>
-                                </div>
-                            </div>
-                            <div class="profile-info">
-                                <div class="profile-name">Udaykumar Borale</div>
-                                <div class="profile-title">  R&D Engineer Design</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<img src="image.jpg" width="200">
-
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">
-                    Experienced Mechanical Design and Simulation Engineer with hands-on product development and PLM/PDM experience.
-                </p>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-card fade-in">
-                    <div class="card-icon purple">
-                        <i class="fas fa-wrench" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="card-title">Design Excellence</h3>
-                    <p class="card-description">
-                        Proficient in CATIA, SolidWorks, PTC Creo, Autodesk Inventor, Siemens NX and Solid Edge for 3D modelling and detailed design.
-                    </p>
-                </div>
-
-                <div class="about-card fade-in">
-                    <div class="card-icon blue">
-                        <i class="fas fa-bolt" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="card-title">Simulation Expertise</h3>
-                    <p class="card-description">
-                        Experienced with ANSYS, Abaqus, HyperMesh, ANSA and MATLAB for FEA and CFD workflows.
-                    </p>
-                </div>
-
-                <div class="about-card fade-in">
-                    <div class="card-icon green">
-                        <i class="fas fa-globe" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="card-title">Product Development</h3>
-                    <p class="card-description">
-                        End-to-end product development, BOM management, and design optimization using PLM tools.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Work Experience</h2>
-                <p class="section-subtitle">Professional journey and key achievements</p>
-            </div>
-
-            <!-- Latest Work Experience (from resume) -->
-            <div class="experience-card main-experience fade-in">
-                <div class="experience-header">
-                    <div class="experience-info">
-                        <h3 class="experience-title">R&D Engineer – Powertrain & BIW Design</h3>
-                        <div class="company-info">
-                            <i class="fas fa-building" aria-hidden="true"></i>
-                            <span class="company-name">
-  <a href="https://www.chropynska.com/en" target="_blank" rel="noopener noreferrer">
-    Chropynska India Private Ltd
+          <div class="hero-cta">
+  <a href="#projects" class="btn btn-primary">View Projects</a>
+  <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  <!-- LinkedIn button fixed to the right bottom or in a safe container -->
+  <a href="https://www.linkedin.com/in/udaykumarborale" target="_blank" class="btn btn-linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+      <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.78v2.2h.07c.66-1.25 2.28-2.57 4.69-2.57 5.01 0 5.93 3.3 5.93 7.59V24h-5v-7.5c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.98-2.92 4.02V24h-5V8z"/>
+    </svg>
+    LinkedIn
   </a>
-</span>
+</div>
 
-                        </div>
-                        <div class="date-info">
-                            <i class="fas fa-calendar" aria-hidden="true"></i>
-                            <span>Oct 2025 – Present</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="experience-content">
-                    <ul class="achievement-list">
-                        <li>Lead end-to-end design and development of Powertrain and Body-in-White (BIW) systems.</li>
-                        <li>Optimized components for performance, durability and manufacturability using CAD and FEA tools.</li>
-                        <li>Integrated automation-driven design solutions and advanced manufacturing practices.</li>
-                    </ul>
-                </div>
-            </div>
 
-            <!-- Previous Work: JK Fenner -->
-            <div class="experience-card fade-in">
-                <div class="experience-header">
-                    <div class="experience-info">
-                        <h3 class="experience-title">Quality and Product Design Engineer</h3>
-                        <div class="company-info">
-                            <i class="fas fa-building" aria-hidden="true"></i>
-                            <span class="company-name">
-  <a href="https://jkfenner.com/" target="_blank" rel="noopener noreferrer">
-    JK Fenner India Ltd, Patancheru
-  </a>
-</span>
-
-                        </div>
-                        <div class="date-info">
-                            <i class="fas fa-calendar" aria-hidden="true"></i>
-                            <span>2021-2022</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="experience-content">
-                    <ul class="achievement-list">
-                        <li>Created detailed 3D models and simulations to support product design initiatives.</li>
-                        <li>Assisted QA processes to meet industry standards and improve product reliability.</li>
-                        <li>Collaborated cross-functionally to improve design methodologies.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Internships -->
-            <div class="internships-section">
-                <h3 class="subsection-title">Internship & Training</h3>
-                <div class="internships-grid">
-                    <div class="internship-card fade-in">
-                        <h4 class="internship-title">Bajaj Engineering & Skills Training (BEST), PES University</h4>
-                        <p class="internship-subtitle">Mechatronics & Automation Trainee</p>
-                        <div class="internship-date">Feb – Jul 2025</div>
-                        <p class="internship-description">
-                            Six-month residential program focusing on motion control, robotics, sensor tech, PLCs and Industry 4.0.
-                        </p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">Mechatronics</span>
-                            <span class="skill-tag">PLC</span>
-                            <span class="skill-tag">Automation</span>
-                        </div>
-                    </div>
-
-                    <div class="internship-card fade-in">
-                        <h4 class="internship-title">CONCEPTIA KONNECT</h4>
-                        <p class="internship-subtitle">Simulation & Structural Analysis</p>
-                        <div class="internship-date">Feb – May 2025</div>
-                        <p class="internship-description">
-                            Training in ANSYS, SolidWorks and PTC Creo for simulation-driven design improvements.
-                        </p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">ANSYS</span>
-                            <span class="skill-tag">SolidWorks</span>
-                            <span class="skill-tag">PTC Creo</span>
-                        </div>
-                    </div>
-
-                    <div class="internship-card fade-in">
-                        <h4 class="internship-title">PRIME TOOLING</h4>
-                        <p class="internship-subtitle">Design & Structural Analysis</p>
-                        <div class="internship-date">Mar – Feb 2025</div>
-                        <p class="internship-description">
-                            Intensive training in precision engineering, CAD/CAM and design validation.
-                        </p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">PTC Creo</span>
-                            <span class="skill-tag">CATIA</span>
-                            <span class="skill-tag">Ansys</span>
-                        </div>
-                    </div>
-
-                    <div class="internship-card fade-in">
-                        <h4 class="internship-title">CNC Machines – Bharat Fritz Werner</h4>
-                        <p class="internship-subtitle">Machining & Manufacturing</p>
-                        <div class="internship-date">Oct – Nov 2023</div>
-                        <p class="internship-description">
-                            Practical exposure to CNC machining processes and manufacturing techniques.
-                        </p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">CNC</span>
-                            <span class="skill-tag">CAM</span>
-                        </div>
-                    </div>
-
-                    <div class="internship-card fade-in">
-                        <h4 class="internship-title">BELATHUR INDUSTRIES</h4>
-                        <p class="internship-subtitle">Machining Operations</p>
-                        <div class="internship-date">May – Jun 2023</div>
-                        <p class="internship-description">
-                            3D modelling and technical drawings using CATIA V5; assisted in process optimization.
-                        </p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">CATIA V5</span>
-                            <span class="skill-tag">CAD/CAM</span>
-                        </div>
-                    </div>
-
-                    <div class="internship-card fade-in">
-                        <h4 class="internship-title">Bosch – Diesel Services Division</h4>
-                        <p class="internship-subtitle">Intern (CFD & Flow Simulation)</p>
-                        <div class="internship-date">Feb – Mar 2023</div>
-                        <p class="internship-description">
-                            Fluid flow simulation with ANSYS Fluent and SolidWorks Flow Simulation for diesel systems.
-                        </p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">ANSYS Fluent</span>
-                            <span class="skill-tag">CFD</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <!-- METRICS restored as distinct cards -->
+          <div class="hero-metrics" aria-hidden="false">
+            <div class="metric-card"><div class="metric-num">1+</div><div class="metric-label">Years Experience</div></div>
+            <div class="metric-card"><div class="metric-num">1+</div><div class="metric-label">Projects Delivered</div></div>
+          </div>
         </div>
+
+        <div class="hero-right">
+          <div id="hero-3d" class="hero-3d">
+            <canvas id="three-canvas" aria-hidden="true"></canvas>
+            <div class="hero-3d-overlay glass">
+              <div class="overlay-title">Highlighted Project</div>
+              <div class="overlay-sub">Lightweight e-axle integration</div>
+            </div>
+          </div>
+
+          <div class="profile-card mobile-profile">
+            <div class="profile-image-wrap">
+              <img id="profile-image" src="image.jpg.png" alt="Udaykumar Borale" onerror="showProfileFallback()">
+              <div id="profile-fallback" class="profile-fallback"><i class="fas fa-user"></i></div>
+            </div>
+            <div class="profile-info">
+              <div class="profile-name">Udaykumar Borale</div>
+              <div class="profile-role">R&D Engineer — Powertrain &amp; BIW</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Innovative engineering solutions and research work</p>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-header">
-                        <h3 class="project-title">Modeling and Analysis of Vertical Axis Wind Turbine Blade</h3>
-                        <i class="fas fa-external-link-alt project-link" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-date">Apr – Jul 2024</div>
-                    <p class="project-description">
-                        Designed and analyzed VAWT blades using CATIA V5, SolidWorks and ANSYS; evaluated aerodynamic efficiency and structural integrity.
-                    </p>
-                    <div class="project-technologies">
-                        <span class="tech-tag purple">CATIA V5</span>
-                        <span class="tech-tag blue">SolidWorks</span>
-                        <span class="tech-tag green">ANSYS</span>
-                        <span class="tech-tag orange">QBlade</span>
-                    </div>
-                    <ul class="project-features">
-                        <li>FEA and aerodynamic analysis to ensure safe stress levels and minimal deformation</li>
-                        <li>Design optimizations for composite/aluminium construction</li>
-                    </ul>
-                </div>
-
-                <div class="project-card fade-in">
-                    <div class="project-header">
-                        <h3 class="project-title">Studies on Free Convection in a Trapezoidal Cavity with Porous Media</h3>
-                        <i class="fas fa-external-link-alt project-link" aria-hidden="true"></i>
-                    </div>
-                    <div class="project-date">Aug – Dec 2024</div>
-                    <p class="project-description">
-                        MATLAB-based FEM simulations studying natural convection in porous media; analyzed temperature and flow behaviour for thermal applications.
-                    </p>
-                    <div class="project-technologies">
-                        <span class="tech-tag red">MATLAB</span>
-                        <span class="tech-tag cyan">CFD</span>
-                        <span class="tech-tag yellow">Thermal Analysis</span>
-                    </div>
-                    <ul class="project-features">
-                        <li>Studied effects of porosity and internal heat generation</li>
-                        <li>Validated simulations and summarized findings for thermal management applications</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                
-                
-            </div>
-
-            <section class="skills" id="skills">
+    <!-- ABOUT (white clean) -->
+<section id="about" class="section about white-section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Skills & Tools</h2>
-      <p class="section-subtitle">Expertise in industry-leading engineering tools and technologies</p>
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Experienced Mechanical Design and Simulation Engineer with hands-on product development and PLM/PDM experience.</p>
     </div>
 
-    <div class="skills-content">
-
-      <!-- 3D Modeling Tools -->
-      <div class="skills-category">
-        <h3 class="skills-category-title">3D Modeling Tools</h3>
-        <div class="skills-list">
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=3D+Modeling" target="_blank">3D Modeling</a></span>
-          <span class="skill-badge blue"><a href="https://www.google.com/search?q=CATIA" target="_blank">CATIA</a></span>
-          <span class="skill-badge orange"><a href="https://www.google.com/search?q=Siemens+NX" target="_blank">Siemens NX</a></span>
-          <span class="skill-badge green"><a href="https://www.google.com/search?q=SolidWorks" target="_blank">SolidWorks</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Autodesk+Inventor" target="_blank">Autodesk Inventor</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Auto+Cad" target="_blank">Auto Cad</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Solid+Edge" target="_blank">Solid Edge</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=PTC+Creo" target="_blank">PTC Creo</a></span>
-        </div>
+    <div class="about-grid single-row">
+      <div class="about-card">
+        <div class="card-icon"><i class="fas fa-wrench"></i></div>
+        <h3 class="card-title">Design Excellence</h3>
+        <p class="card-description">Proficient in CATIA, SolidWorks, PTC Creo, Autodesk Inventor, Siemens NX and Solid Edge for 3D modelling and detailed design.</p>
       </div>
 
-      <!-- Simulation Software -->
-      <div class="skills-category">
-        <h3 class="skills-category-title">Simulation Software</h3>
-        <div class="skills-list">
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=ANSYS" target="_blank">ANSYS</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Abaqus" target="_blank">Abaqus</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Hyper+Mesh" target="_blank">Hyper Mesh</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=ANSA" target="_blank">ANSA</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=MATLAB" target="_blank">MATLAB</a></span>
-        </div>
+      <div class="about-card">
+        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+        <h3 class="card-title">Simulation Expertise</h3>
+        <p class="card-description">Experienced with ANSYS, Abaqus, HyperMesh, ANSA and MATLAB for FEA and CFD workflows.</p>
       </div>
 
-      <!-- Product Development -->
-      <div class="skills-category">
-        <h3 class="skills-category-title">Product Development & Design</h3>
-        <div class="skills-list">
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Product+Development" target="_blank">Product Development</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Product+Design" target="_blank">Product Design</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=BOM+Management" target="_blank">BOM Management</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=PLM/PDM+Tools" target="_blank">PLM/PDM Tools</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Design+Optimization" target="_blank">Design Optimization</a></span>
-        </div>
+      <div class="about-card">
+        <div class="card-icon"><i class="fas fa-globe"></i></div>
+        <h3 class="card-title">Product Development</h3>
+        <p class="card-description">End-to-end product development, BOM management, and design optimization using PLM tools.</p>
       </div>
-
-      <!-- Programming & Tools -->
-      <div class="skills-category">
-        <h3 class="skills-category-title">Programming & Tools</h3>
-        <div class="skills-list">
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=RT+Toolbox3" target="_blank">RT Toolbox3</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=MATLAB" target="_blank">MATLAB</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Microsoft+Office" target="_blank">Microsoft Office</a></span>
-          <span class="skill-badge purple"><a href="https://www.google.com/search?q=Technical+Documentation" target="_blank">Technical Documentation</a></span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 
-            <!-- Certifications -->
-            <section id="certifications" class="reveal">
 
-                <h3 class="subsection-title">Certifications</h3>
-                <div class="certifications-grid">
-                    <div class="certification-item fade-in">
-                        <i class="fas fa-award" aria-hidden="true"></i>
-                        <span>CATIA V5 Certification</span>
-                    </div>
-                    <div class="certification-item fade-in">
-                        <i class="fas fa-award" aria-hidden="true"></i>
-                        <span>SolidWorks CAD Design</span>
-                    </div>
-                    <div class="certification-item fade-in">
-                        <i class="fas fa-award" aria-hidden="true"></i>
-                        <span>ANSYS Workbench</span>
-                    </div>
-                    <div class="certification-item fade-in">
-                        <i class="fas fa-award" aria-hidden="true"></i>
-                        <span>Python Programming</span>
-                    </div>
-                </div>
-            </div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section experience white-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Work Experience</h2>
+          <p class="section-subtitle">Professional journey and key achievements</p>
         </div>
+
+        <div class="experience-card main-experience fade-in">
+          <div class="experience-header">
+            <div class="experience-info">
+              <h3 class="experience-title">R&D Engineer – Powertrain &amp; BIW Design</h3>
+              <div class="company-info"><i class="fas fa-building"></i>
+                <span class="company-name"><a href="https://www.chropynska.com/en" target="_blank" rel="noopener noreferrer">Chropynska India Private Ltd</a></span>
+              </div>
+              <div class="date-info"><i class="fas fa-calendar"></i> <span>Oct 2025 – Present</span></div>
+            </div>
+          </div>
+          <div class="experience-content">
+            <ul class="achievement-list">
+              <li>Lead end-to-end design and development of Powertrain and Body-in-White (BIW) systems.</li>
+              <li>Optimized components for performance, durability and manufacturability using CAD and FEA tools.</li>
+              <li>Integrated automation-driven design solutions and advanced manufacturing practices.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card fade-in">
+          <div class="experience-header">
+            <div class="experience-info">
+              <h3 class="experience-title">Quality and Product Design Engineer</h3>
+              <div class="company-info"><i class="fas fa-building"></i>
+                <span class="company-name"><a href="https://jkfenner.com/" target="_blank" rel="noopener noreferrer">JK Fenner India Ltd, Patancheru</a></span>
+              </div>
+              <div class="date-info"><i class="fas fa-calendar"></i> <span>2021-2022</span></div>
+            </div>
+          </div>
+          <div class="experience-content">
+            <ul class="achievement-list">
+              <li>Created detailed 3D models and simulations to support product design initiatives.</li>
+              <li>Assisted QA processes to meet industry standards and improve product reliability.</li>
+              <li>Collaborated cross-functionally to improve design methodologies.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- INTERNSHIPS — now explicit card grid with boxes -->
+        <div class="internships-section">
+          <h3 class="subsection-title">Internship &amp; Training</h3>
+          <div class="internships-grid explicit-cards">
+            <!-- All internship cards preserved exactly -->
+            <div class="internship-card card-box">
+              <h4>Bajaj Engineering &amp; Skills Training (BEST), PES University</h4>
+              <p class="internship-subtitle">Mechatronics &amp; Automation Trainee</p>
+              <div class="internship-date">Feb – Jul 2025</div>
+              <p class="internship-description">Six-month residential program focusing on motion control, robotics, sensor tech, PLCs and Industry 4.0.</p>
+              <div class="skills-tags"><span class="skill-tag">Mechatronics</span><span class="skill-tag">PLC</span><span class="skill-tag">Automation</span></div>
+            </div>
+
+            <div class="internship-card card-box">
+              <h4>CONCEPTIA KONNECT</h4>
+              <p class="internship-subtitle">Simulation &amp; Structural Analysis</p>
+              <div class="internship-date">Feb – May 2025</div>
+              <p class="internship-description">Training in ANSYS, SolidWorks and PTC Creo for simulation-driven design improvements.</p>
+              <div class="skills-tags"><span class="skill-tag">ANSYS</span><span class="skill-tag">SolidWorks</span><span class="skill-tag">PTC Creo</span></div>
+            </div>
+
+            <div class="internship-card card-box">
+              <h4>PRIME TOOLING</h4>
+              <p class="internship-subtitle">Design &amp; Structural Analysis</p>
+              <div class="internship-date">Mar – Feb 2025</div>
+              <p class="internship-description">Intensive training in precision engineering, CAD/CAM and design validation.</p>
+              <div class="skills-tags"><span class="skill-tag">PTC Creo</span><span class="skill-tag">CATIA</span><span class="skill-tag">Ansys</span></div>
+            </div>
+
+            <div class="internship-card card-box">
+              <h4>CNC Machines – Bharat Fritz Werner</h4>
+              <p class="internship-subtitle">Machining &amp; Manufacturing</p>
+              <div class="internship-date">Oct – Nov 2023</div>
+              <p class="internship-description">Practical exposure to CNC machining processes and manufacturing techniques.</p>
+              <div class="skills-tags"><span class="skill-tag">CNC</span><span class="skill-tag">CAM</span></div>
+            </div>
+
+            <div class="internship-card card-box">
+              <h4>BELATHUR INDUSTRIES</h4>
+              <p class="internship-subtitle">Machining Operations</p>
+              <div class="internship-date">May – Jun 2023</div>
+              <p class="internship-description">3D modelling and technical drawings using CATIA V5; assisted in process optimization.</p>
+              <div class="skills-tags"><span class="skill-tag">CATIA V5</span><span class="skill-tag">CAD/CAM</span></div>
+            </div>
+
+            <div class="internship-card card-box">
+              <h4>Bosch – Diesel Services Division</h4>
+              <p class="internship-subtitle">Intern (CFD &amp; Flow Simulation)</p>
+              <div class="internship-date">Feb – Mar 2023</div>
+              <p class="internship-description">Fluid flow simulation with ANSYS Fluent and SolidWorks Flow Simulation for diesel systems.</p>
+              <div class="skills-tags"><span class="skill-tag">ANSYS Fluent</span><span class="skill-tag">CFD</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">Academic background and qualifications</p>
-            </div>
-
-            <div class="education-grid">
-                <div class="education-card fade-in">
-                    <div class="education-header">
-                        <div class="education-icon purple">
-                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                        </div>
-                        <div class="education-info">
-                            <h3 class="degree-title">Bachelor of Engineering</h3>
-                            <p class="degree-field">Mechanical Engineering</p>
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        <p class="institution">
-  <a href="https://bit-bangalore.edu.in/" target="_blank" rel="noopener noreferrer">Bangalore Institute of Technology, Bengaluru</a>
-</p>
-
-                        <div class="education-meta">
-                            <span class="education-period">2022-2025</span>
-                            <span class="education-grade">CGPA: 8.5</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="education-card fade-in">
-                    <div class="education-header">
-                        <div class="education-icon blue">
-                            <i class="fas fa-certificate" aria-hidden="true"></i>
-                        </div>
-                        <div class="education-info">
-                            <h3 class="degree-title">Diploma</h3>
-                            <p class="degree-field">Mechanical Engineering</p>
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        <p class="institution">Jawaharlal Nehru Polytechnic (AIDED), Thana Kushnoor, Bidar</p>
-                        <div class="education-meta">
-                            <span class="education-period">2018-2021</span>
-                            <span class="education-grade">72%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- PROJECTS -->
+     <section id="projects" class="section projects white-section" data-parallax>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">Innovative engineering solutions and research work</p>
         </div>
+
+        <div class="projects-grid">
+          <div class="project-card tilt-card fade-in">
+            <div class="project-header">
+              <h3 class="project-title">Lightweight e-Axle Integration</h3>
+              <i class="fas fa-external-link-alt project-link"></i>
+            </div>
+            <div class="project-date">Apr – Jul 2024</div>
+            <p class="project-description">
+              Engineered and validated a lightweight electric axle (e-axle) architecture for EV applications with focus on structural durability,
+              torque density improvement, and packaging optimization. Multi-body kinematic studies, FEA, and topology optimization performed.
+            </p>
+            <div class="project-technologies">
+              <span class="tech-tag purple">CATIA V5</span>
+              <span class="tech-tag blue">SolidWorks</span>
+              <span class="tech-tag green">ANSYS Workbench</span>
+              <span class="tech-tag orange">Topology Optimization</span>
+            </div>
+            <ul class="project-features">
+              <li>Complete e-axle housing geometry developed including motor interface, differential casing, lubrication channels, and mounting bosses.</li>
+              <li>Structural FEA for torque reaction loads, bending stiffness, bearing seat deformation, and load-path evaluation.</li>
+              <li>Topology optimization reduced ~18–25% non-load-bearing mass while maintaining strength and fatigue safety factors.</li>
+              <li>Thermal analysis verified operating temperature limits under continuous and peak loads.</li>
+              <li>NVH evaluation ensured resonance modes outside motor torque harmonics.</li>
+              <li>Optimized packaging for compact EV rear subframe integration ensuring manufacturability and assembly accessibility.</li>
+            </ul>
+          </div>
+
+          <div class="project-card tilt-card fade-in">
+            <div class="project-header">
+              <h3 class="project-title">Modeling and Analysis of Vertical Axis Wind Turbine Blade</h3>
+              <i class="fas fa-external-link-alt project-link"></i>
+            </div>
+            <div class="project-date">Apr – Jul 2024</div>
+            <p class="project-description">
+              Designed and analyzed VAWT blades using CATIA V5, SolidWorks, and ANSYS; evaluated aerodynamic efficiency and structural integrity.
+            </p>
+            <div class="project-technologies">
+              <span class="tech-tag purple">CATIA V5</span>
+              <span class="tech-tag blue">SolidWorks</span>
+              <span class="tech-tag green">ANSYS</span>
+              <span class="tech-tag orange">QBlade</span>
+            </div>
+            <ul class="project-features">
+              <li>FEA and aerodynamic analysis to ensure safe stress levels and minimal deformation</li>
+              <li>Design optimizations for composite/aluminium construction</li>
+            </ul>
+          </div>
+
+          <div class="project-card tilt-card fade-in">
+            <div class="project-header">
+              <h3 class="project-title">Studies on Free Convection in a Trapezoidal Cavity with Porous Media</h3>
+              <i class="fas fa-external-link-alt project-link"></i>
+            </div>
+            <div class="project-date">Aug – Dec 2024</div>
+            <p class="project-description">
+              MATLAB-based FEM simulations studying natural convection in porous media; analyzed temperature and flow behaviour for thermal applications.
+            </p>
+            <div class="project-technologies">
+              <span class="tech-tag red">MATLAB</span>
+              <span class="tech-tag cyan">CFD</span>
+              <span class="tech-tag yellow">Thermal Analysis</span>
+            </div>
+            <ul class="project-features">
+              <li>Studied effects of porosity and internal heat generation</li>
+              <li>Validated simulations and summarized findings for thermal management applications</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- SKILLS: expanded, separated badges (all original items kept) -->
+    <section id="skills" class="section skills white-section" data-parallax>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Skills &amp; Tools</h2>
+          <p class="section-subtitle">Expertise in industry-leading engineering tools and technologies</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-block tilt-card fade-in">
+            <h4>3D Modeling Tools</h4>
+            <div class="skill-tags wrap">
+              <span class="skill">3D Modeling</span>
+              <span class="skill">CATIA</span>
+              <span class="skill">Siemens NX</span>
+              <span class="skill">SolidWorks</span>
+              <span class="skill">Autodesk Inventor</span>
+              <span class="skill">Auto Cad</span>
+              <span class="skill">Solid Edge</span>
+              <span class="skill">PTC Creo</span>
+            </div>
+          </div>
+
+          <div class="skill-block tilt-card fade-in">
+            <h4>Simulation Software</h4>
+            <div class="skill-tags wrap">
+              <span class="skill">ANSYS</span>
+              <span class="skill">Abaqus</span>
+              <span class="skill">Hyper Mesh</span>
+              <span class="skill">ANSA</span>
+              <span class="skill">MATLAB</span>
+              <span class="skill">ANSYS Fluent</span>
+              <span class="skill">CFD</span>
+            </div>
+          </div>
+
+          <div class="skill-block tilt-card fade-in">
+            <h4>Product Development &amp; Tools</h4>
+            <div class="skill-tags wrap">
+              <span class="skill">Product Development</span>
+              <span class="skill">Product Design</span>
+              <span class="skill">BOM Management</span>
+              <span class="skill">PLM/PDM Tools</span>
+              <span class="skill">Design Optimization</span>
+              <span class="skill">GD&amp;T</span>
+              <span class="skill">RT Toolbox3</span>
+              <span class="skill">Microsoft Office</span>
+              <span class="skill">Technical Documentation</span>
+            </div>
+          </div>
+
+          <div class="skill-block certifications-block tilt-card fade-in">
+            <h4>Certifications</h4>
+            <div class="skill-tags">
+              <span class="skill">CATIA V5 Certification</span>
+              <span class="skill">SolidWorks CAD Design</span>
+              <span class="skill">ANSYS Workbench</span>
+              <span class="skill">Python Programming</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Let's Work Together</h2>
-                <p class="section-subtitle">
-                    Ready to bring innovative engineering solutions to your next project. Let's discuss how we can collaborate.
-                </p>
-            </div>
-
-            <div class="contact-content">
-                <div class="contact-info-section">
-                    <h3 class="contact-section-title">Get In Touch</h3>
-
-                    <div class="contact-methods">
-                        <a href="mailto:udaykumarborale9@gmail.com" class="contact-method" aria-label="Send email">
-                            <div class="contact-method-icon purple">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
-                            </div>
-                            <div class="contact-method-info">
-                                <div class="contact-method-title">Email</div>
-                                <div class="contact-method-value">udaykumarborale9@gmail.com</div>
-                            </div>
-                        </a>
-
-                        <a href="tel:+918660272709" class="contact-method" aria-label="Make phone call">
-                            <div class="contact-method-icon blue">
-                                <i class="fas fa-phone" aria-hidden="true"></i>
-                            </div>
-                            <div class="contact-method-info">
-                                <div class="contact-method-title">Phone</div>
-                                <div class="contact-method-value">+91-8660272709</div>
-                            </div>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/udaykumarborale" target="_blank" rel="noopener noreferrer" class="contact-method" aria-label="Visit LinkedIn profile">
-                            <div class="contact-method-icon linkedin">
-                                <i class="fab fa-linkedin" aria-hidden="true"></i>
-                            </div>
-                            <div class="contact-method-info">
-                                <div class="contact-method-title">LinkedIn</div>
-                                <div class="contact-method-value">linkedin.com/in/udaykumarborale</div>
-                            </div>
-                        </a>
-
-                        <div class="contact-method">
-                            <div class="contact-method-icon green">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                            </div>
-                            <div class="contact-method-info">
-                                <div class="contact-method-title">Location</div>
-                                <div class="contact-method-value">Banashankari 1St stage, Bangalore-560050</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Languages & Interests -->
-                    <div class="additional-info">
-                        <div class="info-section">
-                            <h4 class="info-title">Languages</h4>
-                            <div class="info-tags">
-                                <span class="info-tag">English</span>
-                                <span class="info-tag">Kannada</span>
-                                <span class="info-tag">Hindi</span>
-                                <span class="info-tag">Marathi</span>
-                            </div>
-                        </div>
-                        <div class="info-section">
-                            <h4 class="info-title">Interests</h4>
-                            <div class="info-tags">
-                                <span class="info-tag">Reading</span>
-                                <span class="info-tag">Traveling</span>
-                                <span class="info-tag">Music</span>
-                                <span class="info-tag">Carrom</span>
-                                <span class="info-tag">Cricket</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-            <form id="contact-form" class="contact-form" onsubmit="handleFormSubmit(event)">
-
-    <div class="form-group">
-        <input type="text" name="first_name" required placeholder="First Name">
-        <p class="error-message" id="first_name-error"></p>
-    </div>
-
-    <div class="form-group">
-        <input type="text" name="last_name" required placeholder="Last Name">
-        <p class="error-message" id="last_name-error"></p>
-    </div>
-
-    <div class="form-group">
-        <input type="email" name="email" required placeholder="Email Address">
-        <p class="error-message" id="email-error"></p>
-    </div>
-
-    <div class="form-group">
-        <input type="text" name="subject" required placeholder="Subject">
-        <p class="error-message" id="subject-error"></p>
-    </div>
-
-    <div class="form-group">
-        <textarea name="message" required placeholder="Your Message"></textarea>
-        <p class="error-message" id="message-error"></p>
-    </div>
-
-    <button type="submit" class="btn primary-btn">Send Message</button>
-
-    <p id="form-status" style="margin-top: 10px; color: white;"></p>
-
-</form>
-
-<!-- Chatbot Toggle Button -->
-<div id="chatbot-toggle">💬</div>
-
-<!-- Chatbot Window -->
-<div id="chatbot-window" class="hidden">
-  <div id="chatbot-header">
-    My AI Assistant
-    <span id="chatbot-close">✖</span>
-  </div>
-
-  <div id="chatbot-messages"></div>
-
-  <div id="chatbot-input-area">
-    <input id="chatbot-input" type="text" placeholder="Type your message..." />
-    <button id="chatbot-send">➤</button>
-  </div>
-</div>
-
-
-            <div class="footer-separator"></div>
-
-            <footer class="footer">
-                <p>&copy; 2025 Udaykumar Borale. All rights reserved.</p>
-                <p>Mechanical Design Engineer | Bangalore, India</p>
-            </footer>
+    <!-- EDUCATION -->
+      <section id="education" class="section education white-section" data-parallax>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Academic background and qualifications</p>
         </div>
+
+        <div class="education-grid">
+          <div class="education-card tilt-card fade-in">
+            <div class="education-header">
+              <div class="education-icon purple"><i class="fas fa-graduation-cap"></i></div>
+              <div class="education-info">
+                <h3 class="degree-title">Bachelor of Engineering</h3>
+                <p class="degree-field">Mechanical Engineering</p>
+              </div>
+            </div>
+            <div class="education-details">
+              <p class="institution"><a href="https://bit-bangalore.edu.in/" target="_blank" rel="noopener noreferrer">Bangalore Institute of Technology, Bengaluru</a></p>
+              <div class="education-meta"><span class="education-period">2022-2025</span> <span class="education-grade">CGPA: 8.5</span></div>
+            </div>
+          </div>
+
+          <div class="education-card tilt-card fade-in">
+            <div class="education-header">
+              <div class="education-icon blue"><i class="fas fa-certificate"></i></div>
+              <div class="education-info">
+                <h3 class="degree-title">Diploma</h3>
+                <p class="degree-field">Mechanical Engineering</p>
+              </div>
+            </div>
+            <div class="education-details">
+              <p class="institution">Jawaharlal Nehru Polytechnic (AIDED), Thana Kushnoor, Bidar</p>
+              <div class="education-meta"><span class="education-period">2018-2021</span> <span class="education-grade">72%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact" class="section contact white-section">
+    <section id="contact" class="section contact white-section" data-parallax>
+      <div class="container contact-grid">
+        <div class="contact-left tilt-card fade-in">
+          <div class="section-header"><h2>Let's Work Together</h2><p>Ready to bring innovative engineering solutions to your next project. Let's discuss how we can collaborate.</p></div>
+
+          <div class="contact-cards">
+            <div class="contact-card"><i class="fas fa-envelope"></i><div><strong>Email</strong><div class="muted">udaykumarborale9@gmail.com</div></div></div>
+            <div class="contact-card"><i class="fas fa-phone"></i><div><strong>Phone</strong><div class="muted">+91-8660272709</div></div></div>
+            <div class="contact-card"><i class="fab fa-linkedin"></i><div><strong>LinkedIn</strong><div class="muted">linkedin.com/in/udaykumarborale</div></div></div>
+            <div class="contact-card"><i class="fas fa-map-marker-alt"></i><div><strong>Location</strong><div class="muted">Banashankari 1St stage, Bangalore-560050</div></div></div>
+          </div>
+
+          <div class="extra-info">
+            <div class="extra-row">
+              <strong>Languages:</strong>
+              <div class="skill-tags small">
+                <span class="skill">English</span>
+                <span class="skill">Kannada</span>
+                <span class="skill">Hindi</span>
+                <span class="skill">Marathi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right tilt-card fade-in">
+          <form id="contact-form" class="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-row"><input type="text" name="first_name" placeholder="First Name" required><input type="text" name="last_name" placeholder="Last Name" required></div>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+            <p id="form-status" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script src="script.js"></script>
+    <!-- FOOTER -->
+    <footer class="site-footer white-section tilt-card fade-in">
+      <div class="container footer-grid">
+        <div>© <span id="year"></span> Udaykumar Borale. All rights reserved.</div>
+        <div>Mechanical Design Engineer | Bangalore, India</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating Hire Me -->
+  <!-- Floating Hire Me -->
+  <a href="#contact" class="floating-hireme" aria-label="Hire Me">Hire Me</a>
+
+  <script src="script.js" defer></script>
 </body>
-
-
 </html>
-
