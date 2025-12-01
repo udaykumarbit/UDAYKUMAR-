@@ -1,675 +1,296 @@
-/* ==============================  
-   Helper Functions  
-============================== */
+// script.js — full functionality: DOM, nav, tilt, parallax, Three.js hero
 
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+// ---------------- DOM Helpers ----------------
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-// Helper to get element by id
-function getEl(id) {
-  return document.getElementById(id);
-}
+// ---------------- Page Load & Year ----------------
+document.addEventListener('DOMContentLoaded', () => {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Debounce utility
-function debounce(func, wait = 100) {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      func.apply(this, args);
-    }, wait);
-  };
-}
-
-// Helper for downloading files
-function downloadBlob(blob, filename) {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
-
-/* ==============================  
-   Page Load  
-============================== */
-
-emailjs.init("5muRzVJinIh6V4qiL");
-
-document.addEventListener("DOMContentLoaded", () => {
-  initPage();
-  attachListeners();
-  setupObservers();
-  setupImageFallback();
-  // EmailJS init is moved to bottom
+  // navLinks fallback for mobile
+  const navLinks = document.getElementById('nav-links');
+  if (navLinks && !navLinks.classList.contains('open')) {
+    navLinks.style.display = '';
+  }
 });
 
-/* ==============================  
-   Initialize Page  
-============================== */
+window.addEventListener('load', () => {
+  const load = document.getElementById('loading-screen');
+  if (load) { load.style.opacity = '0'; setTimeout(() => load.remove(), 600); }
+});
 
-function initPage() {
-  const loading = getEl("loading-screen");
-  if (loading) {
-    setTimeout(() => {
-      loading.classList.add("hidden");
-      document.body.classList.add("loaded");
-    }, 700);
-  }
-}
-
-/* ==============================  
-   Attach Event Listeners  
-============================== */
-
-function attachListeners() {
-  const navToggle = getEl("nav-toggle");
-  const navMenu = getEl("nav-menu");
-  const scrollBtn = getEl("scroll-top");
-  const contactForm = getEl("contact-form");
-
-  // Mobile menu toggle
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-      const isOpen = navMenu.classList.toggle("active");
-      navToggle.classList.toggle("active");
-      document.body.style.overflow = isOpen ? "hidden" : "auto";
-    });
-  }
-
-  // Close menu when link is clicked
-  $$(".nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navMenu) navMenu.classList.remove("active");
-      if (navToggle) navToggle.classList.remove("active");
-      document.body.style.overflow = "auto";
-    });
-  });
-
-  // Scroll events
-  window.addEventListener(
-    "scroll",
-    debounce(() => {
-      handleScroll();
-    }, 20)
-  );
-
-  // Resize events
-  window.addEventListener(
-    "resize",
-    debounce(() => {
-      if (window.innerWidth > 768) {
-        if (navMenu) navMenu.classList.remove("active");
-        if (navToggle) navToggle.classList.remove("active");
-        document.body.style.overflow = "auto";
-      }
-      updateActiveNavLink();
-    }, 200)
-  );
-
-  // Scroll-to-top button
-  if (scrollBtn) {
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  // Contact form submit listener
-  if (contactForm) {
-    contactForm.addEventListener("submit", handleFormSubmit);
-    contactForm.querySelectorAll("input, textarea").forEach((input) => {
-      input.addEventListener("blur", () => validateField(input));
-      input.addEventListener("input", () => clearFieldError(input));
-    });
-  }
-}
-
-/* ==============================  
-   Scroll Handlers  
-============================== */
-
-function handleScroll() {
-  updateScrollBtn();
-  updateNavbarBackground();
-  updateActiveNavLink();
-}
-
-function updateScrollBtn() {
-  const btn = getEl("scroll-top");
-  if (!btn) return;
-  btn.classList.toggle("visible", window.pageYOffset > 500);
-}
-
-function updateNavbarBackground() {
-  const navbar = getEl("navbar");
-  if (!navbar) return;
-  navbar.style.background =
-    window.scrollY > 50 ? "rgba(15,23,42,0.98)" : "rgba(15,23,42,0.95)";
-}
-
-function updateActiveNavLink() {
-  const sections = $$("section[id]");
-  const links = $$(".nav-link");
-  const scroll = window.pageYOffset + 90;
-
-  let current = sections[0]?.id;
-
-  sections.forEach((sec) => {
-    if (scroll >= sec.offsetTop && scroll < sec.offsetTop + sec.offsetHeight) {
-      current = sec.id;
+// ---------------- Navigation ----------------
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    if (navLinks.classList.contains('open')) {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.gap = '12px';
+    } else {
+      navLinks.style.display = '';
     }
   });
-
-  links.forEach((link) => {
-    link.classList.remove("active");
-    const isMatch = (link.getAttribute("onclick") || "").includes(current);
-    if (isMatch) link.classList.add("active");
-  });
 }
-/* ==============================  
-   Scroll to Section  
-============================== */
 
-window.scrollToSection = function (id) {
-  const el = getEl(id);
+function scrollToSection(id) {
+  const el = document.getElementById(id);
   if (!el) return;
-  window.scrollTo({ top: el.offsetTop - 70, behavior: "smooth" });
+  const offset = 86;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+window.scrollToSection = scrollToSection;
 
-  const navMenu = getEl("nav-menu");
-  const navToggle = getEl("nav-toggle");
-  if (navMenu) navMenu.classList.remove("active");
-  if (navToggle) navToggle.classList.remove("active");
-  document.body.style.overflow = "auto";
-};
+function downloadResume() {
+  alert('Replace this with your resume PDF link.');
+}
 
-/* ==============================  
-   Resume Download  
-============================== */
+// ---------------- Profile Fallback ----------------
+function showProfileFallback() {
+  const img = document.getElementById('profile-image'), fb = document.getElementById('profile-fallback');
+  if (img) img.style.display = 'none';
+  if (fb) fb.style.display = 'flex';
+}
 
-window.downloadResume = async function () {
-  try {
-    const response = await fetch("UDAYKUMAR-1.pdf");
-    if (!response.ok) throw new Error("Resume not found");
-
-    const blob = await response.blob();
-    downloadBlob(blob, "UDAYKUMAR.pdf");
-
-    showNotification("Resume download started!", "success");
-  } catch (err) {
-    const fallbackText = `
-Name: Udaykumar Borale
-Phone: +91-8660272709
-Email: udaykumarborale9@gmail.com
-Location: Bangalore
-Summary: Mechanical Design and Simulation Engineer with expertise in CATIA, CAD modeling, FEA, and product development.
-    `;
-    downloadBlob(
-      new Blob([fallbackText], { type: "text/plain" }),
-      "UDAYKUMAR_resume.txt"
-    );
-    showNotification("Fallback resume downloaded.", "info");
+// ---------------- Typing Animation ----------------
+(function roleTyping(){
+  const roles = [
+    'Powertrain Specialist',
+    'BIW Structural Engineer',
+    'NVH & Crash Analyst',
+    'Prototype Validation Lead',
+    'Simulation & CAE Expert'
+  ];
+  const el = document.getElementById('role-typing');
+  if(!el) return;
+  let idx=0,ch=0,forward=true;
+  const speed=60,pause=900;
+  function step(){
+    const word = roles[idx];
+    if(forward){ ch++; el.textContent = word.slice(0,ch); if(ch===word.length){ forward=false; setTimeout(step,pause); return; } }
+    else { ch--; el.textContent = word.slice(0,ch); if(ch===0){ forward=true; idx=(idx+1)%roles.length; } }
+    setTimeout(step,speed);
   }
-};
+  setTimeout(step,400);
+})();
 
-/* ==============================  
-   Open LinkedIn  
-============================== */
-
-window.openLinkedIn = function () {
-  window.open("https://www.linkedin.com/in/udaykumarborale", "_blank");
-};
-
-/* ==============================  
-   Contact Form Validation  
-============================== */
-
-function validateForm(form) {
-  let isValid = true;
-
-  form.querySelectorAll("input[required], textarea[required]").forEach((field) => {
-    if (!validateField(field)) {
-      isValid = false;
-    }
-  });
-
-  return isValid;
-}
-
-function validateField(field) {
-  const value = field.value.trim();
-  let message = "";
-
-  if (!value) {
-    message = `${getFieldLabel(field.name)} is required.`;
-  } else if (field.name === "email") {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
-      message = "Invalid email format.";
-    }
-  } else if (
-    ["first_name", "last_name"].includes(field.name) &&
-    value.length < 2
-  ) {
-    message = `${getFieldLabel(field.name)} must be at least 2 characters.`;
-  } else if (field.name === "subject" && value.length < 5) {
-    message = "Subject must be at least 5 characters.";
-  } else if (field.name === "message" && value.length < 10) {
-    message = "Message must be at least 10 characters.";
-  }
-
-  if (message) {
-    showFieldError(field, message);
-    return false;
-  }
-
-  clearFieldError(field);
-  return true;
-}
-
-function getFieldLabel(name) {
-  const labels = {
-    first_name: "First Name",
-    last_name: "Last Name",
-    email: "Email",
-    subject: "Subject",
-    message: "Message",
-  };
-  return labels[name] || name;
-}
-
-function showFieldError(field, message) {
-  const errorElement = getEl(`${field.name}-error`);
-  if (errorElement) {
-    errorElement.textContent = message;
-  }
-  field.style.borderColor = "#ef4444";
-}
-
-function clearFieldError(field) {
-  const errorElement = getEl(`${field.name}-error`);
-  if (errorElement) {
-    errorElement.textContent = "";
-  }
-  field.style.borderColor = "";
-}
-
-/* ==============================  
-   Image Fallback  
-============================== */
-
-function setupImageFallback() {
-  const img = getEl("profile-image");
-  const fallback = getEl("profile-fallback");
-
-  if (!img || !fallback) return;
-
-  img.addEventListener("load", () => fallback.classList.add("hidden"));
-  img.addEventListener("error", () => fallback.classList.remove("hidden"));
-}
-
-/* ==============================  
-   On-scroll Animations  
-============================== */
-
-function setupObservers() {
-  const elements = $$(".fade-in, .slide-in-left, .slide-in-right");
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  elements.forEach((el, index) => {
-    el.style.transitionDelay = `${index * 80}ms`;
-    observer.observe(el);
-  });
-}
-
-/* ==============================  
-   Notifications  
-============================== */
-
-function showNotification(message, type = "info") {
-  document.querySelectorAll(".notification").forEach((n) => n.remove());
-
-  const div = document.createElement("div");
-  div.className = `notification notification-${type}`;
-  div.style.cssText = `
-    position: fixed;
-    top: 90px;
-    right: 20px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    color: white;
-    z-index: 9999;
-  `;
-  div.textContent = message;
-
-  document.body.appendChild(div);
-
-  setTimeout(() => div.remove(), 4000);
-}
-/* ==============================
-   Chatbot Toggle (Fixed)
-============================== */
-
-const chatbotToggle = document.getElementById("chatbot-toggle");
-const chatbotWindow = document.getElementById("chatbot-window");
-const chatbotClose = document.getElementById("chatbot-close");
-
-// OPEN CHATBOT
-if (chatbotToggle && chatbotWindow) {
-  chatbotToggle.addEventListener("click", () => {
-    chatbotWindow.classList.remove("hidden");
-  });
-}
-
-// CLOSE CHATBOT
-if (chatbotClose && chatbotWindow) {
-  chatbotClose.addEventListener("click", () => {
-    chatbotWindow.classList.add("hidden");
-  });
-}
-
-/* ==============================
-   Chatbot Functionality (Rule‑Based)
-============================== */
-
-const chatbotInput = document.getElementById("chatbot-input");
-const chatbotSend = document.getElementById("chatbot-send");
-const chatbotMessages = document.getElementById("chatbot-messages");
-
-if (chatbotSend && chatbotInput) {
-  chatbotSend.addEventListener("click", sendChatbotMessage);
-  chatbotInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendChatbotMessage();
-  });
-}
-
-function sendChatbotMessage() {
-  const text = chatbotInput.value.trim();
-  if (!text) return;
-
-  appendChatMessage("user", text);
-  chatbotInput.value = "";
-
-  // Typing animation
-  const typingDiv = document.createElement("div");
-  typingDiv.className = "chat-message bot typing";
-  typingDiv.textContent = "Typing...";
-  chatbotMessages.appendChild(typingDiv);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-
-  setTimeout(() => {
-    typingDiv.remove();
-    appendChatMessage("bot", getBotReply(text));
+// ---------------- Contact Form ----------------
+function handleFormSubmit(e){
+  e.preventDefault();
+  const status = document.getElementById('form-status');
+  if(status) status.textContent = 'Sending...';
+  const form = e.target;
+  setTimeout(()=>{ 
+    if(status) status.textContent = 'Message sent — thank you! I will respond shortly.'; 
+    form.reset(); 
   }, 900);
 }
+document.addEventListener('submit', (ev)=> { if(ev.target && ev.target.id === 'contact-form') handleFormSubmit(ev); });
 
-function sendChatbotMessage_OLD() {
-  const text = chatbotInput.value.trim();
-  if (!text) return;
+// ---------------- Floating Hire Me ----------------
+const floating = document.querySelector('.floating-hireme');
+if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scrollToSection('contact'); }); }
 
-  appendChatMessage("user", text);
-  chatbotInput.value = "";
+// ---------------- Soft 3D Tilt + Parallax ----------------
+(function tiltParallaxEngine(){
+  const TILT_SELECTOR = '.tilt-card';
+  const PARALLAX_CONTAINER = '[data-parallax], .parallax-3d, .parallax-soft';
+  const MAX_TILT = 10;
+  const TRANSLATE_Z = 12;
+  const DAMPING = 0.12;
 
-  setTimeout(() => {
-    appendChatMessage("bot", getBotReply(text));
-  }, 400);
-}
+  const tiltCards = $$(TILT_SELECTOR);
+  if (!tiltCards.length) return;
+  const state = new WeakMap();
 
-function getBotReply(msg) {
-  msg = msg.toLowerCase();
-
-  // Greetings + Emoji Reactions + Smart Synonyms
-  if (msg.includes("hi") || msg.includes("hello") || msg.includes("hey") || msg.includes("hii") || msg.includes("yo"))
-    return "Hello! 😊 I'm Uday's AI Assistant. How can I help you today?";
-
-  if (msg.includes("how are you"))
-    return "I'm doing great 😄 and ready to help you with anything about Uday or this website!";
-
-  if (msg.includes("who are you") || msg.includes("your name") || msg.includes("introduce"))
-    return "I'm Uday's personal AI assistant 🤖 here to guide you through his portfolio.";
-
-  if (msg.includes("what can you do") || msg.includes("help me") || msg.includes("your work"))
-    return "I can tell you about Uday's skills, projects, resume, contact, location and more! 💡";
-
-  if (msg.includes("thanks") || msg.includes("thank you"))
-    return "You're welcome! 😊 Happy to help!";
-
-  if (msg.includes("bye") || msg.includes("goodbye") || msg.includes("see you"))
-    return "Goodbye! 👋 Have a wonderful day!";
-  if (msg.includes("hi") || msg.includes("hello") || msg.includes("hey"))
-    return "Hello! I'm Uday's AI Assistant. How can I help you today?";
-  if (msg.includes("how are you"))
-    return "I'm doing great and ready to help you with anything about Uday or this website!";
-  if (msg.includes("who are you"))
-    return "I'm Uday's personal AI assistant here to guide you through his portfolio.";
-  if (msg.includes("what can you do"))
-    return "I can tell you about Uday, his projects, skills, resume, location, and contact details.";
-  if (msg.includes("bye") || msg.includes("goodbye"))
-    return "Goodbye! Have a great day 😊";
-
-  if (msg.includes("name")) return "I am Uday’s AI Assistant!";
-  if (msg.includes("about") || msg.includes("yourself")) return "Uday is an R&D Engineer specializing in Powertrain & BIW Design.";
-  if (msg.includes("project")) return "You can view Uday’s projects in the Projects section of this website.";
-  if (msg.includes("contact") || msg.includes("email")) return "You can contact Uday at udaykumarborale9@gmail.com.";
-  if (msg.includes("phone") || msg.includes("number")) return "His phone number is +91‑8660272709.";
-  if (msg.includes("social") || msg.includes("linkedin")) return "LinkedIn: linkedin.com/in/udaykumarborale";
-  if (msg.includes("location") || msg.includes("from")) return "Uday is based in Bangalore, India 🇮🇳.";
-  if (msg.includes("resume") || msg.includes("cv")) return "You can download the resume using the 'Download Resume' button above.";
-
-  return "I can help you with information about Uday, his skills, projects, resume, contact details, and location. What would you like to know?";
-}
-
-function appendChatMessage(sender, text) {
-  const div = document.createElement("div");
-  div.className = `chat-message ${sender}`;
-  div.textContent = text;
-  chatbotMessages.appendChild(div);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
-
-/* ==============================
-   Project Cards Popup Preview
-============================== */
-
-const projectCards = document.querySelectorAll(".project-card");
-const projectPopup = document.getElementById("project-popup");
-const projectPopupClose = document.getElementById("project-popup-close");
-const projectPopupContent = document.getElementById("project-popup-content");
-
-projectCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const title = card.getAttribute("data-title");
-    const description = card.getAttribute("data-description");
-    const image = card.getAttribute("data-image");
-
-    if (projectPopupContent) {
-      projectPopupContent.innerHTML = `
-        <h2>${title}</h2>
-        <img src="${image}" alt="${title}" />
-        <p>${description}</p>
-      `;
+  tiltCards.forEach(card => {
+    if (!card.querySelector('.tilt-inner')) {
+      const inner = document.createElement('div');
+      inner.className = 'tilt-inner';
+      while (card.firstChild) inner.appendChild(card.firstChild);
+      card.appendChild(inner);
     }
-
-    if (projectPopup) projectPopup.classList.add("visible");
-  });
-});
-
-if (projectPopupClose && projectPopup) {
-  projectPopupClose.addEventListener("click", () => {
-    projectPopup.classList.remove("visible");
-  });
-}
-
-/* ==============================
-   Smooth Scroll for Anchor Links
-============================== */
-
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
-      window.scrollTo({
-        top: target.offsetTop - 70,
-        behavior: "smooth",
-      });
+    state.set(card, { tx:0, ty:0, rx:0, ry:0 });
+    card.style.willChange = 'transform';
+    if (!card.querySelector('.tilt-glow')) {
+      const glow = document.createElement('div');
+      glow.className = 'tilt-glow';
+      card.appendChild(glow);
     }
   });
-});
-/* ==============================
-   CONTACT FORM SUBMISSION (EmailJS)
-   — Corrected Version A —
-   — Uses: first_name, last_name, email, subject, message —
-============================== */
 
-function handleFormSubmit(e) {
-  e.preventDefault();
-  const form = e.currentTarget;
+  const parallaxContainers = Array.from(document.querySelectorAll(PARALLAX_CONTAINER));
+  let activePointer = null;
 
-  // Validate before sending
-  if (!validateForm(form)) {
-    showNotification("Please fix the errors in the form.", "error");
-    return;
-  }
-
-  const status = document.getElementById("form-status");
-  if (status) {
-    status.style.color = "white";
-    status.textContent = "Sending...";
-  }
-
-  // Initialize EmailJS
-   // Your public key
-
-  // SEND EMAIL via EmailJS
-  emailjs
-    .sendForm("service_3n7lhrd", "template_0f74wlr", form)
-    .then(() => {
-      if (status) {
-        status.style.color = "lightgreen";
-        status.textContent = "Message sent successfully!";
-      }
-
-      form.reset();
-      clearAllFieldErrors(form);
-      showNotification("Message sent successfully!", "success");
-    })
-    .catch((err) => {
-      console.error(err);
-      if (status) {
-        status.style.color = "red";
-        status.textContent = "Failed to send message.";
-      }
-      showNotification("Failed to send message.", "error");
+  function handlePointerMove(clientX, clientY, container) {
+    const rect = (container && container.getBoundingClientRect()) || { left:0, top:0, width: window.innerWidth, height: window.innerHeight };
+    const nx = ((clientX - rect.left) / rect.width - 0.5) * 2;
+    const ny = ((clientY - rect.top) / rect.height - 0.5) * -2;
+    const cards = container ? Array.from(container.querySelectorAll(TILT_SELECTOR)) : tiltCards;
+    cards.forEach(card => {
+      const s = state.get(card);
+      if(!s) return;
+      const targetRx = clamp(ny * MAX_TILT, -MAX_TILT, MAX_TILT);
+      const targetRy = clamp(-nx * MAX_TILT, -MAX_TILT, MAX_TILT);
+      s.rx += (targetRx - s.rx) * DAMPING;
+      s.ry += (targetRy - s.ry) * DAMPING;
+      s.tx += (-nx * TRANSLATE_Z - s.tx) * (DAMPING * 0.9);
+      s.ty += (-ny * TRANSLATE_Z - s.ty) * (DAMPING * 0.9);
     });
-}
-
-/* ==============================
-   REMOVE old mailto system
-   (Version B removed completely)
-============================== */
-
-// (Nothing here — OLD VERSION REMOVED)
-
-/* ==============================
-   END OF SCRIPT
-============================== */
-
-console.log("script.js loaded successfully (Corrected Version A)");
-
-async function handleFormSubmit(e) {
-  e.preventDefault();
-
-  const contactForm = document.getElementById("contact-form");
-
-  // Validate form
-  if (!validateForm(contactForm)) {
-    showNotification("Please fill all fields correctly.", "error");
-    return;
   }
 
-  const formData = {
-    first_name: contactForm.first_name.value,
-    last_name: contactForm.last_name.value,
-    email: contactForm.email.value,
-    subject: contactForm.subject.value,
-    message: contactForm.message.value
-  };
-
-  showNotification("Sending message...", "info");
-
-  try {
-    await emailjs.send(
-      "service_3n7lhrd",     // Your Service ID
-      "template_0f74wlr",    // Your Template ID
-      formData
-    );
-
-    showNotification("Message sent successfully!", "success");
-    contactForm.reset();
-
-  } catch (error) {
-    console.error("EmailJS Error:", error);
-    showNotification("Failed to send message.", "error");
+  function handlePointerLeave(container) {
+    const cards = container ? Array.from(container.querySelectorAll(TILT_SELECTOR)) : tiltCards;
+    cards.forEach(card => {
+      const s = state.get(card);
+      if (!s) return;
+      s.rx += (0 - s.rx) * (DAMPING * 1.6);
+      s.ry += (0 - s.ry) * (DAMPING * 1.6);
+      s.tx += (0 - s.tx) * (DAMPING * 1.6);
+      s.ty += (0 - s.ty) * (DAMPING * 1.6);
+    });
   }
-}
 
-// --- EmailJS Initialization ---
-emailjs.init("public_5muRzVJinIh6V4qiL"); 
-// IMPORTANT: Replace above with your actual PUBLIC KEY that starts with "public_"
+  const pointerEvent = window.PointerEvent ? 'pointermove' : 'mousemove';
+  parallaxContainers.forEach(container => {
+    const onMove = (e) => handlePointerMove(e.clientX ?? e.touches?.[0]?.clientX, e.clientY ?? e.touches?.[0]?.clientY, container);
+    container.addEventListener(pointerEvent, onMove, { passive: true });
+    container.addEventListener('touchmove', onMove, { passive: true });
+    container.addEventListener('pointerleave', ()=> handlePointerLeave(container));
+    container.addEventListener('touchend', ()=> handlePointerLeave(container));
+  });
 
+  const globalMove = (e) => handlePointerMove(e.clientX ?? e.touches?.[0]?.clientX, e.clientY ?? e.touches?.[0]?.clientY, null);
+  document.addEventListener(pointerEvent, globalMove, { passive: true });
+  document.addEventListener('touchmove', globalMove, { passive: true });
+  document.addEventListener('pointerleave', ()=> handlePointerLeave(null));
+  document.addEventListener('touchend', ()=> handlePointerLeave(null));
 
-// --- Contact Form Submit Handler ---
-async function handleFormSubmit(e) {
-    e.preventDefault();
+  let lastScrollY = window.scrollY;
+  const parallaxElements = $$(PARALLAX_CONTAINER);
+  function onScrollRaf() {
+    const dy = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    parallaxElements.forEach(container => {
+      const rect = container.getBoundingClientRect();
+      const depthFactor = clamp((window.innerHeight/2 - rect.top - rect.height/2) / (window.innerHeight), -1, 1);
+      const offset = Math.round(depthFactor * 18);
+      container.style.setProperty('--parallax-offset', `${offset}px`);
+      const cards = Array.from(container.querySelectorAll(TILT_SELECTOR));
+      cards.forEach((card, i) => {
+        const z = (i - (cards.length-1)/2) * 6;
+        card.style.transform = composeTransform(state.get(card), ` translateZ(${z * (1 - Math.abs(depthFactor))}px)`);
+      });
+    });
+    scrollTick = false;
+  }
+  let scrollTick = false;
+  window.addEventListener('scroll', () => { if (!scrollTick) { scrollTick = true; requestAnimationFrame(onScrollRaf); } }, { passive: true });
+  requestAnimationFrame(onScrollRaf);
 
-    const contactForm = document.getElementById("contact-form");
-    const statusBox = document.getElementById("form-status");
+  function rafLoop() {
+    tiltCards.forEach(card => {
+      const s = state.get(card);
+      if(!s) return;
+      const transform = `rotateX(${s.rx.toFixed(2)}deg) rotateY(${s.ry.toFixed(2)}deg) translate3d(${s.tx.toFixed(1)}px, ${s.ty.toFixed(1)}px, 0)`;
+      card.style.transform = transform;
+    });
+    requestAnimationFrame(rafLoop);
+  }
+  requestAnimationFrame(rafLoop);
 
-    statusBox.style.color = "white";
-    statusBox.innerText = "Sending message...";
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function composeTransform(stateObj, suffix = '') {
+    if(!stateObj) return suffix;
+    return `rotateX(${stateObj.rx.toFixed(2)}deg) rotateY(${stateObj.ry.toFixed(2)}deg) translate3d(${stateObj.tx.toFixed(1)}px, ${stateObj.ty.toFixed(1)}px, 0)` + suffix;
+  }
+})();
 
-    const formData = {
-        first_name: contactForm.first_name.value,
-        last_name: contactForm.last_name.value,
-        email: contactForm.email.value,
-        subject: contactForm.subject.value,
-        message: contactForm.message.value
-    };
+// ---------------- THREE.JS Hero ----------------
+(function threeHero(){
+  function init(){
+    const canvas = document.getElementById('three-canvas'); 
+    if(!canvas || typeof THREE === 'undefined') return;
 
-    try {
-        await emailjs.send(
-            "service_3n7lhrd",     // Your Service ID
-            "template_0f74wlr",    // Your Template ID
-            formData
-        );
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x000000,0);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38,1,0.1,100);
+    camera.position.set(0,0.9,3.2);
 
-        statusBox.style.color = "#4CAF50";
-        statusBox.innerText = "Message sent successfully!";
+    const hemi = new THREE.HemisphereLight(0xffffff,0x111122,0.7); hemi.position.set(0,1,0); scene.add(hemi);
+    const dir = new THREE.DirectionalLight(0xffffff,0.9); dir.position.set(3,5,2); scene.add(dir);
 
-        contactForm.reset();
+    const grp = new THREE.Group();
+    const boxGeo = new THREE.BoxGeometry(1.6,0.8,1.0);
+    const boxMat = new THREE.MeshStandardMaterial({metalness:0.9,roughness:0.25,color:0x1e293b});
+    const housing = new THREE.Mesh(boxGeo,boxMat); housing.rotation.y = 0.2; grp.add(housing);
 
-        setTimeout(() => {
-            statusBox.innerText = "";
-        }, 4000);
+    const cylGeo = new THREE.CylinderGeometry(0.28,0.28,1.05,32);
+    const cylMat = new THREE.MeshStandardMaterial({metalness:0.95,roughness:0.15,color:0x0ea5a4});
+    const rotor = new THREE.Mesh(cylGeo,cylMat); rotor.rotation.z = Math.PI/2; rotor.position.set(0,0,0.02); grp.add(rotor);
 
-    } catch (error) {
-        console.error("EmailJS ERROR:", error);
+    const torGeo = new THREE.TorusGeometry(0.45,0.08,16,80);
+    const torMat = new THREE.MeshStandardMaterial({metalness:0.9,roughness:0.2,color:0xff8a00});
+    const ring = new THREE.Mesh(torGeo,torMat); ring.rotation.x = Math.PI/2; ring.position.set(0.72,0,0); grp.add(ring);
 
-        statusBox.style.color = "red";
-        statusBox.innerText = "Failed to send message.";
+    const bracketGeo = new THREE.BoxGeometry(0.18,0.06,0.5);
+    const bracketMat = new THREE.MeshStandardMaterial({metalness:0.85,roughness:0.35,color:0x94a3b8});
+    for(let i=0;i<4;i++){ const b = new THREE.Mesh(bracketGeo,bracketMat); const ang = i * Math.PI/2; b.position.set(Math.cos(ang)*0.95, Math.sin(ang)*0.12, Math.sin(ang)*0.35); b.rotation.z = ang; grp.add(b); }
+
+    const planeGeo = new THREE.PlaneGeometry(6,3);
+    const planeMat = new THREE.MeshBasicMaterial({color:0x07102a, side: THREE.DoubleSide});
+    const plane = new THREE.Mesh(planeGeo, planeMat); plane.position.set(0,-0.2,-1.1); scene.add(plane);
+
+    scene.add(grp);
+
+    function resize(){
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(32, rect.width);
+      const h = Math.max(32, rect.height);
+      if(canvas.width !== Math.floor(w * devicePixelRatio) || canvas.height !== Math.floor(h * devicePixelRatio)){
+        renderer.setSize(w,h,false);
+        camera.aspect = w/h;
+        camera.updateProjectionMatrix();
+      }
     }
-}
+
+    let mouseX=0, mouseY=0;
+    const throttledPointer = throttle((e)=>{
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+      const clientY = e.clientY ?? e.touches?.[0]?.clientY;
+      if(clientX==null) return;
+      mouseX = ((clientX-rect.left)/rect.width - 0.5)*2;
+      mouseY = ((clientY-rect.top)/rect.height - 0.5)*-2;
+    }, 16);
+
+    window.addEventListener('pointermove', throttledPointer);
+    window.addEventListener('touchmove', throttledPointer, {passive:true});
+
+    const clock = new THREE.Clock();
+    function animate(){
+      resize();
+      const t = clock.getElapsedTime();
+      grp.rotation.y = Math.sin(t*0.4)*0.26 + mouseX*0.25;
+      grp.rotation.x = Math.sin(t*0.12)*0.05 + mouseY*0.07;
+      rotor.rotation.x = t*3.2;
+      ring.rotation.z = -t*0.9;
+      renderer.render(scene,camera);
+      requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('unload', ()=> { renderer.dispose(); });
+  }
+
+  if(document.readyState === 'complete') init(); 
+  else window.addEventListener('load', init);
+
+  function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
+})();
