@@ -46,16 +46,16 @@ function scrollToSection(id) {
 window.scrollToSection = scrollToSection;
 
 // ---------------- Resume Download ----------------
-// Now supports both buttons dynamically
 function downloadResume() {
   const link = document.createElement('a');
-  link.href = 'files/UDAYKUMAR-1.pdf'; // change this if file name changes
+  link.href = 'UDAYKUMAR-1.pdf'; // root folder path
   link.download = 'UDAYKUMAR-1.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
 window.downloadResume = downloadResume;
+
 
 // Attach to all resume buttons automatically
 $$('a[onclick*="downloadResume"]').forEach(btn => {
@@ -321,3 +321,4 @@ if (floating) {
 
   function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
+
