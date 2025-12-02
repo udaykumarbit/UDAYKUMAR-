@@ -86,8 +86,8 @@
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">View Projects</a>
             <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-            <!-- Only hero section resume button -->
-           <a href="files/UDAYKUMAR-1.pdf" download class="btn btn-ghost">Download Resume</a>
+            <!-- Hero section resume button using JS function -->
+            <a href="#" class="btn btn-ghost" onclick="downloadResume()">Download Resume</a>
 
             <!-- LinkedIn button -->
             <a href="https://www.linkedin.com/in/udaykumarborale" target="_blank" class="btn btn-linkedin">
@@ -485,6 +485,18 @@
         </div>
       </div>
     </section>
+     <script>
+    // Now supports hero section button dynamically
+    function downloadResume() {
+      const link = document.createElement('a');
+      link.href = 'files/UDAYKUMAR-1.pdf'; // File path
+      link.download = 'UDAYKUMAR-1.pdf';   // Filename for download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    window.downloadResume = downloadResume;
+  </script>
 
     <!-- FOOTER -->
     <footer class="site-footer white-section tilt-card fade-in">
@@ -502,5 +514,4 @@
   <script src="script.js" defer></script>
 </body>
 </html>
-
 
