@@ -45,20 +45,22 @@ function scrollToSection(id) {
 }
 window.scrollToSection = scrollToSection;
 
-// ---------------- Resume Downloads ----------------
-function downloadFile(filePath, fileName) {
+// ---------------- Resume Download ----------------
+// Now supports both buttons dynamically
+function downloadResume() {
   const link = document.createElement('a');
-  link.href = filePath;
-  link.download = fileName;
+  link.href = 'files/UDAYKUMAR-1.pdf'; // change this if file name changes
+  link.download = 'UDAYKUMAR-1.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
-window.downloadFile = downloadFile;
+window.downloadResume = downloadResume;
 
-// Example usage:
-// downloadFile('files/UDAYKUMAR-1.pdf','UDAYKUMAR-1.pdf');
-// downloadFile('files/DAYKUMAR-1.pdf','DAYKUMAR-1.pdf');
+// Attach to all resume buttons automatically
+$$('a[onclick*="downloadResume"]').forEach(btn => {
+  btn.addEventListener('click', e => { e.preventDefault(); downloadResume(); });
+});
 
 // ---------------- Profile Fallback ----------------
 function showProfileFallback() {
