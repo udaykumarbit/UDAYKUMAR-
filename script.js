@@ -1,4 +1,4 @@
-// script.js — full functionality: DOM, nav, tilt, parallax, Three.js hero
+// script.js — Full functionality: DOM, nav, tilt, parallax, Three.js hero
 
 // ---------------- DOM Helpers ----------------
 const $ = sel => document.querySelector(sel);
@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // navLinks fallback for mobile
   const navLinks = document.getElementById('nav-links');
   if (navLinks && !navLinks.classList.contains('open')) {
     navLinks.style.display = '';
@@ -46,9 +45,16 @@ function scrollToSection(id) {
 }
 window.scrollToSection = scrollToSection;
 
+// ---------------- Resume Download ----------------
 function downloadResume() {
-  alert('Replace this with your resume PDF link.');
+  const link = document.createElement('a');
+  link.href = 'files/UDAYKUMAR-1.pdf';
+  link.download = 'UDAYKUMAR-1.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
+window.downloadResume = downloadResume;
 
 // ---------------- Profile Fallback ----------------
 function showProfileFallback() {
@@ -56,9 +62,10 @@ function showProfileFallback() {
   if (img) img.style.display = 'none';
   if (fb) fb.style.display = 'flex';
 }
+window.showProfileFallback = showProfileFallback;
 
 // ---------------- Typing Animation ----------------
-(function roleTyping(){
+(function roleTyping() {
   const roles = [
     'Powertrain Specialist',
     'BIW Structural Engineer',
@@ -67,37 +74,51 @@ function showProfileFallback() {
     'Simulation & CAE Expert'
   ];
   const el = document.getElementById('role-typing');
-  if(!el) return;
-  let idx=0,ch=0,forward=true;
-  const speed=60,pause=900;
-  function step(){
+  if (!el) return;
+  let idx = 0, ch = 0, forward = true;
+  const speed = 60, pause = 900;
+  function step() {
     const word = roles[idx];
-    if(forward){ ch++; el.textContent = word.slice(0,ch); if(ch===word.length){ forward=false; setTimeout(step,pause); return; } }
-    else { ch--; el.textContent = word.slice(0,ch); if(ch===0){ forward=true; idx=(idx+1)%roles.length; } }
-    setTimeout(step,speed);
+    if (forward) {
+      ch++;
+      el.textContent = word.slice(0, ch);
+      if (ch === word.length) { forward = false; setTimeout(step, pause); return; }
+    } else {
+      ch--;
+      el.textContent = word.slice(0, ch);
+      if (ch === 0) { forward = true; idx = (idx + 1) % roles.length; }
+    }
+    setTimeout(step, speed);
   }
-  setTimeout(step,400);
+  setTimeout(step, 400);
 })();
 
 // ---------------- Contact Form ----------------
-function handleFormSubmit(e){
+function handleFormSubmit(e) {
   e.preventDefault();
   const status = document.getElementById('form-status');
-  if(status) status.textContent = 'Sending...';
+  if (status) status.textContent = 'Sending...';
   const form = e.target;
-  setTimeout(()=>{ 
-    if(status) status.textContent = 'Message sent — thank you! I will respond shortly.'; 
-    form.reset(); 
+  setTimeout(() => {
+    if (status) status.textContent = 'Message sent — thank you! I will respond shortly.';
+    form.reset();
   }, 900);
 }
-document.addEventListener('submit', (ev)=> { if(ev.target && ev.target.id === 'contact-form') handleFormSubmit(ev); });
+document.addEventListener('submit', (ev) => { 
+  if (ev.target && ev.target.id === 'contact-form') handleFormSubmit(ev); 
+});
 
 // ---------------- Floating Hire Me ----------------
 const floating = document.querySelector('.floating-hireme');
-if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scrollToSection('contact'); }); }
+if (floating) {
+  floating.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToSection('contact');
+  });
+}
 
 // ---------------- Soft 3D Tilt + Parallax ----------------
-(function tiltParallaxEngine(){
+(function tiltParallaxEngine() {
   const TILT_SELECTOR = '.tilt-card';
   const PARALLAX_CONTAINER = '[data-parallax], .parallax-3d, .parallax-soft';
   const MAX_TILT = 10;
@@ -115,7 +136,7 @@ if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scro
       while (card.firstChild) inner.appendChild(card.firstChild);
       card.appendChild(inner);
     }
-    state.set(card, { tx:0, ty:0, rx:0, ry:0 });
+    state.set(card, { tx: 0, ty: 0, rx: 0, ry: 0 });
     card.style.willChange = 'transform';
     if (!card.querySelector('.tilt-glow')) {
       const glow = document.createElement('div');
@@ -134,7 +155,7 @@ if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scro
     const cards = container ? Array.from(container.querySelectorAll(TILT_SELECTOR)) : tiltCards;
     cards.forEach(card => {
       const s = state.get(card);
-      if(!s) return;
+      if (!s) return;
       const targetRx = clamp(ny * MAX_TILT, -MAX_TILT, MAX_TILT);
       const targetRy = clamp(-nx * MAX_TILT, -MAX_TILT, MAX_TILT);
       s.rx += (targetRx - s.rx) * DAMPING;
@@ -161,15 +182,15 @@ if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scro
     const onMove = (e) => handlePointerMove(e.clientX ?? e.touches?.[0]?.clientX, e.clientY ?? e.touches?.[0]?.clientY, container);
     container.addEventListener(pointerEvent, onMove, { passive: true });
     container.addEventListener('touchmove', onMove, { passive: true });
-    container.addEventListener('pointerleave', ()=> handlePointerLeave(container));
-    container.addEventListener('touchend', ()=> handlePointerLeave(container));
+    container.addEventListener('pointerleave', () => handlePointerLeave(container));
+    container.addEventListener('touchend', () => handlePointerLeave(container));
   });
 
   const globalMove = (e) => handlePointerMove(e.clientX ?? e.touches?.[0]?.clientX, e.clientY ?? e.touches?.[0]?.clientY, null);
   document.addEventListener(pointerEvent, globalMove, { passive: true });
   document.addEventListener('touchmove', globalMove, { passive: true });
-  document.addEventListener('pointerleave', ()=> handlePointerLeave(null));
-  document.addEventListener('touchend', ()=> handlePointerLeave(null));
+  document.addEventListener('pointerleave', () => handlePointerLeave(null));
+  document.addEventListener('touchend', () => handlePointerLeave(null));
 
   let lastScrollY = window.scrollY;
   const parallaxElements = $$(PARALLAX_CONTAINER);
@@ -196,7 +217,7 @@ if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scro
   function rafLoop() {
     tiltCards.forEach(card => {
       const s = state.get(card);
-      if(!s) return;
+      if (!s) return;
       const transform = `rotateX(${s.rx.toFixed(2)}deg) rotateY(${s.ry.toFixed(2)}deg) translate3d(${s.tx.toFixed(1)}px, ${s.ty.toFixed(1)}px, 0)`;
       card.style.transform = transform;
     });
@@ -204,16 +225,16 @@ if(floating){ floating.addEventListener('click', (e)=>{ e.preventDefault(); scro
   }
   requestAnimationFrame(rafLoop);
 
-  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function composeTransform(stateObj, suffix = '') {
-    if(!stateObj) return suffix;
+    if (!stateObj) return suffix;
     return `rotateX(${stateObj.rx.toFixed(2)}deg) rotateY(${stateObj.ry.toFixed(2)}deg) translate3d(${stateObj.tx.toFixed(1)}px, ${stateObj.ty.toFixed(1)}px, 0)` + suffix;
   }
 })();
 
 // ---------------- THREE.JS Hero ----------------
-(function threeHero(){
-  function init(){
+(function threeHero() {
+  function init() {
     const canvas = document.getElementById('three-canvas'); 
     if(!canvas || typeof THREE === 'undefined') return;
 
