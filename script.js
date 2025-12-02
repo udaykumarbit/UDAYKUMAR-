@@ -45,16 +45,20 @@ function scrollToSection(id) {
 }
 window.scrollToSection = scrollToSection;
 
-// ---------------- Resume Download ----------------
-function downloadResume() {
+// ---------------- Resume Downloads ----------------
+function downloadFile(filePath, fileName) {
   const link = document.createElement('a');
-  link.href = 'files/UDAYKUMAR-1.pdf';
-  link.download = 'UDAYKUMAR-1.pdf';
+  link.href = filePath;
+  link.download = fileName;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
-window.downloadResume = downloadResume;
+window.downloadFile = downloadFile;
+
+// Example usage:
+// downloadFile('files/UDAYKUMAR-1.pdf','UDAYKUMAR-1.pdf');
+// downloadFile('files/DAYKUMAR-1.pdf','DAYKUMAR-1.pdf');
 
 // ---------------- Profile Fallback ----------------
 function showProfileFallback() {
