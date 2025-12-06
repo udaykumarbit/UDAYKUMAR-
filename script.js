@@ -20,9 +20,11 @@ window.addEventListener('load', () => {
   if (load) { load.style.opacity = '0'; setTimeout(() => load.remove(), 600); }
 });
 
-// ---------------- Navigation ----------------
+// ---------------- NAVIGATION ----------------
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
+
+// Mobile menu toggle
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
@@ -36,14 +38,31 @@ if (navToggle && navLinks) {
   });
 }
 
+// Smooth scroll function
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  const offset = 86;
+  const offset = 86; // header height
   const top = el.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top, behavior: 'smooth' });
+
+  // Close mobile menu after clicking a link
+  if (navLinks.classList.contains('open')) {
+    navLinks.classList.remove('open');
+    navLinks.style.display = '';
+  }
 }
 window.scrollToSection = scrollToSection;
+
+// Attach click for all nav buttons (optional if you use onclick in HTML)
+document.querySelectorAll('.nav-link').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const target = btn.getAttribute('onclick')?.match(/scrollToSection\('(.+)'\)/)?.[1];
+    if (target) scrollToSection(target);
+  });
+});
+
+
 
 // ---------------- Resume Download ----------------
 function downloadResume() {
@@ -102,17 +121,25 @@ window.showProfileFallback = showProfileFallback;
 // ---------------- Contact Form ----------------
 function handleFormSubmit(e) {
   e.preventDefault();
-  const status = document.getElementById('form-status');
-  if (status) status.textContent = 'Sending...';
-  const form = e.target;
-  setTimeout(() => {
-    if (status) status.textContent = 'Message sent — thank you! I will respond shortly.';
-    form.reset();
-  }, 900);
+
+  const status = document.getElementById("form-status");
+  status.textContent = "Sending...";
+
+  emailjs.sendForm(
+    "service_3n7lhrd",      // YOUR Service ID
+    "template_0f74wlr",     // YOUR Template ID
+    e.target
+  )
+  .then(() => {
+      status.textContent = "Message sent successfully!";
+      e.target.reset();
+  })
+  .catch((err) => {
+      console.error("EmailJS Error:", err);
+      status.textContent = "Failed! Please try again.";
+  });
 }
-document.addEventListener('submit', (ev) => { 
-  if (ev.target && ev.target.id === 'contact-form') handleFormSubmit(ev); 
-});
+
 
 // ---------------- Floating Hire Me ----------------
 const floating = document.querySelector('.floating-hireme');
@@ -321,4 +348,3 @@ if (floating) {
 
   function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
-
