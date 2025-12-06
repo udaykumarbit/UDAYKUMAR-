@@ -15,25 +15,14 @@
 
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.min.js" defer></script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-function scrollToSection(sectionId) {
-  const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  } else {
-    console.warn('Section not found:', sectionId);
-  }
-}
-
-// Mobile menu toggle
-const navToggle = document.getElementById('nav-toggle');
-const navLinks = document.getElementById('nav-links');
-
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open'); // Make sure .open is styled in CSS
-});
-</script>
-
+    (function() {
+      emailjs.init("5muRzVJinIh6V4qiL");  // Public Key
+    })();
+  </script>
 </head>
 <body>
 
@@ -44,7 +33,7 @@ navToggle.addEventListener('click', () => {
   </div>
 
   <!-- Header -->
-  <header class="site-header">
+ <header class="site-header">
     <div class="nav container">
       <button class="brand" onclick="scrollToSection('hero')" aria-label="Go to top">
         <div class="logo-mark">UB</div>
@@ -61,8 +50,6 @@ navToggle.addEventListener('click', () => {
         <button class="nav-link" onclick="scrollToSection('skills')">Skills</button>
         <button class="nav-link" onclick="scrollToSection('education')">Education</button>
         <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
-        <!-- Only header resume button -->
-        <a class="btn btn-primary" href="UDAYKUMAR-1.pdf" download>Download Resume</a>
       </div>
 
       <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
@@ -105,19 +92,10 @@ navToggle.addEventListener('click', () => {
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">View Projects</a>
             <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-            <!-- Hero section resume button using JS function -->
             <a class="btn btn-primary" href="UDAYKUMAR-1.pdf" download>Download Resume</a>
-
-            <!-- LinkedIn button -->
-            <a href="https://www.linkedin.com/in/udaykumarborale" target="_blank" class="btn btn-linkedin">
-              <svg xmlns="http://www.w3.org/2000/svg" class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.78v2.2h.07c.66-1.25 2.28-2.57 4.69-2.57 5.01 0 5.93 3.3 5.93 7.59V24h-5v-7.5c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.98-2.92 4.02V24h-5V8z"/>
-              </svg>
-              LinkedIn
-            </a>
+            <a href="https://www.linkedin.com/in/udaykumarborale" target="_blank" class="btn btn-linkedin">LinkedIn</a>
           </div>
 
-          <!-- METRICS -->
           <div class="hero-metrics" aria-hidden="false">
             <div class="metric-card"><div class="metric-num">1+</div><div class="metric-label">Years Experience</div></div>
             <div class="metric-card"><div class="metric-num">1+</div><div class="metric-label">Projects Delivered</div></div>
@@ -146,6 +124,27 @@ navToggle.addEventListener('click', () => {
         </div>
       </div>
     </section>
+
+    <!-- Other sections like About, Experience, Projects, Skills, Education, Contact remain unchanged -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer white-section tilt-card fade-in">
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Udaykumar Borale. All rights reserved.</div>
+      <div>Mechanical Design Engineer | Bangalore, India</div>
+    </div>
+  </footer>
+
+  <!-- Floating Hire Me -->
+  <a href="#contact" class="floating-hireme" aria-label="Hire Me">Hire Me</a>
+
+  <!-- Script -->
+  <script src="script.js" defer></script>
+</body>
+</html>
+
 
     <!-- ABOUT (white clean) -->
     <section id="about" class="section about white-section">
