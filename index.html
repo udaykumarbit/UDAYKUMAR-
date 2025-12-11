@@ -559,16 +559,19 @@
 </section>
 
         <div class="contact-right tilt-card fade-in">
-          <form id="contact-form" class="contact-form" onsubmit="handleFormSubmit(event)">
-            <div class="form-row"><input type="text" name="first_name" placeholder="First Name" required><input type="text" name="last_name" placeholder="Last Name" required></div>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="text" name="subject" placeholder="Subject" required>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-            <p id="form-status" class="form-status" aria-live="polite"></p>
-          </form>
+    <form id="contact-form" class="contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
         </div>
-      </div>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <p id="form-status" class="form-status" aria-live="polite"></p> <!-- Status message will appear here -->
+    </form>
+</div>
+
     </section>
 
     <!-- FOOTER -->
@@ -586,6 +589,7 @@
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
