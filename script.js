@@ -131,7 +131,8 @@ function handleFormSubmit(e) {
     e.target
   )
   .then(() => {
-      status.textContent = "Message sent successfully!";
+      status.textContent = "Thank you for reaching out. I have received your message and will review your opportunity carefully. I aim to respond promptly, typically within 24 hours, with a thoughtful and detailed reply.
+— Udaykumar Borale | R&D Engineer – Powertrain & BIW Design!";
       e.target.reset();
   })
   .catch((err) => {
@@ -348,3 +349,4 @@ if (floating) {
 
   function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
+
