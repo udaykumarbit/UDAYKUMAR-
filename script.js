@@ -120,26 +120,29 @@ window.showProfileFallback = showProfileFallback;
 
 // ---------------- Contact Form ----------------
 function handleFormSubmit(e) {
-  e.preventDefault();
+    e.preventDefault();  // Prevents the form from reloading the page after submission
 
-  const status = document.getElementById("form-status");
-  status.textContent = "Sending...";
+    const status = document.getElementById("form-status");
+    status.textContent = "Sending...";  // Initial "Sending..." message
 
-  emailjs.sendForm(
-    "service_3n7lhrd",      // YOUR Service ID
-    "template_0f74wlr",     // YOUR Template ID
-    e.target
-  )
-  .then(() => {
-      status.textContent = `Thank you for reaching out. I have received your message and will review your opportunity carefully. I aim to respond promptly, typically within 24 hours, with a thoughtful and detailed reply.
+    emailjs.sendForm(
+        "service_3n7lhrd",      // YOUR Service ID
+        "template_0f74wlr",     // YOUR Template ID
+        e.target                // The form element itself
+    )
+    .then((response) => {
+        // If sending is successful
+        status.textContent = `Thank you for reaching out. I have received your message and will review your opportunity carefully. I aim to respond promptly, typically within 24 hours, with a thoughtful and detailed reply.
 — Udaykumar Borale | R&D Engineer – Powertrain & BIW Design`;
-      e.target.reset();
-  })
-  .catch((err) => {
-      console.error("EmailJS Error:", err);
-      status.textContent = "Failed! Please try again.";
-  });
+        e.target.reset();  // Resets the form fields after submission
+    })
+    .catch((err) => {
+        // If sending fails
+        console.error("EmailJS Error:", err);
+        status.textContent = "Failed! Please try again.";  // Error message
+    });
 }
+
 
 
 
@@ -350,5 +353,6 @@ if (floating) {
 
   function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
+
 
 
