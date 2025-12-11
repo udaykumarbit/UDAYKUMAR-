@@ -131,13 +131,45 @@ function handleFormSubmit(e) {
     e.target
   )
   .then(() => {
-      status.textContent = "Message sent successfully!";
-      e.target.reset();
-  })
-  .catch((err) => {
-      console.error("EmailJS Error:", err);
-      status.textContent = "Failed! Please try again.";
-  });
+    const firstName = e.target.first_name.value.trim();
+    const subject = e.target.subject.value.trim();
+
+    // List of friendly success messages
+    const successReplies = [
+        `Thanks, ${firstName}! Your message about "${subject}" has been received. We'll get back to you shortly. ✅`,
+        `Hi ${firstName}, we appreciate you reaching out regarding "${subject}". Expect a reply soon! 🌟`,
+        `${firstName}, your message on "${subject}" is in safe hands. We'll contact you very soon. 💬`
+    ];
+
+    // Pick a random friendly reply
+    const randomReply = successReplies[Math.floor(Math.random() * successReplies.length)];
+
+    // Optional: Typing animation for a professional touch
+    status.textContent = "";
+    typeMessage(status, randomReply);
+
+    e.target.reset(); // Clear the form
+})
+.catch((err) => {
+    console.error("EmailJS Error:", err);
+
+    // Friendly error message
+    const errorReplies = [
+        "Oops! Something went wrong. Please try again.",
+        "Sorry, we couldn't send your message. Give it another shot!",
+        "Hmm, something didn't work. Please resubmit your message."
+    ];
+
+    const randomError = errorReplies[Math.floor(Math.random() * errorReplies.length)];
+    status.textContent = randomError;
+});
+
+// Typing animation function
+function typeMessage(element, text, index = 0) {
+    if(index < text.length) {
+        element.textContent += text[index];
+        setTimeout(() => typeMessage(element, text, index + 1), 25);
+    }
 }
 
 
@@ -348,3 +380,4 @@ if (floating) {
 
   function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
+
