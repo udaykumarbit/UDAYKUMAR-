@@ -673,53 +673,8 @@ body * {
   color: var(--accent) !important;
 }
 
-/* ================= ROLEX STYLE LUXURY GOLD ================= */
 
-/* COMPANY NAME – EXPERIENCE & INTERNSHIP */
-.company-name,
-.company-name a,
-.experience-card h4,
-.internship-card h4 {
-  background: linear-gradient(
-    120deg,
-    #6b4f00,   /* Deep antique gold */
-    #bfa23a,   /* Rolex gold */
-    #ffd700,   /* Bright metallic edge */
-    #bfa23a,
-    #6b4f00
-  ) !important;
-
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
-
-  font-weight: 800 !important;
-  letter-spacing: 0.7px;
-
-  /* subtle luxury glow */
-  text-shadow: 0 1px 1px rgba(191,162,58,0.35);
-}
-
-/* DEGREE – Bachelor of Engineering / Diploma */
-.education-card .degree-title {
-  color: #bfa23a !important; /* Rolex flat gold */
-  font-weight: 700 !important;
-}
-
-/* NAME – PERSONAL BRAND (TOP LUXURY) */
-
-
-/* ROLE & LOCATION – DARK FOR MAX GOLD CONTRAST */
-.hero-role,
-.profile-role {
-  color: #1c1f26 !important;
-  font-weight: 600;
-}
-
-/* OPTIONAL: Luxury hover polish (very subtle) */
-.company-name a:hover {
-  filter: brightness(1.1);
-}
 
 /* ================= END ROLEX GOLD ================= */
+
 
