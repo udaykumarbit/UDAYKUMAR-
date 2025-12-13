@@ -63,9 +63,21 @@ html, body {
 .hero-subtitle{color:var(--muted);font-weight:700}
 .hero-title{font-size:34px;margin:6px 0 6px;font-weight:800;color:#fff}
 .hero-role{font-size:18px;color:#dbe9ff;margin-bottom:12px}
-.typing{font-weight:700}
+.typing{
+  font-weight:700;
+  background: linear-gradient(90deg, #ff7a00, #ffbb33, #0dcaf0);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  animation: typingShine 3s linear infinite;
+}
 .cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:8px;vertical-align:bottom;animation:blink 1s steps(2,start) infinite}
 @keyframes blink{to{visibility:hidden}}
+
+@keyframes typingShine{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
 .hero-desc{color:#c6d6ee;max-width:48rem;margin-bottom:12px}
 .contact-quick{display:flex;gap:12px;margin-top:12px}
 .quick-link{display:inline-flex;gap:8px;align-items:center;color:#cfe6ff;text-decoration:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02)}
@@ -676,5 +688,4 @@ body * {
 
 
 /* ================= END ROLEX GOLD ================= */
-
 
