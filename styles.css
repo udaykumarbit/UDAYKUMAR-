@@ -672,3 +672,76 @@ body * {
   border-color: var(--accent) !important;
   color: var(--accent) !important;
 }
+/* PREMIUM GOLD COMPANY NAME */
+.company-name,
+.company-name a {
+  background: linear-gradient(
+    90deg,
+    #b8860b,   /* Dark gold */
+    #ffd700,   /* Rich gold */
+    #ffec8b    /* Soft highlight */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+/* NAME – Premium Gold (Brand Identity) */
+.footer-name,
+.copyright-name,
+.profile-name,
+.hero .name {
+  background: linear-gradient(90deg, #b8860b, #ffd700, #ffec8b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+/* ===== HIGH VISIBILITY GOLD (STRONG & CLEAR) ===== */
+
+/* COMPANY NAME – STRONG GOLD */
+.company-name,
+.company-name a,
+.experience-card h4,
+.internship-card h4 {
+  background: linear-gradient(
+    90deg,
+    #8c6b00,   /* Deep gold */
+    #ffd700,   /* Bright gold */
+    #fff2a8    /* Shine highlight */
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px;
+}
+
+/* DEGREE – CLEAR GOLD */
+.degree-title,
+.education-card h3 {
+  color: #d4af37 !important; /* Metallic gold */
+  font-weight: 700 !important;
+}
+
+/* NAME – EXTRA STRONG GOLD */
+.profile-name,
+.hero .name,
+.site-footer strong {
+  background: linear-gradient(
+    90deg,
+    #8c6b00,
+    #ffd700,
+    #fff2a8
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 800 !important;
+}
+
+/* ROLE & LOCATION – DARKER FOR CONTRAST */
+.hero-role,
+.profile-role,
+.site-footer .role {
+  color: #2b2f38 !important;
+  font-weight: 600;
+}
