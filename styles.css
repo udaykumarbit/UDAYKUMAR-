@@ -150,6 +150,22 @@ html, body {
 /* Contact */
 .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
 .contact-card{display:flex;gap:12px;align-items:center;background:#f8fafc;padding:12px;border-radius:10px;border:1px solid rgba(10,24,40,0.04)}
+
+/* Contact info text + links (Email, Phone, LinkedIn) */
+.contact-card p,
+.contact-card a {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}
+
 .contact-form{background:#f8fafc;padding:16px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
 .contact-form input,.contact-form textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid rgba(10,24,40,0.06);background:#fff;color:#07102a}
 
@@ -392,10 +408,24 @@ body * {
 }
 
 /* Details section */
-.education-details p.institution {
+.education-details p.institution,
+.education-details p,
+.education-details a {
   margin: 8px 0 4px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  /* Same premium color as dates & company names */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none; /* keep links clean */
+}
+
+/* Hover underline only for education links */
+.education-details a:hover {
+  text-decoration: underline;
 }
 
 .education-meta {
@@ -456,8 +486,12 @@ body * {
 .project-title,
 .contact .section-header h2,
 .extra-row strong {
-  color: #ff4b2b; /* Vibrant red-orange */
   font-weight: 700;
+
+  /* Same premium color as dates, company & education names */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 /* Project titles with another pop color */
@@ -492,8 +526,21 @@ body * {
 .experience-title {
   color: #0077b6; /* Deep Sky Blue - draws attention */
 }
+
+/* Company name (text + links) */
+.company-name,
 .company-name a {
-  color: #023e8a; /* Dark Blue - clickable links */
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none; /* keep clean, link still works */
+}
+
+/* Optional hover for links only */
+.company-name a:hover {
+  text-decoration: underline;
 }
 .date-info span,
 .project-date,
