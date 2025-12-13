@@ -67,38 +67,21 @@ html, body {
 .hero-grid{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
 .hero-subtitle{color:var(--muted);font-weight:700}
 .hero-title{
-  font-size:48px; /* stronger, impressive first impression */
-  margin:6px 0 10px;
-  font-weight:900;
-  letter-spacing:0.6px;
-
-  /* Premium greeting color */
-  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool));
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-@media (max-width: 800px){
-  .hero-title{
-    font-size:36px; /* clean on mobile */
-  }
+  font-size:42px; /* increased for stronger first impression */
+  margin:6px 0 6px;
+  font-weight:800;
+  color:#fff;
 }
 .hero-role{
-  font-size:16px !important; /* force reduction (override conflicts) */
-  margin-bottom:10px !important;
-  font-weight:600 !important;
-  line-height:1.4;
+  font-size:18px;
+  margin-bottom:12px;
+  font-weight:700;
 
+  /* Premium role highlight: confident, engineering-grade */
   background: linear-gradient(90deg, var(--accent-cool), var(--accent), var(--accent-soft));
   -webkit-background-clip: text;
   color: transparent;
-  letter-spacing:0.3px;
-}
-
-@media (max-width: 800px){
-  .hero-role{
-    font-size:15px !important; /* mobile safe */
-  }
+  letter-spacing: 0.4px;
 }
 .typing{
   font-weight:700;
@@ -826,6 +809,8 @@ body * {
   border-color: var(--accent) !important;
   color: var(--accent) !important;
 }
+
+
 
 /* ================= END ROLEX GOLD ================= */
 
