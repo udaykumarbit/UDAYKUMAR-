@@ -1,227 +1,831 @@
-Udaykumar Borale
-R&D — Powertrain · BIW
-About
-Experience
-Projects
-Skills
-Education
-Contact
-Hi, I'm Udaykumar
+:root{
+  --bg-dark:#04051a;
+  --hero-deep:#020317;
+  --card:#ffffff;
+  --muted:#6b7280;
 
-R&D Engineer — Powertrain & BIW Design
-Pow 
-Experienced Mechanical Design and Simulation Engineer specializing in advanced 3D modeling, simulation, and full-cycle product development. Skilled in CATIA, SolidWorks, Creo, Siemens NX, Autodesk Inventor, ANSYS, Abaqus, and MATLAB, with a strong focus on delivering innovative and reliable engineering solutions.
+  /* Premium balanced palette */
+  --accent:#f5b301;        /* Elegant gold (primary) */
+  --accent-soft:#ffd166;   /* Soft gold highlight */
+  --accent-cool:#3bc9db;   /* Cool cyan contrast */
 
-Currently working at Chropynska India Private Ltd as an R&D Engineer (Powertrain and BIW Design), leading end-to-end design and development of Powertrain and Body-in-White systems. Dedicated to driving engineering excellence through automation-driven design and continuous innovation.
+  --glass: rgba(2,8,23,0.65);
+  --glass-border: rgba(0,0,0,0.08);
+  --maxw:1200px;
+  --pad:20px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
 
-+91-8660272709
-udaykumarborale9@gmail.com
-View Projects Get in Touch Download Resume LinkedIn
-1+
-Years Experience
-1+
-Projects Delivered
-Highlighted Project
-Lightweight e-axle integration
-Udaykumar Borale
-Udaykumar Borale
-R&D Engineer — Powertrain & BIW
-Hire Me
-About Me
-Experienced Mechanical Design and Simulation Engineer with hands-on product development and PLM/PDM experience.
+/* Reset & container */
+html, body {
+  height: 100%;
+  margin: 0;
 
-Design Excellence
-Proficient in CATIA, SolidWorks, PTC Creo, Autodesk Inventor, Siemens NX and Solid Edge for 3D modelling and detailed design.
+  /* PREMIUM ANIMATED BACKGROUND */
+  background: linear-gradient(120deg, #020314, #0a1a3a, #ff7a00);
+  background-size: 300% 300%;
+  animation: bgMove 12s ease infinite;
 
-Simulation Expertise
-Experienced with ANSYS, Abaqus, HyperMesh, ANSA and MATLAB for FEA and CFD workflows.
+  font-size: 16px;
 
-Product Development
-End-to-end product development, BOM management, and design optimization using PLM tools.
+  /* SPACING FIX */
+  overflow-x: hidden !important;
+}
 
-Work Experience
-Professional journey and key achievements
+.container {
+  max-width: var(--maxw);
+  width: 100% !important;
+  margin: 0 auto;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box;
+}
 
-R&D Engineer – Powertrain & BIW Design
- Chropynska India Private Ltd
- Oct 2025 – Present
-Lead end-to-end design and development of Powertrain and Body-in-White (BIW) systems.
-Optimized components for performance, durability and manufacturability using CAD and FEA tools.
-Integrated automation-driven design solutions and advanced manufacturing practices.
-Quality and Product Design Engineer
- JK Fenner India Ltd, Patancheru
- 2021-2022
-Created detailed 3D models and simulations to support product design initiatives.
-Assisted QA processes to meet industry standards and improve product reliability.
-Collaborated cross-functionally to improve design methodologies.
-Internship & Training
-Bajaj Engineering & Skills Training (BEST), PES University
-Mechatronics & Automation Trainee
+/* Header */
+.site-header{position:fixed;left:0;right:0;top:0;z-index:80;background:linear-gradient(180deg, rgba(2,3,10,0.55), rgba(2,3,10,0.15));backdrop-filter:blur(6px)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px;background:transparent;border:none;color:#fff}
+.logo-mark{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#05183a,#0b3f7a);font-weight:700;color:#fff}
+.brand-text .name{font-weight:700}
+.brand-text .subtitle{font-size:12px;color:var(--muted)}
+.nav-links{display:flex;gap:12px;align-items:center}
+.nav-link{background:transparent;border:none;color:rgba(255,255,255,0.85);padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+.nav-link:hover{color:var(--accent)}
+.nav-toggle{display:none}
 
-Feb – Jul 2025
-Six-month residential program focusing on motion control, robotics, sensor tech, PLCs and Industry 4.0.
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:none;cursor:pointer}
+.btn-primary{background:var(--accent);color:#07102a;font-weight:700}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+.btn-hireme{background:linear-gradient(90deg,var(--accent),#ffbb33);color:#07102a;font-weight:800;border-radius:12px;padding:10px 16px;box-shadow:0 6px 20px rgba(255,122,0,0.18);animation:hireme-pulse 1.8s infinite}
+@keyframes hireme-pulse{0%{box-shadow:0 0 0 rgba(255,122,0,0.25)}50%{box-shadow:0 0 18px rgba(255,122,0,0.45)}100%{box-shadow:0 0 0 rgba(255,122,0,0.25)}}
 
-Mechatronics
-PLC
-Automation
-CONCEPTIA KONNECT
-Simulation & Structural Analysis
+/* Hero */
+.hero{padding-top:110px;padding-bottom:40px}
+.dark-hero{background:linear-gradient(180deg, rgba(2,3,10,0.85), rgba(3,6,18,0.85))}
+.hero-grid{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
+.hero-subtitle{color:var(--muted);font-weight:700}
+.hero-title{
+  font-size:48px; /* stronger, impressive first impression */
+  margin:6px 0 10px;
+  font-weight:900;
+  letter-spacing:0.6px;
 
-Feb – May 2025
-Training in ANSYS, SolidWorks and PTC Creo for simulation-driven design improvements.
+  /* Premium greeting color */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool));
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
-ANSYS
-SolidWorks
-PTC Creo
-PRIME TOOLING
-Design & Structural Analysis
+@media (max-width: 800px){
+  .hero-title{
+    font-size:36px; /* clean on mobile */
+  }
+}
+.hero-role{
+  font-size:16px !important; /* force reduction (override conflicts) */
+  margin-bottom:10px !important;
+  font-weight:600 !important;
+  line-height:1.4;
 
-Mar – Feb 2025
-Intensive training in precision engineering, CAD/CAM and design validation.
+  background: linear-gradient(90deg, var(--accent-cool), var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing:0.3px;
+}
 
-PTC Creo
-CATIA
-Ansys
-CNC Machines – Bharat Fritz Werner
-Machining & Manufacturing
+@media (max-width: 800px){
+  .hero-role{
+    font-size:15px !important; /* mobile safe */
+  }
+}
+.typing{
+  font-weight:700;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool));
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  animation: typingShine 3.5s linear infinite;
+}
+.cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:8px;vertical-align:bottom;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
 
-Oct – Nov 2023
-Practical exposure to CNC machining processes and manufacturing techniques.
+@keyframes typingShine{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+.hero-desc{color:#c6d6ee;max-width:48rem;margin-bottom:12px}
+.contact-quick{display:flex;gap:12px;margin-top:12px}
+.quick-link{display:inline-flex;gap:8px;align-items:center;color:#cfe6ff;text-decoration:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02)}
 
-CNC
-CAM
-BELATHUR INDUSTRIES
-Machining Operations
+/* METRICS */
+.hero-metrics{display:flex;gap:12px;margin-top:18px}
+.metric-card{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);text-align:center;min-width:120px}
+.metric-num{font-size:20px;font-weight:800;color:#fff}
+.metric-label{font-size:12px;color:var(--muted)}
 
-May – Jun 2023
-3D modelling and technical drawings using CATIA V5; assisted in process optimization.
+/* Hero 3D */
+.hero-3d{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden !important;
+  background:linear-gradient(180deg,#02031a,#05102a);
+  height:360px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+}
+.hero-3d canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100% !important;
+}
+.hero-3d .hero-3d-overlay{position:absolute;left:18px;bottom:18px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+.hero-3d .overlay-title{font-size:12px;color:var(--muted)}
+.hero-3d .overlay-sub{font-weight:700;color:#fff}
 
-CATIA V5
-CAD/CAM
-Bosch – Diesel Services Division
-Intern (CFD & Flow Simulation)
+/* Profile */
+.profile-card{display:flex;align-items:center;gap:12px;padding:12px;background:linear-gradient(180deg,#07102a,#071b2a);border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-top:12px}
+.profile-image-wrap{position:relative;width:84px;height:84px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#0b2340,#0d3f60)}
+.profile-image{width:100%;height:100%;object-fit:cover;display:block}
+.profile-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6)}
+.profile-info .profile-name{font-weight:700;color:#fff}
+.profile-info .profile-role{font-size:13px;color:var(--muted)}
 
-Feb – Mar 2023
-Fluid flow simulation with ANSYS Fluent and SolidWorks Flow Simulation for diesel systems.
+/* White sections */
+.white-section{background:#fff;color:#0b1220;padding:42px 0}
+.white-section .section-header h2{color:#0b1220}
+.white-section .section-subtitle{color:var(--muted)}
+.section{padding:52px 0}
 
-ANSYS Fluent
-CFD
-Featured Projects
-Innovative engineering solutions and research work
+/* Cards & grids */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.about-card{background:#f8fafc;padding:18px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
+.card-icon{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e6eef8,#dbe9ff);margin-bottom:12px}
+.experience-card{background:#f8fafc;padding:18px;border-radius:12px;border:1px solid rgba(10,24,40,0.04);margin-bottom:12px}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.project-card{background:#f8fafc;padding:16px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.skill-block{background:#f8fafc;padding:12px;border-radius:10px;border:1px solid rgba(10,24,40,0.04)}
 
-Lightweight e-Axle Integration
-Apr – Jul 2024
-Engineered and validated a lightweight electric axle (e-axle) architecture for EV applications with focus on structural durability, torque density improvement, and packaging optimization. Multi-body kinematic studies, FEA, and topology optimization performed.
+/* Skill tags — separated and wrapped */
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.skill{background:#eef2ff;padding:6px 10px;border-radius:8px;font-size:13px;color:#07203a}
 
-CATIA V5
-SolidWorks
-ANSYS Workbench
-Topology Optimization
-Complete e-axle housing geometry developed including motor interface, differential casing, lubrication channels, and mounting bosses.
-Structural FEA for torque reaction loads, bending stiffness, bearing seat deformation, and load-path evaluation.
-Topology optimization reduced ~18–25% non-load-bearing mass while maintaining strength and fatigue safety factors.
-Thermal analysis verified operating temperature limits under continuous and peak loads.
-NVH evaluation ensured resonance modes outside motor torque harmonics.
-Optimized packaging for compact EV rear subframe integration ensuring manufacturability and assembly accessibility.
-Modeling and Analysis of Vertical Axis Wind Turbine Blade
-Apr – Jul 2024
-Designed and analyzed a Savonius-type Vertical Axis Wind Turbine (VAWT) blade using CATIA V5, SolidWorks, QBlade, and ANSYS. Evaluated aerodynamic forces, structural deformation, and stress distribution under varying wind conditions. Simulations confirmed that aluminium alloy blades maintain low deformation and operate within safe stress limits.
+/* Internships explicit cards */
+.internships-grid.explicit-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:12px}
+.internship-card.card-box{background:#fff;padding:14px;border-radius:10px;border:1px solid rgba(10,24,40,0.06);box-shadow:0 6px 18px rgba(2,8,23,0.03)}
+.internship-card.card-box h4{margin:0 0 6px}
+.internship-subtitle{color:var(--muted);font-weight:600}
+.internship-date{font-size:13px;color:var(--muted);margin:8px 0}
 
-CATIA V5
-SolidWorks
-ANSYS
-QBlade
-Developed complete 3D blade geometry focusing on aerodynamic efficiency.
-Performed FEA to analyze stress, deformation, and structural safety factors.
-Used QBlade for aerodynamic curve analysis and performance evaluation.
-Explored composite and H-rotor (Darrieus-type) design alternatives.
-Optimized blade design for improved performance and manufacturability.
-View Project PDF
-Studies on Free Convection in a Trapezoidal Cavity with Porous Media
-Aug – Dec 2024
-Conducted FEM-based numerical simulations to analyze natural convection in a porous trapezoidal cavity. Studied the influence of Rayleigh number, porosity, boundary conditions, and internal heat generation on heat transfer and flow behavior. MATLAB simulations were used to validate thermal and fluid flow trends for engineering thermal management applications.
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+.contact-card{display:flex;gap:12px;align-items:center;background:#f8fafc;padding:12px;border-radius:10px;border:1px solid rgba(10,24,40,0.04)}
 
-MATLAB
-CFD
-Thermal Analysis
-Performed FEM-based thermal and flow simulations in MATLAB.
-Analyzed Rayleigh number, porosity, and geometry effects on heat transfer.
-Investigated internal heat generation and flow circulation patterns.
-Interpreted temperature contours, streamlines, and velocity fields.
-Summarized findings for thermal management in engineering systems.
-View Project PDF
-Skills & Tools
-Expertise in industry-leading engineering tools and technologies
+/* Contact info text + links (Email, Phone, LinkedIn) */
+.contact-card p,
+.contact-card a {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
 
-3D Modeling Tools
-3D Modeling
-CATIA
-Siemens NX
-SolidWorks
-Autodesk Inventor
-Auto Cad
-Solid Edge
-PTC Creo
-Simulation Software
-ANSYS
-Abaqus
-Hyper Mesh
-ANSA
-MATLAB
-ANSYS Fluent
-CFD
-Product Development & Tools
-Product Development
-Product Design
-BOM Management
-PLM/PDM Tools
-Design Optimization
-GD&T
-RT Toolbox3
-Microsoft Office
-Technical Documentation
-Certifications
-CATIA V5 Certification
-SolidWorks CAD Design
-ANSYS Workbench
-Python Programming
-Education
-Academic background and qualifications
+.contact-card a:hover {
+  text-decoration: underline;
+}
 
-Bachelor of Engineering
-Mechanical Engineering
+.contact-form{background:#f8fafc;padding:16px;border-radius:12px;border:1px solid rgba(10,24,40,0.04)}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid rgba(10,24,40,0.06);background:#fff;color:#07102a}
 
-Bangalore Institute of Technology, Bengaluru
+/* Footer – Ultra‑minimal gray style (SAFE FALLBACK) */
+.site-footer{
+  padding:28px 0;
+  border-top:1px solid rgba(10,24,40,0.08);
+  text-align:center;
+  background: transparent;
+}
 
-2022-2025
-CGPA: 8.5
-Diploma
-Mechanical Engineering
+/* Works even if footer-main / footer-sub classes are NOT used */
+.site-footer,
+.site-footer p,
+.site-footer span,
+.site-footer small{
+  font-size:0.85rem;
+  font-weight:400;
+  color:#9ca3af; /* visible soft gray */
+}
 
-Jawaharlal Nehru Polytechnic (AIDED), Thana Kushnoor, Bidar
+.site-footer .footer-main{
+  font-size:0.9rem;
+  font-weight:500;
+  color:#9ca3af;
+}
 
-2018-2021
-72%
-Let's Work Together
-Ready to bring innovative engineering solutions to your next project. Let's discuss how we can collaborate.
+.site-footer .footer-sub{
+  margin-top:4px;
+  font-size:0.8rem;
+  color:#6b7280;
+}
 
-Email
-udaykumarborale9@gmail.com
-Phone
-+91-8660272709
-LinkedIn
-linkedin.com/in/udaykumarborale
-Location
-Banashankari 1st Stage, Bangalore - 560050
-First Name
- 
-Last Name
-Email Address
- 
-Subject
- 
-Your Message
- Send Message
-© 2025 Udaykumar Borale. All rights reserved.
-Mechanical Design Engineer | Bangalore, India
-Hire Me
+/* Floating Hire Me */
+.floating-hireme{position:fixed;right:24px;bottom:24px;background:linear-gradient(90deg,var(--accent),#ffbb33);padding:12px 22px;border-radius:50px;color:#07102a;font-weight:800;z-index:1000;box-shadow:0 10px 30px rgba(255,122,0,0.25)}
+
+/* Responsive */
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-toggle{display:inline-block}
+  .about-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .internships-grid.explicit-cards{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .hero-3d{height:260px}
+}
+
+/* Small animations */
+.fade-in{opacity:0;transform:translateY(8px);animation:fadeUp .8s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.muted{color:var(--muted)}
+.form-status{color:#05273b;margin-top:8px}
+
+/* Certifications spacing */
+.certifications-block {
+  margin-top: 20px !important;
+}
+.certifications-block h4 {
+  margin-bottom: 12px !important;
+}
+.certifications-block .skill-tags {
+  gap: 12px !important;
+}
+
+/* PREMIUM GRADIENT NAME EFFECT */
+.name,
+.profile-name {
+  background: linear-gradient(90deg, #ff7a00, #ffbb33, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  animation: nameShine 4s linear infinite;
+  background-size: 200%;
+}
+@keyframes nameShine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* BG animation */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ----------------------------------------------------- */
+/* FULL SPACING FIX (safe, bottom of file) */
+/* ----------------------------------------------------- */
+section {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+img, canvas {
+  max-width: 100% !important;
+  display: block;
+}
+
+body * {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+/* FIX PROJECT UP-DOWN SPACING */
+.project-card {
+  padding: 28px !important;
+  border-radius: 16px !important;
+}
+
+.projects-grid {
+  gap: 28px !important;
+}
+
+.project-card .project-header {
+  margin-bottom: 12px !important;
+}
+
+.project-card .project-description {
+  margin: 12px 0 16px !important;
+  line-height: 1.55 !important;
+}
+
+.project-card ul.project-features li {
+  margin-bottom: 8px !important;
+}
+/* Internship & Training Section */
+.internships-section {
+  margin-top: 40px;
+}
+
+.internships-grid.explicit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.internship-card.card-box {
+  background: linear-gradient(135deg, #ff7a00, #ffbb33);
+  color: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.internship-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.internship-subtitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+}
+
+.internship-date {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+
+.internship-description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.9);
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.skill-tag {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Hover effect */
+.internship-card.card-box:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, #ffbb33, #ff7a00);
+}
+
+/* Optional: Unique gradient per card */
+.internships-grid.explicit-cards .internship-card:nth-child(1) { background: linear-gradient(135deg, #ff7a00, #ffbb33); }
+.internships-grid.explicit-cards .internship-card:nth-child(2) { background: linear-gradient(135deg, #0ea5a4, #06b6d4); }
+.internships-grid.explicit-cards .internship-card:nth-child(3) { background: linear-gradient(135deg, #8b5cf6, #c084fc); }
+.internships-grid.explicit-cards .internship-card:nth-child(4) { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+.internships-grid.explicit-cards .internship-card:nth-child(5) { background: linear-gradient(135deg, #10b981, #06b6d4); }
+.internships-grid.explicit-cards .internship-card:nth-child(6) { background: linear-gradient(135deg, #facc15, #f97316); }
+
+/* Responsive */
+@media (max-width: 800px) {
+  .internships-grid.explicit-cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .internship-card.card-box {
+    padding: 18px;
+  }
+}
+/* ---------------- Education Cards ---------------- */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px; /* Spacious gap between cards */
+  margin-top: 24px;
+}
+
+/* Individual Card */
+.education-card {
+  background: linear-gradient(135deg, #06b6d4, #0ea5a4); /* Soft gradient */
+  color: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Header section with icon and title */
+.education-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.education-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+/* Education info */
+.education-info h3.degree-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.education-info p.degree-field {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Details section */
+.education-details p.institution,
+.education-details p,
+.education-details a {
+  margin: 8px 0 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  /* Same premium color as dates & company names */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none; /* keep links clean */
+}
+
+/* Hover underline only for education links */
+.education-details a:hover {
+  text-decoration: underline;
+}
+
+.education-meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  display: flex;
+  gap: 12px;
+}
+
+/* Hover effect for interactivity */
+.education-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, #0ea5a4, #06b6d4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .education-card {
+    padding: 18px;
+  }
+}
+/* Contact section – Languages spacing and full display */
+.extra-info .extra-row {
+  margin-bottom: 1.5rem; /* space below each row */
+  margin-top: 1rem;      /* space above row */
+  display: flex;
+  flex-direction: column; /* stack label and tags */
+  gap: 0.5rem;            /* space between label and tags */
+}
+
+.extra-info .extra-row strong {
+  font-size: 1rem;
+  line-height: 1.4;       /* ensures text wraps nicely */
+}
+
+.extra-info .extra-row .skill-tags {
+  display: flex;
+  flex-wrap: wrap;        /* allow tags to wrap to next line */
+  gap: 0.5rem 0.75rem;    /* vertical and horizontal spacing between tags */
+}
+
+.extra-info .extra-row .skill-tags .skill {
+  font-size: 0.875rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  background-color: #f1f3f8;
+  color: #0a0f1f;
+  white-space: normal;    /* allow full titles to wrap */
+}
+/* Main headings and important labels */
+.section-title,
+.hero-title,
+.project-title,
+.contact .section-header h2,
+.extra-row strong {
+  font-weight: 700;
+
+  /* Same premium color as dates, company & education names */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Project titles with another pop color */
+.project-title {
+  color: #0072ff; /* Bright blue */
+}
+
+/* Languages label */
+.extra-row strong {
+  color: #ff6a00; /* Deep orange */
+}
+/* MAIN SECTION HEADINGS */
+.section-title {
+  color: #0a0f1f; /* Dark Navy - professional and readable */
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: #495057; /* Muted Gray - complements dark heading */
+  font-weight: 400;
+}
+
+/* ABOUT CARDS */
+.about-card .card-title {
+  color: #6f42c1; /* Purple - design excellence */
+}
+.about-card .card-description {
+  color: #343a40; /* Dark Gray */
+}
+
+/* EXPERIENCE */
+.experience-title {
+  color: #0077b6; /* Deep Sky Blue - draws attention */
+}
+
+/* Company name (text + links) */
+.company-name,
+.company-name a {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-decoration: none; /* keep clean, link still works */
+}
+
+/* Optional hover for links only */
+.company-name a:hover {
+  text-decoration: underline;
+}
+.date-info span,
+.project-date,
+.internship-date,
+.education-period {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase; /* Month + Year style */
+
+  /* Premium date color */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* INTERNSHIP & TRAINING */
+.subsection-title {
+  color: #0096c7; /* Medium Cyan - distinct from main experience */
+}
+.internship-card h4 {
+  color: #0077b6; /* Deep Sky Blue */
+}
+.internship-subtitle, .internship-date {
+  color: #495057;
+}
+
+/* PROJECTS */
+.project-title {
+  color: #d9480f; /* Orange/Red - highlights projects */
+}
+
+/* Featured Projects date */
+.project-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.project-technologies .tech-tag.purple { color: #6f42c1; }
+.project-technologies .tech-tag.blue { color: #0077b6; }
+.project-technologies .tech-tag.green { color: #198754; }
+.project-technologies .tech-tag.orange { color: #d9480f; }
+.project-technologies .tech-tag.red { color: #dc3545; }
+.project-technologies .tech-tag.cyan { color: #0dcaf0; }
+.project-technologies .tech-tag.yellow { color: #ffc107; }
+
+/* SKILLS & TOOLS */
+.skill-block h4 {
+  font-weight: 600;
+}
+#skills .skill-block:nth-of-type(1) h4 {
+  color: #6f42c1; /* Purple - 3D Modeling Tools */
+}
+#skills .skill-block:nth-of-type(2) h4 {
+  color: #0077b6; /* Deep Sky Blue - Simulation Software */
+}
+#skills .skill-block:nth-of-type(3) h4 {
+  color: #198754; /* Green - Product Development & Tools */
+}
+.certifications-block h4 {
+  color: #fd7e14; /* Orange - Certifications */
+}
+.skill-tags .skill {
+  color: #343a40; /* Dark Gray for individual skills */
+  background-color: #f8f9fa; /* Soft background for readability */
+}
+
+/* EDUCATION */
+.education-card .degree-title {
+  color: #0077b6; /* Deep Sky Blue */
+}
+.education-card .degree-field {
+  color: #495057; /* Muted Gray */
+}
+
+/* Education dates */
+.education-period {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.education-grade {
+  color: #343a40;
+}
+
+/* CONTACT - Languages */
+.extra-info .skill-tags .skill {
+  color: #0a0f1f; /* Dark Navy */
+  background-color: #e9ecef; /* light gray background */
+}
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap; /* allows wrapping to next line if needed */
+  gap: 8px; /* space between tags */
+  margin-top: 8px;
+}
+
+.project-technologies .tech-tag {
+  display: inline-block;
+  padding: 4px 8px; /* makes them look like pills */
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: #f1f3f5; /* light gray background for contrast */
+  color: #0a0f1f; /* text color */
+}
+.about-grid.single-row {
+  display: flex;
+  flex-direction: row;      /* Horizontal row */
+  justify-content: space-between; /* Even spacing between cards */
+  gap: 1.5rem;              /* Space between cards */
+  flex-wrap: wrap;           /* Wrap on small screens */
+}
+
+.about-card {
+  background: #1a1f3a;
+  padding: 2rem;
+  border-radius: 15px;
+  flex: 1;                  /* Each card grows equally */
+  min-width: 250px;         /* Ensure text doesn’t shrink too much */
+  max-width: 350px;         /* Prevent cards from getting too wide */
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.about-card .card-icon {
+  font-size: 3rem;          /* Big visible icon */
+  margin-bottom: 1rem;
+  color: #ff6f61;           /* Or any 3D gradient color */
+}
+.about-grid.single-row {
+  display: flex;
+  flex-direction: row;      
+  justify-content: space-between; 
+  gap: 1.5rem;              
+  flex-wrap: wrap;           
+}
+
+.about-card {
+  background: linear-gradient(145deg, #ffffff, #e0e0e0); /* Light gradient for good contrast */
+  color: #1a1f3a;          /* Dark text for visibility */
+  padding: 2rem;
+  border-radius: 15px;
+  flex: 1;                  
+  min-width: 250px;         
+  max-width: 350px;         
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Soft shadow for 3D feel */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+.about-card .card-icon {
+  font-size: 3rem;          
+  margin-bottom: 1rem;
+  color: #ff6f61;           
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* Slight 3D effect */
+}
+
+.about-card .card-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.about-card .card-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.btn-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  background-color: #0a66c2; /* LinkedIn blue */
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-linkedin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 102, 194, 0.4);
+}
+
+.linkedin-icon {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+/* FIX: Force Get in Touch button to be visible */
+.btn-ghost {
+  background: rgba(255,255,255,0.12) !important;
+  border: 2px solid rgba(255,255,255,0.35) !important;
+  color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255,122,0,0.25) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+/* ================= END ROLEX GOLD ================= */
+
