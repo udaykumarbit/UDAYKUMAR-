@@ -3,7 +3,12 @@
   --hero-deep:#020317;
   --card:#ffffff;
   --muted:#6b7280;
-  --accent:#ff7a00;
+
+  /* Premium balanced palette */
+  --accent:#f5b301;        /* Elegant gold (primary) */
+  --accent-soft:#ffd166;   /* Soft gold highlight */
+  --accent-cool:#3bc9db;   /* Cool cyan contrast */
+
   --glass: rgba(2,8,23,0.65);
   --glass-border: rgba(0,0,0,0.08);
   --maxw:1200px;
@@ -65,11 +70,11 @@ html, body {
 .hero-role{font-size:18px;color:#dbe9ff;margin-bottom:12px}
 .typing{
   font-weight:700;
-  background: linear-gradient(90deg, #ff7a00, #ffbb33, #0dcaf0);
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool));
   -webkit-background-clip: text;
   color: transparent;
   background-size: 200%;
-  animation: typingShine 3s linear infinite;
+  animation: typingShine 3.5s linear infinite;
 }
 .cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:8px;vertical-align:bottom;animation:blink 1s steps(2,start) infinite}
 @keyframes blink{to{visibility:hidden}}
@@ -490,8 +495,19 @@ body * {
 .company-name a {
   color: #023e8a; /* Dark Blue - clickable links */
 }
-.date-info span {
-  color: #495057; /* Muted Gray */
+.date-info span,
+.project-date,
+.internship-date,
+.education-period {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase; /* Month + Year style */
+
+  /* Premium date color */
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 /* INTERNSHIP & TRAINING */
@@ -509,8 +525,16 @@ body * {
 .project-title {
   color: #d9480f; /* Orange/Red - highlights projects */
 }
+
+/* Featured Projects date */
 .project-date {
-  color: #495057;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .project-technologies .tech-tag.purple { color: #6f42c1; }
 .project-technologies .tech-tag.blue { color: #0077b6; }
@@ -548,7 +572,19 @@ body * {
 .education-card .degree-field {
   color: #495057; /* Muted Gray */
 }
-.education-period, .education-grade {
+
+/* Education dates */
+.education-period {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.education-grade {
   color: #343a40;
 }
 
