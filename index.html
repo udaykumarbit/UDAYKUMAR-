@@ -41,29 +41,34 @@
   </div>
 
   <!-- Header / Navigation -->
-  <header class="site-header">
+ <header class="site-header">
     <div class="nav container">
-      <button class="brand" onclick="scrollToSection('hero')" aria-label="Go to top">
+      <a href="#hero" class="brand" aria-label="Go to top">
         <div class="brand-text">
           <div class="name">Udaykumar Borale</div>
           <div class="subtitle">R&D — Powertrain · BIW</div>
         </div>
-      </button>
+      </a>
 
-      <div id="nav-links" class="nav-links">
-        <button class="nav-link" onclick="scrollToSection('about')">About</button>
-        <button class="nav-link" onclick="scrollToSection('experience')">Experience</button>
-        <button class="nav-link" onclick="scrollToSection('projects')">Projects</button>
-        <button class="nav-link" onclick="scrollToSection('skills')">Skills</button>
-        <button class="nav-link" onclick="scrollToSection('education')">Education</button>
-        <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
-      </div>
+      <nav id="nav-links" class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
       <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </button>
     </div>
   </header>
+ 
+
+  
 
   <!-- HERO -->
   <main>
@@ -587,6 +592,7 @@
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
