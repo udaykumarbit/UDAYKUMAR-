@@ -78,10 +78,12 @@ window.showProfileFallback = showProfileFallback;
 // ---------------- Typing Animation ----------------
 (function roleTyping() {
   const roles = [
-    'Powertrain Specialist',
-    'BIW Structural Engineer',
-    'NVH & Crash Analyst',
-    'Prototype Validation Lead',
+    'Powertrain & BIW Design Specialist',
+    'Heavy Machinery Design Expert',
+    'Simulation, CAE & FEA Expert',
+    'Design for Manufacturability (DFM/DFA) Strategist',
+    'NVH, Crash & Prototype Validation',
+    'Advanced CAD/CAE & Structural Optimization Engineer',
     'Simulation & CAE Expert'
   ];
   const el = $('#role-typing');
@@ -296,3 +298,4 @@ if(floating) floating.addEventListener('click', e=>{ e.preventDefault(); scrollT
 
   function throttle(fn,wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
+
