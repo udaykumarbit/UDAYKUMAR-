@@ -26,6 +26,7 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.min.js" defer></script>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
+    // Initialize EmailJS (can stay in head)
     (function() {
       emailjs.init("5muRzVJinIh6V4qiL");  // Public Key
     })();
@@ -33,23 +34,14 @@
 </head>
 
 <body>
-
-  <!-- Your content goes here -->
-
-  <!-- Main JS at the very bottom -->
-  <script src="script.js"></script>
-</body>
-</html>
-
-
-  <!-- Loading -->
+  <!-- Loading Screen -->
   <div id="loading-screen" class="loading-screen">
     <div class="loading-spinner" aria-hidden="true"></div>
     <p>Loading Portfolio...</p>
   </div>
 
-  <!-- Header -->
- <header class="site-header">
+  <!-- Header / Navigation -->
+  <header class="site-header">
     <div class="nav container">
       <button class="brand" onclick="scrollToSection('hero')" aria-label="Go to top">
         <div class="brand-text">
@@ -595,6 +587,7 @@
   <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
