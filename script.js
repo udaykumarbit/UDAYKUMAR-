@@ -20,6 +20,10 @@ window.addEventListener('load', () => {
   if (load) { load.style.opacity = '0'; setTimeout(() => load.remove(), 600); }
 });
 
+// ---------------- DOM Helpers ----------------
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+
 // ---------------- NAVIGATION ----------------
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
@@ -353,6 +357,7 @@ if (floating) {
 
   function throttle(fn, wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
+
 
 
 
