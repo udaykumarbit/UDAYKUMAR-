@@ -11,6 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (navLinks && !navLinks.classList.contains('open')) {
     navLinks.style.display = '';
   }
+
+  // ---------------- Remove underline from header name ----------------
+  const siteNameLink = $('#site-name a'); // if header name is a link
+  if (siteNameLink) {
+    siteNameLink.style.textDecoration = 'none';
+    siteNameLink.style.color = 'inherit'; // keeps original color
+  }
+
+  // If your header name is not a link, use this instead:
+  // const siteName = $('#site-name');
+  // if(siteName) siteName.style.textDecoration = 'none';
 });
 
 window.addEventListener('load', () => {
@@ -298,4 +309,3 @@ if(floating) floating.addEventListener('click', e=>{ e.preventDefault(); scrollT
 
   function throttle(fn,wait){ let raf=false; return (...args)=>{ if(raf) return; raf=true; requestAnimationFrame(()=>{ fn(...args); raf=false; }); }; }
 })();
-
