@@ -1230,4 +1230,54 @@ a {
   }
 }
 
+@media (max-width: 1000px) {
+  /* Hero container full width */
+  .hero {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Ensure grid is one column */
+  .hero-grid {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Profile card centered */
+  .profile-card {
+    margin: 20px auto 0 auto !important;
+    width: 100% !important;
+    max-width: 280px; /* optional */
+  }
+
+  .profile-card img {
+    width: 140px !important;
+    height: 140px !important;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Highlighted project overlay */
+  .hero-3d-overlay {
+    left: 10px !important;
+    right: 10px !important;
+    max-width: calc(100% - 20px);
+  }
+
+  /* Buttons 2x2 */
+  .hero-cta {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 280px;
+    margin: 0 auto 20px auto;
+  }
+
+  .hero-cta .btn {
+    width: 100% !important;
+    text-align: center;
+  }
+}
+
 
