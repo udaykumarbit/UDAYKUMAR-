@@ -885,14 +885,11 @@ a {
 
 
 /* ================= HERO MOBILE FULL WIDTH FIX ================= */
-/* -------------------- END OF EXISTING CSS -------------------- */
-
-/* ================= HERO & PROFILE MOBILE FIXES ================= */
-@media (max-width: 600px) {
-  /* Make hero section full width */
+/* ================= HERO FULL WIDTH MOBILE FIX ================= */
+@media (max-width: 1000px) {
   .hero {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
 
   .hero-grid {
@@ -906,11 +903,37 @@ a {
     max-width: 100% !important;
   }
 
+  .profile-card.mobile-profile {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .hero > .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+
   .profile-card.mobile-profile .profile-image-wrap {
     width: 140px !important;
     height: 140px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .hero-3d .overlay-title { font-size: 0.65rem !important; }
   .hero-3d .overlay-sub { font-size: 0.75rem !important; }
 }
+
