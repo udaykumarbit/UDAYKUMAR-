@@ -885,71 +885,41 @@ a {
 
 
 /* ================= HERO MOBILE FULL WIDTH FIX ================= */
-/* ================= HERO MOBILE SIDE SPACING FIX ================= */
+/* ================= HERO SECTION SIDE SPACING FIX ================= */
+.hero {
+  padding-left: 20px;   /* default desktop padding */
+  padding-right: 20px;
+}
+
+.hero > .container {
+  padding-left: 0 !important; /* container padding overridden only in hero */
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Responsive: small side padding for tablet/mobile */
 @media (max-width: 1000px) {
-
-  /* Hero section - tiny side spacing for mobile */
-  .hero,
-  .hero > .container,
-  .hero-grid {
-    padding-left: 0.25rem !important;  /* ~0.25rem sides */
+  .hero {
+    padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 100% !important;
-    width: 100% !important;
   }
-
-  /* Profile card centered */
-  .profile-card.mobile-profile {
-    margin-left: auto !important;
-    margin-right: auto !important;
+  .hero > .container {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
   }
 }
 
 @media (max-width: 600px) {
-
-  /* Hero section smaller mobile spacing */
-  .hero,
-  .hero > .container,
-  .hero-grid {
-    padding-left: 0.25rem !important; 
+  .hero {
+    padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 100% !important;
-    width: 100% !important;
   }
-
-  /* Profile image smaller and centered */
-  .profile-card.mobile-profile .profile-image-wrap {
-    width: 140px !important;
-    height: 140px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  /* Hero overlay text */
-  .hero-3d .overlay-title { font-size: 0.65rem !important; }
-  .hero-3d .overlay-sub { font-size: 0.75rem !important; }
-}
-
-/* ================= HERO MOBILE SIDE SPACING FIX ================= */
-@media (max-width: 1000px) {
   .hero > .container {
     padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
-    max-width: 100% !important;
   }
 }
 
-@media (max-width: 600px) {
-  .hero > .container {
-    padding-left: 0.25rem !important;
-    padding-right: 0.25rem !important;
-    max-width: 100% !important;
-  }
-}
 
 
 
