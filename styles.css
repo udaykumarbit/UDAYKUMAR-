@@ -1206,92 +1206,48 @@ a {
 }
 
 
-/* ---------------- HERO MAIN SECTION ---------------- */
-.hero {
-  padding-top: 80px !important;
-  padding-bottom: 40px !important;
-  padding-left: 15px !important;   /* smaller padding for mobile */
-  padding-right: 15px !important;
-  box-sizing: border-box;          /* prevent content overflow */
-}
-
-/* ---------------- HERO TEXT ---------------- */
-.hero-left {
-  max-width: 100%;
-}
-
-.hero-title,
-.hero-subtitle,
-.hero-role {
-  padding: 0 !important;
-  margin: 0 !important;
-  text-align: center;              /* center text on mobile */
-}
-
-/* ---------------- HERO BUTTONS ---------------- */
-.hero-cta {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  max-width: 280px;
-  margin: 20px auto;               /* center buttons */
-}
-
-.hero-cta .btn {
-  width: 100% !important;
-  text-align: center;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 700;
-}
-
-/* ---------------- PROFILE CARD ---------------- */
-.profile-card {
-  display: block;
-  margin: 20px auto 0 auto;        /* center horizontally */
-  width: 100%;
-  max-width: 280px;                 /* adjust size on mobile */
-  box-sizing: border-box;
-}
-
-.profile-card img {
-  width: 140px !important;
-  height: 140px !important;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-}
-
-/* ---------------- HIGHLIGHTED PROJECT OVERLAY ---------------- */
-.hero-3d-overlay {
-  left: 10px !important;
-  right: 10px !important;
-  max-width: calc(100% - 20px);
-  padding: 10px;
-  box-sizing: border-box;
-  text-align: left;
-}
-
-/* ---------------- MEDIA QUERY FOR SMALL SCREENS ---------------- */
+/* ---------------- MOBILE FIX ---------------- */
 @media (max-width: 600px) {
+  /* Make hero padding smaller to fit mobile */
   .hero {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
 
+  /* Center hero text */
+  .hero-left {
+    text-align: center !important;
+  }
+
+  /* Buttons 2x2 grid */
   .hero-cta {
-    grid-template-columns: 1fr 1fr;
-    max-width: 260px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    justify-items: center !important;
+    margin: 15px auto !important;
   }
 
+  /* Profile box fully visible */
   .profile-card {
-    max-width: 260px;
+    max-width: 260px !important;
+    margin: 15px auto !important;
   }
 
+  .profile-card img {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  /* Highlighted project overlay fit mobile */
   .hero-3d-overlay {
-    max-width: calc(100% - 20px);
+    left: 10px !important;
+    right: 10px !important;
+    max-width: calc(100% - 20px) !important;
   }
 }
+
+
 
 
 
