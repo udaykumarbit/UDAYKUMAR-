@@ -885,28 +885,24 @@ a {
 
 
 /* ================= HERO MOBILE FULL WIDTH FIX ================= */
-/* ================= HERO MOBILE SIDE PADDING ================= */
+/* ================= HERO SIDE SPACING MOBILE 0.2rem ================= */
 @media (max-width: 1000px) {
-  /* Give hero some horizontal space */
   .hero {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
   }
 
-  /* Keep grid stacked on mobile */
   .hero-grid {
     grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    gap: 16px !important;
   }
 
-  /* Ensure container inside hero fits */
   .hero > .container {
     padding-left: 0 !important;
     padding-right: 0 !important;
     max-width: 100% !important;
   }
 
-  /* Center profile card */
   .profile-card.mobile-profile {
     margin-left: auto !important;
     margin-right: auto !important;
@@ -915,16 +911,21 @@ a {
 
 @media (max-width: 600px) {
   .hero {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
   }
 
   .hero-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 12px !important;
   }
 
-  /* Profile photo smaller and centered */
+  .hero > .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+
   .profile-card.mobile-profile .profile-image-wrap {
     width: 140px !important;
     height: 140px !important;
@@ -932,7 +933,6 @@ a {
     margin-right: auto !important;
   }
 
-  /* Overlay text smaller */
   .hero-3d .overlay-title { font-size: 0.65rem !important; }
   .hero-3d .overlay-sub { font-size: 0.75rem !important; }
 }
