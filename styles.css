@@ -1121,6 +1121,7 @@ a {
 
 
 
+
 /* ---------------- HERO MAIN SECTION PADDING ---------------- */
 .hero {
   padding-top: 80px !important;    /* space from top */
@@ -1174,83 +1175,26 @@ a {
   gap: 6px;
 }
 
-/* ---------------- MOBILE HERO BUTTONS - 2 ROWS x 2 COLUMNS ---------------- */
+/* ---------------- MOBILE FIX ---------------- */
 @media (max-width: 800px) {
+  .hero {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero-left {
+    text-align: center;  /* center text on mobile */
+  }
+
   .hero-cta {
-    display: grid !important;                  /* switch from flex to grid */
-    grid-template-columns: repeat(2, 1fr);     /* 2 columns */
-    grid-auto-rows: auto;                      /* automatic rows */
-    gap: 12px !important;                      /* spacing between buttons */
-    justify-items: center;                     /* center buttons horizontally */
-    width: 100%;
-    max-width: 280px;                          /* optional: keep buttons not too wide */
-    margin: 0 auto;                            /* center the grid */
+    flex-direction: column;  /* stack buttons vertically */
+    gap: 12px;               /* spacing between buttons */
+    margin-top: 16px;
+    align-items: center;     /* center buttons */
   }
 
   .hero-cta .btn {
-    width: 100% !important;                    /* full width inside each grid cell */
-    max-width: 140px;                          /* limit button width */
-    margin: 0 !important;                      /* remove any flex margins */
-  }
-
-  /* Optional: reduce hero side padding for mobile */
-  .hero {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  /* Center hero texts */
-  .hero-left {
-    text-align: center;
+    width: 100%;             /* full-width buttons on mobile */
+    max-width: 280px;        /* limit max width */
   }
 }
-
-
-/* ---------------- MOBILE HERO FIX ---------------- */
-@media (max-width: 600px) {
-  /* Hero section padding */
-  .hero {
-    padding: 40px 12px 20px 12px !important; /* top right bottom left */
-  }
-
-  /* Hero text centered */
-  .hero-left {
-    text-align: center !important;
-    max-width: 100% !important;
-  }
-
-  /* Buttons in 2 rows × 2 columns */
-  .hero-cta {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-    justify-items: center !important;
-    margin-top: 15px !important;
-  }
-
-  /* Profile box fully visible */
-  .profile-card {
-    max-width: 260px !important;
-    margin: 20px auto !important;
-  }
-
-  .profile-card img {
-    width: 140px !important;
-    height: 140px !important;
-    object-fit: cover !important;
-  }
-
-  /* Highlighted project overlay fit mobile */
-  .hero-3d-overlay {
-    left: 12px !important;
-    right: 12px !important;
-    max-width: calc(100% - 24px) !important;
-  }
-}
-
-
-
-
-
-
-
