@@ -1206,78 +1206,92 @@ a {
 }
 
 
-/* ---------------- MOBILE FIX ---------------- */
-@media (max-width: 800px) {
-  .hero {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-
-  .hero-left {
-    text-align: center;  /* center text on mobile */
-  }
-
-  .hero-cta {
-    flex-direction: column;  /* stack buttons vertically */
-    gap: 12px;               /* spacing between buttons */
-    margin-top: 16px;
-    align-items: center;     /* center buttons */
-  }
-
-  .hero-cta .btn {
-    width: 100%;             /* full-width buttons on mobile */
-    max-width: 280px;        /* limit max width */
-  }
+/* ---------------- HERO MAIN SECTION ---------------- */
+.hero {
+  padding-top: 80px !important;
+  padding-bottom: 40px !important;
+  padding-left: 15px !important;   /* smaller padding for mobile */
+  padding-right: 15px !important;
+  box-sizing: border-box;          /* prevent content overflow */
 }
 
-@media (max-width: 1000px) {
-  /* Hero container full width */
+/* ---------------- HERO TEXT ---------------- */
+.hero-left {
+  max-width: 100%;
+}
+
+.hero-title,
+.hero-subtitle,
+.hero-role {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center;              /* center text on mobile */
+}
+
+/* ---------------- HERO BUTTONS ---------------- */
+.hero-cta {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 280px;
+  margin: 20px auto;               /* center buttons */
+}
+
+.hero-cta .btn {
+  width: 100% !important;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* ---------------- PROFILE CARD ---------------- */
+.profile-card {
+  display: block;
+  margin: 20px auto 0 auto;        /* center horizontally */
+  width: 100%;
+  max-width: 280px;                 /* adjust size on mobile */
+  box-sizing: border-box;
+}
+
+.profile-card img {
+  width: 140px !important;
+  height: 140px !important;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ---------------- HIGHLIGHTED PROJECT OVERLAY ---------------- */
+.hero-3d-overlay {
+  left: 10px !important;
+  right: 10px !important;
+  max-width: calc(100% - 20px);
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* ---------------- MEDIA QUERY FOR SMALL SCREENS ---------------- */
+@media (max-width: 600px) {
   .hero {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
 
-  /* Ensure grid is one column */
-  .hero-grid {
-    display: block !important;
-    width: 100% !important;
-    margin: 0 auto !important;
+  .hero-cta {
+    grid-template-columns: 1fr 1fr;
+    max-width: 260px;
   }
 
-  /* Profile card centered */
   .profile-card {
-    margin: 20px auto 0 auto !important;
-    width: 100% !important;
-    max-width: 280px; /* optional */
+    max-width: 260px;
   }
 
-  .profile-card img {
-    width: 140px !important;
-    height: 140px !important;
-    display: block;
-    margin: 0 auto;
-  }
-
-  /* Highlighted project overlay */
   .hero-3d-overlay {
-    left: 10px !important;
-    right: 10px !important;
     max-width: calc(100% - 20px);
   }
-
-  /* Buttons 2x2 */
-  .hero-cta {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    max-width: 280px;
-    margin: 0 auto 20px auto;
-  }
-
-  .hero-cta .btn {
-    width: 100% !important;
-    text-align: center;
-  }
 }
+
 
 
