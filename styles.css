@@ -1206,46 +1206,49 @@ a {
 }
 
 
-/* ---------------- MOBILE FIX ---------------- */
+/* ---------------- MOBILE HERO FIX ---------------- */
 @media (max-width: 600px) {
-  /* Make hero padding smaller to fit mobile */
+  /* Hero section padding */
   .hero {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding: 40px 12px 20px 12px !important; /* top right bottom left */
   }
 
-  /* Center hero text */
+  /* Hero text centered */
   .hero-left {
     text-align: center !important;
+    max-width: 100% !important;
   }
 
-  /* Buttons 2x2 grid */
+  /* Buttons in 2 rows × 2 columns */
   .hero-cta {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 10px !important;
     justify-items: center !important;
-    margin: 15px auto !important;
+    margin-top: 15px !important;
   }
 
   /* Profile box fully visible */
   .profile-card {
     max-width: 260px !important;
-    margin: 15px auto !important;
+    margin: 20px auto !important;
   }
 
   .profile-card img {
     width: 140px !important;
     height: 140px !important;
+    object-fit: cover !important;
   }
 
   /* Highlighted project overlay fit mobile */
   .hero-3d-overlay {
-    left: 10px !important;
-    right: 10px !important;
-    max-width: calc(100% - 20px) !important;
+    left: 12px !important;
+    right: 12px !important;
+    max-width: calc(100% - 24px) !important;
   }
 }
+
+
 
 
 
