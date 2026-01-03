@@ -1185,3 +1185,13 @@ a {
   }
 }
 
+/* ===== DESKTOP ONLY: PROFILE PHOTO RIGHT SPACING FIX ===== */
+@media (min-width: 1001px) {
+
+  .profile-card.mobile-profile {
+    margin-right: 16px !important;   /* adjust: 12px / 16px / 20px */
+    margin-left: 0 !important;
+  }
+
+}
+
