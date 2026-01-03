@@ -1121,7 +1121,6 @@ a {
 
 
 
-
 /* ---------------- HERO MAIN SECTION PADDING ---------------- */
 .hero {
   padding-top: 80px !important;    /* space from top */
@@ -1175,6 +1174,38 @@ a {
   gap: 6px;
 }
 
+/* ---------------- MOBILE HERO BUTTONS - 2 ROWS x 2 COLUMNS ---------------- */
+@media (max-width: 800px) {
+  .hero-cta {
+    display: grid !important;                  /* switch from flex to grid */
+    grid-template-columns: repeat(2, 1fr);     /* 2 columns */
+    grid-auto-rows: auto;                      /* automatic rows */
+    gap: 12px !important;                      /* spacing between buttons */
+    justify-items: center;                     /* center buttons horizontally */
+    width: 100%;
+    max-width: 280px;                          /* optional: keep buttons not too wide */
+    margin: 0 auto;                            /* center the grid */
+  }
+
+  .hero-cta .btn {
+    width: 100% !important;                    /* full width inside each grid cell */
+    max-width: 140px;                          /* limit button width */
+    margin: 0 !important;                      /* remove any flex margins */
+  }
+
+  /* Optional: reduce hero side padding for mobile */
+  .hero {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Center hero texts */
+  .hero-left {
+    text-align: center;
+  }
+}
+
+
 /* ---------------- MOBILE FIX ---------------- */
 @media (max-width: 800px) {
   .hero {
@@ -1198,4 +1229,5 @@ a {
     max-width: 280px;        /* limit max width */
   }
 }
+
 
