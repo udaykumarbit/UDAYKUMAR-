@@ -1170,3 +1170,18 @@ a {
 }
 
 
+/* ===== HERO ONLY – MOBILE SIDE SPACING FIX (FINAL OVERRIDE) ===== */
+@media (max-width: 600px) {
+
+  /* Add small safe side spacing ONLY for hero */
+  #hero > .container {
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
+  }
+
+  /* Extra safety: prevent right cut */
+  #hero {
+    overflow-x: hidden !important;
+  }
+}
+
