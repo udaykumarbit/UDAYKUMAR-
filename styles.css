@@ -934,19 +934,23 @@ a {
   .hero-3d .overlay-sub { font-size: 0.75rem !important; }
 }
 
-/* ================= HERO MOBILE SIDE SPACING ONLY ================= */
+/* ================= HERO MOBILE SIDE SPACING FIX ================= */
 @media (max-width: 1000px) {
-  .hero {
-    padding-left: 0.25rem !important;  /* tiny left space */
-    padding-right: 0.25rem !important; /* tiny right space */
+  .hero > .container {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+    max-width: 100% !important;
   }
 }
 
 @media (max-width: 600px) {
-  .hero {
-    padding-left: 0.25rem !important;  
+  .hero > .container {
+    padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
+    max-width: 100% !important;
   }
 }
+
+
 
 
