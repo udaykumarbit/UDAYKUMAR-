@@ -936,3 +936,32 @@ a {
   .hero-3d .overlay-title { font-size: 0.65rem !important; }
   .hero-3d .overlay-sub { font-size: 0.75rem !important; }
 }
+
+/* ================= HERO RIGHT SIDE SPACING FIX ================= */
+.hero-grid > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* align right-side content to the right */
+  gap: 24px;             /* spacing between 3D box and profile card */
+}
+
+.hero-3d {
+  width: 100%;           /* ensure it fills the column width */
+  max-width: 460px;      /* keeps it within your existing grid column size */
+}
+
+.profile-card.mobile-profile {
+  margin-left: auto;     /* push profile card to right */
+  margin-right: 0;       /* keep it aligned to right side */
+}
+
+/* Responsive tweaks to maintain spacing on mobile */
+@media (max-width: 1000px) {
+  .hero-grid > div:last-child {
+    align-items: center; /* center content on smaller screens */
+  }
+  .profile-card.mobile-profile {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
