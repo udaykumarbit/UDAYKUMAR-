@@ -885,29 +885,22 @@ a {
 
 
 /* ================= HERO MOBILE FULL WIDTH FIX ================= */
-/* ================= HERO FULL WIDTH MOBILE FIX ================= */
+/* ================= HERO MOBILE SIDE SPACING FIX ================= */
 @media (max-width: 1000px) {
 
-  /* Hero section spacing */
-  .hero {
-    padding-left: 0.3rem !important;   /* very small spacing */
-    padding-right: 0.3rem !important;
-  }
-
-  /* Hero grid layout single column */
+  /* Hero section - tiny side spacing for mobile */
+  .hero,
+  .hero > .container,
   .hero-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  /* Hero container full width */
-  .hero > .container {
-    padding-left: 0.3rem !important;  
-    padding-right: 0.3rem !important;
+    padding-left: 0.25rem !important;  /* ~0.25rem sides */
+    padding-right: 0.25rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     max-width: 100% !important;
+    width: 100% !important;
   }
 
-  /* Center profile card */
+  /* Profile card centered */
   .profile-card.mobile-profile {
     margin-left: auto !important;
     margin-right: auto !important;
@@ -916,24 +909,19 @@ a {
 
 @media (max-width: 600px) {
 
-  /* Hero spacing smaller */
-  .hero {
-    padding-left: 0.3rem !important;
-    padding-right: 0.3rem !important;
-  }
-
+  /* Hero section smaller mobile spacing */
+  .hero,
+  .hero > .container,
   .hero-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  .hero > .container {
-    padding-left: 0.3rem !important;
-    padding-right: 0.3rem !important;
+    padding-left: 0.25rem !important; 
+    padding-right: 0.25rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     max-width: 100% !important;
+    width: 100% !important;
   }
 
-  /* Center profile image */
+  /* Profile image smaller and centered */
   .profile-card.mobile-profile .profile-image-wrap {
     width: 140px !important;
     height: 140px !important;
@@ -941,8 +929,9 @@ a {
     margin-right: auto !important;
   }
 
-  /* Hero overlay text smaller */
+  /* Hero overlay text */
   .hero-3d .overlay-title { font-size: 0.65rem !important; }
   .hero-3d .overlay-sub { font-size: 0.75rem !important; }
 }
+
 
