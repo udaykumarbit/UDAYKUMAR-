@@ -885,24 +885,29 @@ a {
 
 
 /* ================= HERO MOBILE FULL WIDTH FIX ================= */
-/* ================= HERO SIDE SPACING MOBILE 0.2rem ================= */
+/* ================= HERO FULL WIDTH MOBILE FIX ================= */
 @media (max-width: 1000px) {
+
+  /* Hero section spacing */
   .hero {
-    padding-left: 0.2rem !important;
-    padding-right: 0.2rem !important;
+    padding-left: 0.3rem !important;   /* very small spacing */
+    padding-right: 0.3rem !important;
   }
 
+  /* Hero grid layout single column */
   .hero-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
 
+  /* Hero container full width */
   .hero > .container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0.3rem !important;  
+    padding-right: 0.3rem !important;
     max-width: 100% !important;
   }
 
+  /* Center profile card */
   .profile-card.mobile-profile {
     margin-left: auto !important;
     margin-right: auto !important;
@@ -910,9 +915,11 @@ a {
 }
 
 @media (max-width: 600px) {
+
+  /* Hero spacing smaller */
   .hero {
-    padding-left: 0.2rem !important;
-    padding-right: 0.2rem !important;
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
   }
 
   .hero-grid {
@@ -921,11 +928,12 @@ a {
   }
 
   .hero > .container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
     max-width: 100% !important;
   }
 
+  /* Center profile image */
   .profile-card.mobile-profile .profile-image-wrap {
     width: 140px !important;
     height: 140px !important;
@@ -933,6 +941,7 @@ a {
     margin-right: auto !important;
   }
 
+  /* Hero overlay text smaller */
   .hero-3d .overlay-title { font-size: 0.65rem !important; }
   .hero-3d .overlay-sub { font-size: 0.75rem !important; }
 }
