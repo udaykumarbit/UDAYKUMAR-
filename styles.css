@@ -1198,3 +1198,109 @@ a {
     max-width: 280px;        /* limit max width */
   }
 }
+
+/* ===== MOBILE HERO FIX — tailored for your layout ===== */
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 16px 14px 22px;
+  }
+
+  /* Force single-column layout */
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  /* Headings scale correctly */
+  .hero-subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(20px, 6vw, 26px);
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .hero-role {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  /* Quick contact row → stacked */
+  .contact-quick {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    justify-items: center;
+  }
+
+  .contact-quick .quick-link {
+    font-size: 13px;
+  }
+
+  /* CTA buttons → 2-per-row grid */
+  .hero-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* Metrics wrap properly */
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  /* 3D card section — full width + no overlap */
+  .hero-3d {
+    width: 100%;
+    position: relative;
+  }
+
+  .hero-3d canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-3d-overlay {
+    position: relative;
+    margin-top: 8px;
+  }
+
+  /* Profile card spacing */
+  .mobile-profile {
+    margin-top: 14px;
+  }
+
+  /* Prevent desktop constraints from leaking in */
+  .hero *,
+  .hero img {
+    max-width: 100%;
+  }
+}
