@@ -84,61 +84,232 @@ html, body {
 }
 @keyframes hireme-pulse{0%{box-shadow:0 0 0 rgba(255,122,0,0.25)}50%{box-shadow:0 0 18px rgba(255,122,0,0.45)}100%{box-shadow:0 0 0 rgba(255,122,0,0.25)}}
 
-/* -------------------- HERO -------------------- */
-.hero{padding-top:110px;padding-bottom:40px}
-.hero-grid{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
-.hero-subtitle{color:var(--muted);font-weight:700}
-.hero-title{ font-size:42px; margin:6px 0 6px; font-weight:800; color:#fff; }
-.hero-role{
-  font-size:18px; margin-bottom:12px; font-weight:700;
-  background: linear-gradient(90deg, var(--accent-cool), var(--accent), var(--accent-soft));
-  -webkit-background-clip: text; color: transparent; letter-spacing:0.4px;
+/* ===================== HERO SECTION ===================== */
+.hero {
+  padding-top: 110px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-.typing{ font-weight:700; background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool)); -webkit-background-clip: text; color: transparent; background-size: 200%; animation: typingShine 3.5s linear infinite; }
-.cursor{ display:inline-block; width:2px; height:1.2em; background:var(--accent); margin-left:8px; vertical-align:bottom; animation: blink 1s steps(2,start) infinite; }
-@keyframes blink{to{visibility:hidden}}
-@keyframes typingShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.hero-desc{color:#c6d6ee;max-width:48rem;margin-bottom:12px}
-.contact-quick{display:flex;gap:12px;margin-top:12px}
-.quick-link{display:inline-flex;gap:8px;align-items:center;color:#cfe6ff;text-decoration:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02)}
+
+.hero > .container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-subtitle {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hero-title {
+  font-size: 42px;
+  margin: 6px 0 6px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.hero-role {
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent-cool), var(--accent), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.4px;
+}
+
+.typing {
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool));
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  animation: typingShine 3.5s linear infinite;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: var(--accent);
+  margin-left: 8px;
+  vertical-align: bottom;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@keyframes typingShine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.hero-desc {
+  color: #c6d6ee;
+  max-width: 48rem;
+  margin-bottom: 12px;
+}
+
+.contact-quick {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.quick-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: #cfe6ff;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+}
 
 /* METRICS */
-.hero-metrics{display:flex;gap:12px;margin-top:18px}
-.metric-card{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);text-align:center;min-width:120px}
-.metric-num{font-size:20px;font-weight:800;color:#fff}
-.metric-label{font-size:12px;color:var(--muted)}
-
-/* Hero 3D */
-.hero-3d{
-  position:relative;
-  border-radius:14px;
-  overflow:hidden !important;
-  background:linear-gradient(180deg,#02031a,#05102a);
-  height:360px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+.hero-metrics {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
 }
-.hero-3d canvas{
-  display:block;
-  width:100%;
-  height:100%;
-  max-width:100% !important;
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  text-align: center;
+  min-width: 120px;
 }
-.hero-3d .hero-3d-overlay{position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
-.hero-3d .overlay-title{font-size:0.75rem;font-weight:600;color:var(--muted)}
-.hero-3d .overlay-sub{font-size:0.85rem;font-weight:500;color:#fff}
 
-/* Profile */
-.profile-card.mobile-profile{display:flex;align-items:center;gap:12px;padding:12px;background:linear-gradient(180deg,#07102a,#071b2a);border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-top:16px;align-self:flex-start;z-index:1}
-.profile-card.mobile-profile .profile-image-wrap{position:relative;width:220px;height:220px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0b2340,#0d3f60)}
-.profile-card.mobile-profile .profile-image{width:100%;height:100%;object-fit:cover;display:block}
-.profile-info .profile-name{font-weight:700;color:#fff}
-.profile-info .profile-role{font-size:13px;color:var(--muted)}
+.metric-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+}
 
-/* White sections */
-.white-section{background:#fff;color:#0b1220;padding:42px 0}
-.white-section .section-header h2{color:#0b1220}
-.white-section .section-subtitle{color:var(--muted)}
-.section{padding:52px 0}
+.metric-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* HERO 3D */
+.hero-3d {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden !important;
+  background: linear-gradient(180deg, #02031a, #05102a);
+  height: 360px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hero-3d canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100% !important;
+}
+
+.hero-3d .hero-3d-overlay {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+}
+
+.hero-3d .overlay-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.hero-3d .overlay-sub {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* PROFILE CARD */
+.profile-card.mobile-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: linear-gradient(180deg, #07102a, #071b2a);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  margin-top: 16px;
+  align-self: flex-start;
+  z-index: 1;
+}
+
+.profile-card.mobile-profile .profile-image-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0b2340, #0d3f60);
+}
+
+.profile-card.mobile-profile .profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-info .profile-name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.profile-info .profile-role {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ================= HERO RESPONSIVE ================= */
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .profile-card.mobile-profile .profile-image-wrap {
+    width: 180px !important;
+    height: 180px !important;
+  }
+  .hero-3d .overlay-title { font-size: 0.7rem !important; }
+  .hero-3d .overlay-sub { font-size: 0.8rem !important; }
+  .hero { padding-left: 0.25rem !important; padding-right: 0.25rem !important; }
+  .hero > .container { padding-left: 0.25rem !important; padding-right: 0.25rem !important; }
+}
+
+@media (max-width: 600px) {
+  .profile-card.mobile-profile .profile-image-wrap {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .hero-3d .overlay-title { font-size: 0.65rem !important; }
+  .hero-3d .overlay-sub { font-size: 0.75rem !important; }
+  .hero { padding-left: 0.25rem !important; padding-right: 0.25rem !important; }
+  .hero > .container { padding-left: 0.25rem !important; padding-right: 0.25rem !important; }
+}
+
+/* ===================== END HERO SECTION ===================== */
+
 
 
 /* Cards & grids */
@@ -919,6 +1090,7 @@ a {
     padding-right: 0.25rem !important;
   }
 }
+
 
 
 
