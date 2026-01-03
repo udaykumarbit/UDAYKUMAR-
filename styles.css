@@ -1,3 +1,5 @@
+/* ===================== ROLEX GOLD - FULL CSS OPTIMIZED ===================== */
+/* -------------------- VARIABLES -------------------- */
 :root{
   --bg-dark:#04051a;
   --hero-deep:#020317;
@@ -16,19 +18,14 @@
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-/* Reset & container */
+/* -------------------- RESET & CONTAINER -------------------- */
 html, body {
   height: 100%;
   margin: 0;
-
-  /* PREMIUM ANIMATED BACKGROUND */
   background: linear-gradient(120deg, #020314, #0a1a3a, #ff7a00);
   background-size: 300% 300%;
   animation: bgMove 12s ease infinite;
-
   font-size: 16px;
-
-  /* SPACING FIX */
   overflow-x: hidden !important;
 }
 
@@ -36,68 +33,71 @@ html, body {
   max-width: var(--maxw);
   width: 100% !important;
   margin: 0 auto;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+  padding: 0 var(--pad) !important;
   box-sizing: border-box;
 }
 
-/* Header */
-.site-header{position:fixed;left:0;right:0;top:0;z-index:80;background:linear-gradient(180deg, rgba(2,3,10,0.55), rgba(2,3,10,0.15));backdrop-filter:blur(6px)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand{display:flex;align-items:center;gap:12px;background:transparent;border:none;color:#fff}
-.logo-mark{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#05183a,#0b3f7a);font-weight:700;color:#fff}
-.brand-text .name{font-weight:700}
-.brand-text .subtitle{font-size:12px;color:var(--muted)}
-.nav-links{display:flex;gap:12px;align-items:center}
-.nav-link{background:transparent;border:none;color:rgba(255,255,255,0.85);padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600}
-.nav-link:hover{color:var(--accent)}
-.nav-toggle{display:none}
+/* -------------------- HEADER -------------------- */
+.site-header {
+  position: fixed;
+  left: 0; right: 0; top: 0;
+  z-index: 80;
+  background: linear-gradient(180deg, rgba(2,3,10,0.55), rgba(2,3,10,0.15));
+  backdrop-filter: blur(6px);
+}
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:none;cursor:pointer}
-.btn-primary{background:var(--accent);color:#07102a;font-weight:700}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
-.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
-.btn-hireme{background:linear-gradient(90deg,var(--accent),#ffbb33);color:#07102a;font-weight:800;border-radius:12px;padding:10px 16px;box-shadow:0 6px 20px rgba(255,122,0,0.18);animation:hireme-pulse 1.8s infinite}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; background: transparent; border: none; color: #fff; }
+.logo-mark {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg,#05183a,#0b3f7a);
+  font-weight: 700; color: #fff;
+}
+.brand-text .name { font-weight: 700; }
+.brand-text .subtitle { font-size: 12px; color: var(--muted); }
+.nav-links { display: flex; gap: 12px; align-items: center; }
+.nav-link {
+  background: transparent; border: none; color: rgba(255,255,255,0.85);
+  padding: 8px 10px; border-radius: 8px; cursor: pointer; font-weight: 600;
+}
+.nav-link:hover{ color: var(--accent); }
+.nav-toggle{ display: none; }
+
+/* -------------------- BUTTONS -------------------- */
+.btn{ display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px; text-decoration: none; border: none; cursor: pointer; }
+.btn-primary{ background: var(--accent); color: #07102a; font-weight: 700; }
+.btn-ghost{ background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.35); color: #fff; display: inline-flex; align-items: center; padding: 10px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s ease; }
+.btn-ghost:hover{ background: rgba(255,122,0,0.25) !important; border-color: var(--accent) !important; color: var(--accent) !important; }
+.btn-outline{ background: transparent; border: 1px solid rgba(255,255,255,0.12); color: #fff; }
+.btn-hireme{
+  background: linear-gradient(90deg,var(--accent),#ffbb33); color: #07102a; font-weight: 800;
+  border-radius: 12px; padding: 10px 16px;
+  box-shadow: 0 6px 20px rgba(255,122,0,0.18);
+  animation: hireme-pulse 1.8s infinite;
+}
 @keyframes hireme-pulse{0%{box-shadow:0 0 0 rgba(255,122,0,0.25)}50%{box-shadow:0 0 18px rgba(255,122,0,0.45)}100%{box-shadow:0 0 0 rgba(255,122,0,0.25)}}
 
-/* Hero */
+/* -------------------- HERO -------------------- */
 .hero{padding-top:110px;padding-bottom:40px}
-.dark-hero{background:linear-gradient(180deg, rgba(2,3,10,0.85), rgba(3,6,18,0.85))}
 .hero-grid{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
 .hero-subtitle{color:var(--muted);font-weight:700}
-.hero-title{
-  font-size:42px; /* increased for stronger first impression */
-  margin:6px 0 6px;
-  font-weight:800;
-  color:#fff;
-}
+.hero-title{ font-size:42px; margin:6px 0 6px; font-weight:800; color:#fff; }
 .hero-role{
-  font-size:18px;
-  margin-bottom:12px;
-  font-weight:700;
-
-  /* Premium role highlight: confident, engineering-grade */
+  font-size:18px; margin-bottom:12px; font-weight:700;
   background: linear-gradient(90deg, var(--accent-cool), var(--accent), var(--accent-soft));
-  -webkit-background-clip: text;
-  color: transparent;
-  letter-spacing: 0.4px;
+  -webkit-background-clip: text; color: transparent; letter-spacing:0.4px;
 }
-.typing{
-  font-weight:700;
-  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool));
-  -webkit-background-clip: text;
-  color: transparent;
-  background-size: 200%;
-  animation: typingShine 3.5s linear infinite;
-}
-.cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:8px;vertical-align:bottom;animation:blink 1s steps(2,start) infinite}
+.typing{ font-weight:700; background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-cool)); -webkit-background-clip: text; color: transparent; background-size: 200%; animation: typingShine 3.5s linear infinite; }
+.cursor{ display:inline-block; width:2px; height:1.2em; background:var(--accent); margin-left:8px; vertical-align:bottom; animation: blink 1s steps(2,start) infinite; }
 @keyframes blink{to{visibility:hidden}}
-
-@keyframes typingShine{
-  0%{background-position:200% 0}
-  100%{background-position:-200% 0}
-}
+@keyframes typingShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .hero-desc{color:#c6d6ee;max-width:48rem;margin-bottom:12px}
 .contact-quick{display:flex;gap:12px;margin-top:12px}
 .quick-link{display:inline-flex;gap:8px;align-items:center;color:#cfe6ff;text-decoration:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02)}
@@ -123,15 +123,14 @@ html, body {
   height:100%;
   max-width:100% !important;
 }
-.hero-3d .hero-3d-overlay{position:absolute;left:18px;bottom:18px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
-.hero-3d .overlay-title{font-size:12px;color:var(--muted)}
-.hero-3d .overlay-sub{font-weight:700;color:#fff}
+.hero-3d .hero-3d-overlay{position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+.hero-3d .overlay-title{font-size:0.75rem;font-weight:600;color:var(--muted)}
+.hero-3d .overlay-sub{font-size:0.85rem;font-weight:500;color:#fff}
 
 /* Profile */
-.profile-card{display:flex;align-items:center;gap:12px;padding:12px;background:linear-gradient(180deg,#07102a,#071b2a);border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-top:12px}
-.profile-image-wrap{position:relative;width:84px;height:84px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#0b2340,#0d3f60)}
-.profile-image{width:100%;height:100%;object-fit:cover;display:block}
-.profile-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6)}
+.profile-card.mobile-profile{display:flex;align-items:center;gap:12px;padding:12px;background:linear-gradient(180deg,#07102a,#071b2a);border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-top:16px;align-self:flex-start;z-index:1}
+.profile-card.mobile-profile .profile-image-wrap{position:relative;width:220px;height:220px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0b2340,#0d3f60)}
+.profile-card.mobile-profile .profile-image{width:100%;height:100%;object-fit:cover;display:block}
 .profile-info .profile-name{font-weight:700;color:#fff}
 .profile-info .profile-role{font-size:13px;color:var(--muted)}
 
@@ -140,6 +139,7 @@ html, body {
 .white-section .section-header h2{color:#0b1220}
 .white-section .section-subtitle{color:var(--muted)}
 .section{padding:52px 0}
+
 
 /* Cards & grids */
 .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -813,4 +813,73 @@ body * {
 
 
 /* ================= END ROLEX GOLD ================= */
+/* REMOVE UNDERLINES FROM HEADINGS ONLY */
+h1, h2, h3, h4, h5, h6 {
+  text-decoration: none !important;
+}
+
+/* OPTIONAL: Remove default underline from links but keep hover or other effects */
+a {
+  text-decoration: none;
+}
+
+
+
+/* ===================== HERO & PROFILE ADJUSTMENTS ===================== */
+
+/* Make profile photo bigger */
+.profile-card.mobile-profile .profile-image-wrap {
+  width: 220px !important;      /* bigger on desktop */
+  height: 220px !important;
+  border-radius: 16px !important;
+  min-width: 220px;
+  min-height: 220px;
+}
+
+.profile-card.mobile-profile .profile-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Make Hero Highlighted Project smaller */
+.hero-3d .hero-3d-overlay {
+  padding: 6px 10px !important;       /* smaller box */
+  border-radius: 10px !important;
+}
+
+.hero-3d .overlay-title {
+  font-size: 0.75rem !important;      /* smaller "Highlighted Project" text */
+  font-weight: 600;
+}
+
+.hero-3d .overlay-sub {
+  font-size: 0.85rem !important;      /* smaller project name */
+  font-weight: 500;
+}
+
+/* Adjust overlay position */
+.hero-3d .hero-3d-overlay {
+  bottom: 12px !important;
+  left: 12px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width:1000px) {
+  .profile-card.mobile-profile .profile-image-wrap {
+    width: 180px !important;
+    height: 180px !important;
+  }
+  .hero-3d .overlay-title { font-size: 0.7rem !important; }
+  .hero-3d .overlay-sub { font-size: 0.8rem !important; }
+}
+
+@media (max-width:600px) {
+  .profile-card.mobile-profile .profile-image-wrap {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .hero-3d .overlay-title { font-size: 0.65rem !important; }
+  .hero-3d .overlay-sub { font-size: 0.75rem !important; }
+}
 
